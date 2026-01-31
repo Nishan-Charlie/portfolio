@@ -17,12 +17,12 @@
             --text-muted: #9ca3af;
             --glass-bg: rgba(16, 16, 16, 0.65);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-color: #3b82f6; /* Blue */
+            --accent-color: #3b82f6;
             --nav-bg: rgba(10, 10, 10, 0.5);
             --card-hover-shadow: rgba(0,0,0,0.2);
+            --cursor-color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Light Theme Overrides */
         [data-theme="light"] {
             --bg-color: #f3f4f6;
             --text-color: #1f2937;
@@ -32,6 +32,7 @@
             --accent-color: #2563eb;
             --nav-bg: rgba(255, 255, 255, 0.8);
             --card-hover-shadow: rgba(0,0,0,0.1);
+            --cursor-color: rgba(0, 0, 0, 0.8);
         }
 
         body {
@@ -40,6 +41,37 @@
             background-color: var(--bg-color);
             overflow-x: hidden;
             transition: background-color 0.5s ease, color 0.5s ease;
+            cursor: none; /* Hide default cursor */
+        }
+
+        /* --- Custom Cursor --- */
+        #cursor-dot, #cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+        }
+        #cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--cursor-color);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        
+        /* Links hover effect on cursor */
+        body.hovering #cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-color);
         }
 
         #bg-canvas {
@@ -52,10 +84,7 @@
             transition: opacity 0.5s ease;
         }
 
-        [data-theme="light"] #bg-canvas {
-            opacity: 0.3; /* Fade 3D background in light mode */
-            filter: invert(1); /* Invert colors for cool effect */
-        }
+        [data-theme="light"] #bg-canvas { opacity: 0.6; }
 
         .content-section {
             position: relative;
@@ -67,6 +96,7 @@
             justify-content: center;
         }
 
+        /* --- 3D Tilt Card Effect --- */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
@@ -74,16 +104,29 @@
             border-radius: 20px;
             border: 1px solid var(--glass-border);
             padding: 2.5rem;
-            transition: all 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
+            
+            /* 3D Transform Properties */
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* Inner content helper for depth */
+        .glass-card > * {
+            transform: translateZ(0px); /* Base z-index */
+            transition: transform 0.3s;
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px var(--card-hover-shadow);
+            box-shadow: 0 20px 40px var(--card-hover-shadow);
             border-color: var(--accent-color);
+        }
+
+        .glass-card:hover > h3, .glass-card:hover > h4 {
+            transform: translateZ(20px); /* Pop out title */
         }
 
         .tag {
@@ -115,8 +158,8 @@
         /* Image Stack Animation */
         .image-stack {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
             perspective: 1000px;
         }
         
@@ -134,39 +177,26 @@
             opacity: 0;
         }
         
-        .stack-img.active {
-            opacity: 1;
-            transform: translateZ(0) scale(1);
-            z-index: 10;
-        }
-        
-        .stack-img.next {
-            opacity: 0.6;
-            transform: translate3d(20px, 20px, -50px) rotate(5deg);
-            z-index: 5;
-        }
+        .stack-img.active { opacity: 1; transform: translateZ(0) scale(1); z-index: 10; }
+        .stack-img.next { opacity: 0.6; transform: translate3d(20px, 20px, -50px) rotate(5deg); z-index: 5; }
 
-        /* Toggle Button */
+        /* Typewriter Cursor */
+        .typewriter::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Utilities */
         .theme-toggle {
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-color);
-            transition: all 0.3s;
+            cursor: pointer; padding: 8px; border-radius: 50%;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: var(--text-color); transition: all 0.3s;
         }
-        .theme-toggle:hover {
-            transform: rotate(15deg);
-            background: var(--accent-color);
-            color: white;
-        }
-
-        /* Text Colors utilities */
+        .theme-toggle:hover { transform: rotate(15deg); background: var(--accent-color); color: white; }
+        
         .text-custom { color: var(--text-color); }
         .text-muted-custom { color: var(--text-muted); }
-        
-        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
@@ -175,21 +205,25 @@
 </head>
 <body data-theme="dark">
 
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
     <canvas id="bg-canvas"></canvas>
     
     <nav class="navbar">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold text-custom">NS</a>
+            <a href="#home" class="text-xl font-bold text-custom hoverable">NS</a>
             
             <div class="flex items-center gap-6">
                 <div class="hidden md:flex space-x-6">
-                    <a href="#about" class="text-custom hover:text-blue-500 transition-colors">About</a>
-                    <a href="#experience" class="text-custom hover:text-blue-500 transition-colors">Experience</a>
-                    <a href="#research" class="text-custom hover:text-blue-500 transition-colors">Research</a>
-                    <a href="#projects" class="text-custom hover:text-blue-500 transition-colors">Projects</a>
+                    <a href="#about" class="text-custom hover:text-blue-500 transition-colors hoverable">About</a>
+                    <a href="#experience" class="text-custom hover:text-blue-500 transition-colors hoverable">Experience</a>
+                    <a href="#research" class="text-custom hover:text-blue-500 transition-colors hoverable">Research</a>
+                    <a href="#projects" class="text-custom hover:text-blue-500 transition-colors hoverable">Projects</a>
+                    <a href="#blog" class="text-custom hover:text-blue-500 transition-colors hoverable">Blog</a>
                 </div>
 
-                <button id="theme-btn" class="theme-toggle" aria-label="Toggle Theme">
+                <button id="theme-btn" class="theme-toggle hoverable" aria-label="Toggle Theme">
                     <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
@@ -199,30 +233,28 @@
 
     <div class="main-container">
         <section id="home" class="content-section h-screen flex flex-col md:flex-row items-center justify-center gap-12">
-            
             <div class="text-center md:text-left z-10 max-w-2xl">
                 <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-down text-custom">Nishankar Sathiyamohan</h1>
-                <p class="text-xl md:text-2xl text-muted-custom mb-8 animate-fade-in-up">Lecturer, Researcher & Software Developer</p>
+                <p id="typewriter-text" class="text-xl md:text-2xl text-muted-custom mb-8 h-8 typewriter"></p>
                 <div class="flex justify-center md:justify-start space-x-6 animate-fade-in-up">
-                    <a href="https://github.com/Nishan-Charlie" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg">GitHub</a>
-                    <a href="https://www.linkedin.com/in/nishankar-sathiyamohan" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg">LinkedIn</a>
-                    <a href="mailto:nishannishankar@gmail.com" class="text-muted-custom hover:text-blue-500 transition-colors text-lg">Email</a>
+                    <a href="https://github.com/Nishan-Charlie" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">GitHub</a>
+                    <a href="https://www.linkedin.com/in/nishankar-sathiyamohan" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">LinkedIn</a>
+                    <a href="mailto:nishannishankar@gmail.com" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">Email</a>
                 </div>
             </div>
 
             <div class="image-stack hidden md:block animate-fade-in">
-                <img src="My/1.jpg" class="stack-img active" alt="Profile Image 1" onerror="this.style.display='none'">
-                <img src="My/2.jpg" class="stack-img next" alt="Profile Image 2" onerror="this.style.display='none'">
-                <img src="My/3.jpg" class="stack-img" alt="Profile Image 3" onerror="this.style.display='none'">
+                <img src="My/profile.jpeg" class="stack-img active" alt="Profile" onerror="this.style.display='none'">
+                <img src="My/IEEE.jpeg" class="stack-img next" alt="IEEE Event" onerror="this.style.display='none'">
+                <img src="My/pongal.jpeg" class="stack-img" alt="Pongal Event" onerror="this.style.display='none'">
             </div>
-
         </section>
 
         <section id="about" class="content-section">
-            <div class="glass-card max-w-4xl mx-auto">
+            <div class="glass-card max-w-4xl mx-auto tilt-card">
                 <h2 class="text-4xl font-bold mb-6 text-center text-custom">About Me</h2>
                 <p class="text-lg text-muted-custom leading-relaxed mb-4">
-                    I am a passionate and results-oriented <strong>B.Sc. Engineering (Honours)</strong> graduate from the University of Peradeniya with a strong academic background (CGPA: 3.50/4.00). Currently serving as a <strong>Lecturer</strong> at the University of Sabragamuwa, I possess a proven track record in both academia and software development. 
+                    I am a passionate and results-oriented <strong>B.Sc. Engineering (Honours)</strong> graduate from the University of Peradeniya (CGPA: 3.50/4.00). Currently serving as a <strong>Lecturer</strong> at the University of Sabragamuwa.
                 </p>
                 <p class="text-lg text-muted-custom leading-relaxed">
                     My experience spans teaching core engineering subjects, mentoring undergraduate research, and developing full-stack applications. I am deeply committed to research in <strong>Computer Vision, Quantum Machine Learning, and Explainable AI</strong>.
@@ -231,15 +263,15 @@
         </section>
 
         <section id="experience" class="content-section">
-             <div class="glass-card max-w-4xl mx-auto w-full">
+             <div class="glass-card max-w-4xl mx-auto w-full tilt-card">
                 <h2 class="text-4xl font-bold mb-8 text-center text-custom">Professional Experience</h2>
                 <div class="relative border-l-2 border-gray-600">
-                     <div class="mb-10 ml-6">
+                    <div class="mb-10 ml-6">
                         <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full -left-3 ring-8 ring-gray-900"></span>
                         <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Lecturer <span class="bg-blue-900 text-blue-200 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">July 2025 - Present</span></h3>
                         <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Dept of Computing, University Of Sabragamuwa</p>
                     </div>
-                     <div class="mb-10 ml-6">
+                    <div class="mb-10 ml-6">
                         <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"></span>
                         <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Assistant Lecturer (Temp) <span class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Apr 2025 - June 2025</span></h3>
                         <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Dept of Computing, University Of Sabragamuwa</p>
@@ -249,17 +281,12 @@
                         <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Lecturer on Contract<span class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Apr 2024 - Apr 2025</span></h3>
                         <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Dept of Computer Engineering, University Of Jaffna</p>
                     </div>
-                    <div class="mb-10 ml-6">
-                         <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"></span>
-                        <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Software Engineering Intern<span class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Dec 2022 - Apr 2023</span></h3>
-                        <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Infinity Innovators Pvt, Colombo, Sri Lanka</p>
-                    </div>
                 </div>
             </div>
         </section>
 
         <section id="research" class="content-section">
-            <div class="glass-card max-w-5xl mx-auto w-full">
+            <div class="glass-card max-w-5xl mx-auto w-full tilt-card">
                 <h2 class="text-4xl font-bold mb-10 text-center text-custom">Research & Publications</h2>
                 
                 <h3 class="text-2xl font-semibold mb-6 text-blue-500 border-b border-gray-600 pb-2">Published Papers (Q1 Journals)</h3>
@@ -275,29 +302,20 @@
                         <span class="tag bg-green-900 text-green-200">Q1 Journal</span> <span class="tag">Semi-Supervised</span>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <h3 class="text-2xl font-semibold mb-6 text-purple-500 border-b border-gray-600 pb-2">Ongoing & Under Review</h3>
-                <div class="space-y-6">
-                    <div class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6">
-                        <div>
-                            <h4 class="text-lg font-bold text-custom">Hybrid Quantum-Classical Anomaly Detection</h4>
-                            <p class="text-muted-custom">Researching hybrid models for anomaly detection in 5G networks and medical imaging.</p>
-                        </div>
-                    </div>
-                     <div class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6">
-                        <div>
-                            <h4 class="text-lg font-bold text-custom">Tiny-DLW (Brinjal Disease Detection)</h4>
-                            <p class="text-muted-custom">Developing a lightweight CNN model and a novel dataset for Sri Lankan brinjal varieties.</p>
-                        </div>
-                    </div>
-                </div>
+        <section id="blog" class="content-section">
+            <h2 class="text-4xl font-bold mb-4 text-center text-custom">Latest Articles</h2>
+            <p class="text-center text-muted-custom mb-12">Thoughts and tutorials from <a href="https://medium.com/@nishannishankar" target="_blank" class="text-blue-500 hover:underline hoverable">Medium</a></p>
+            
+            <div id="medium-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="text-center col-span-3 text-muted-custom">Fetching latest articles...</div>
             </div>
         </section>
 
         <section id="projects" class="content-section">
             <h2 class="text-4xl font-bold mb-4 text-center text-custom">GitHub Projects</h2>
-            <p class="text-center text-muted-custom mb-12">Latest repositories fetched from <a href="https://github.com/Nishan-Charlie" class="text-blue-500 hover:underline">@Nishan-Charlie</a></p>
-            
             <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                  <div class="text-center col-span-2 text-muted-custom">Loading repositories...</div>
             </div>
@@ -305,29 +323,20 @@
         
         <section id="achievements" class="content-section">
              <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
-                <div class="glass-card">
+                <div class="glass-card tilt-card">
                     <h2 class="text-3xl font-bold mb-6 text-center text-custom">Awards & Honours</h2>
                     <ul class="space-y-4 list-none text-muted-custom">
-                        <li class="flex items-start">
-                            <span class="text-yellow-500 mr-2">★</span>
-                            <span><strong class="text-custom">Gold Medal</strong> for Best Young Researcher Award (2025)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-yellow-500 mr-2">★</span>
-                            <span><strong class="text-custom">Best Researcher Award</strong> (Faculty Level) (2025)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-blue-400 mr-2">➤</span>
-                            <span><strong class="text-custom">1st Place,</strong> Pre Aces Hackerthon 2022</span>
-                        </li>
+                        <li class="flex items-start"><span class="text-yellow-500 mr-2">★</span><span><strong class="text-custom">Gold Medal</strong> for Best Young Researcher (2025)</span></li>
+                        <li class="flex items-start"><span class="text-yellow-500 mr-2">★</span><span><strong class="text-custom">Best Researcher Award</strong> (Faculty) (2025)</span></li>
+                        <li class="flex items-start"><span class="text-blue-400 mr-2">➤</span><span><strong class="text-custom">1st Place,</strong> Pre Aces Hackerthon 2022</span></li>
                     </ul>
                 </div>
-                <div class="glass-card">
+                <div class="glass-card tilt-card">
                     <h2 class="text-3xl font-bold mb-6 text-center text-custom">Certifications</h2>
                      <ul class="space-y-3 list-disc list-inside text-muted-custom">
-                        <li>Deep Learning Specialization, <span class="text-muted-custom">DeepLearning.AI</span></li>
-                        <li>Algorithmic Tool Box, <span class="text-muted-custom">UC San Diego</span></li>
-                        <li>Scalable Java Microservices, <span class="text-muted-custom">Google Cloud</span></li>
+                        <li>Deep Learning Specialization</li>
+                        <li>Algorithmic Tool Box</li>
+                        <li>Scalable Java Microservices</li>
                     </ul>
                 </div>
             </div>
@@ -336,29 +345,163 @@
         <section id="contact" class="content-section text-center">
             <h2 class="text-4xl font-bold mb-4 text-custom">Get In Touch</h2>
             <div class="flex justify-center space-x-8 mt-8">
-                 <a href="https://github.com/Nishan-Charlie" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg">GitHub</a>
-                <a href="https://www.linkedin.com/in/nishankar-sathiyamohan" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg">LinkedIn</a>
-                <a href="mailto:nishannishankar@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                    Say Hello
-                </a>
+                 <a href="https://github.com/Nishan-Charlie" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">GitHub</a>
+                <a href="https://www.linkedin.com/in/nishankar-sathiyamohan" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">LinkedIn</a>
+                <a href="mailto:nishannishankar@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors hoverable">Say Hello</a>
             </div>
         </section>
     </div>
 
     <script>
-        // --- 1. Theme Toggle Logic ---
+        // --- 0. Custom Cursor Logic ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            // Outline follows with slight delay (animation in CSS)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Add hover effect for clickable items
+        document.querySelectorAll('.hoverable, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // --- 1. Typewriter Effect ---
+        const textToType = "Lecturer, Researcher & Software Developer";
+        const typeWriterElement = document.getElementById('typewriter-text');
+        let typeIndex = 0;
+
+        function typeWriter() {
+            if (typeIndex < textToType.length) {
+                typeWriterElement.innerHTML += textToType.charAt(typeIndex);
+                typeIndex++;
+                setTimeout(typeWriter, 50); // Speed of typing
+            }
+        }
+        setTimeout(typeWriter, 1000); // Start after 1 second
+
+        // --- 2. Three.js Background with Particles ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0x404040, 3);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0x8e44ad, 2);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        // Main Object (Knot)
+        const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+        const material = new THREE.MeshStandardMaterial({ 
+            color: 0xffffff, metalness: 0.8, roughness: 0.1, wireframe: true 
+        });
+        const knot = new THREE.Mesh(geometry, material);
+        scene.add(knot);
+
+        // Particles System
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 700;
+        const posArray = new Float32Array(particlesCount * 3);
+        
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 15; // Spread particles
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0x3b82f6,
+            transparent: true,
+            opacity: 0.8
+        });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        // Mouse Interactivity
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            // Rotate Knot
+            knot.rotation.x += 0.0005;
+            knot.rotation.y += 0.0005;
+            
+            // Rotate Particles (Slower)
+            particlesMesh.rotation.y = -mouseY * 0.1;
+            particlesMesh.rotation.x = mouseX * 0.1;
+
+            // Camera movement
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+            
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- 3. 3D Tilt Effect Logic (Vanilla JS) ---
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5; // Max 5 deg tilt
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
+            });
+        });
+
+        // --- 4. Theme Toggle Logic ---
         const themeBtn = document.getElementById('theme-btn');
         const sunIcon = document.getElementById('sun-icon');
         const moonIcon = document.getElementById('moon-icon');
         const body = document.body;
 
-        function updateIcon() {
-            if (body.getAttribute('data-theme') === 'light') {
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
+        function updateThemeElements() {
+            const isLight = body.getAttribute('data-theme') === 'light';
+            if (isLight) {
+                sunIcon.classList.remove('hidden'); moonIcon.classList.add('hidden');
+                material.color.setHex(0x1e3a8a); // Blue Knot
+                particlesMaterial.color.setHex(0x000000); // Black Particles
             } else {
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
+                sunIcon.classList.add('hidden'); moonIcon.classList.remove('hidden');
+                material.color.setHex(0xffffff); // White Knot
+                particlesMaterial.color.setHex(0x3b82f6); // Blue Particles
             }
         }
 
@@ -366,111 +509,94 @@
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme); // Save preference
-            updateIcon();
+            localStorage.setItem('theme', newTheme);
+            updateThemeElements();
         });
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            body.setAttribute('data-theme', savedTheme);
-            updateIcon();
-        }
+        // --- 5. Medium Blog Fetcher ---
+        async function fetchMediumArticles() {
+            const container = document.getElementById('medium-grid');
+            const rssUrl = 'https://medium.com/feed/@nishannishankar';
+            // Use rss2json service to convert RSS to JSON
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
-        // --- 2. Image Gallery Rotation ---
-        const images = document.querySelectorAll('.stack-img');
-        let currentImgIdx = 0;
-
-        // Only run if images exist
-        if(images.length > 0) {
-            setInterval(() => {
-                // Reset classes
-                images.forEach(img => img.classList.remove('active', 'next'));
-                
-                // Set new active and next
-                images[currentImgIdx].classList.add('active');
-                
-                let nextIdx = (currentImgIdx + 1) % images.length;
-                images[nextIdx].classList.add('next');
-
-                // Move to next index
-                currentImgIdx = nextIdx;
-            }, 3000); // Change image every 3 seconds
-        }
-
-        // --- 3. GitHub API Fetcher ---
-        async function fetchGitHubRepos() {
-            const username = 'Nishan-Charlie';
-            const container = document.getElementById('projects-grid');
-            
             try {
-                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=pushed&per_page=6`);
-                if (!response.ok) throw new Error('Failed to fetch');
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    container.innerHTML = '';
+                    // Display first 3 articles
+                    data.items.slice(0, 3).forEach(item => {
+                        // Extract first image from content if thumbnail is missing
+                        let img = item.thumbnail;
+                        if (!img) {
+                            const imgMatch = item.content.match(/<img src="(.*?)"/);
+                            img = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/300x150?text=No+Image';
+                        }
+                        
+                        // Create Card
+                        const card = document.createElement('div');
+                        card.className = 'glass-card tilt-card hoverable';
+                        card.innerHTML = `
+                            <div class="h-40 w-full mb-4 rounded-lg overflow-hidden">
+                                <img src="${img}" class="w-full h-full object-cover" alt="Article Image">
+                            </div>
+                            <h3 class="text-lg font-bold mb-2 text-custom line-clamp-2">${item.title}</h3>
+                            <div class="mt-auto pt-4 flex justify-between items-center">
+                                <span class="text-xs text-muted-custom">${new Date(item.pubDate).toLocaleDateString()}</span>
+                                <a href="${item.link}" target="_blank" class="text-blue-500 hover:text-blue-400 text-sm font-semibold">Read More →</a>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = '<p class="text-center text-muted-custom col-span-3">No articles found or API limit reached.</p>';
+                }
+            } catch (e) {
+                console.error(e);
+                container.innerHTML = '<p class="text-center text-muted-custom col-span-3">Unable to fetch articles.</p>';
+            }
+        }
+        fetchMediumArticles();
+
+        // --- 6. GitHub & Image Stack Logic (Existing) ---
+        // (Re-using previous fetchGitHubRepos logic here)
+        async function fetchGitHubRepos() {
+            const container = document.getElementById('projects-grid');
+            try {
+                const response = await fetch(`https://api.github.com/users/Nishan-Charlie/repos?sort=pushed&per_page=6`);
                 const repos = await response.json();
                 container.innerHTML = ''; 
-
                 repos.forEach(repo => {
                     const card = document.createElement('div');
-                    card.className = 'glass-card';
+                    card.className = 'glass-card tilt-card hoverable';
                     card.innerHTML = `
                         <h3 class="text-xl font-bold mb-2 text-custom">${repo.name.replace(/-/g, ' ').toUpperCase()}</h3>
-                        <p class="text-muted-custom mb-4 flex-grow text-sm">${repo.description || 'No description.'}</p>
-                        <div class="mb-4">
-                            ${repo.language ? `<span class="tag">${repo.language}</span>` : ''}
-                        </div>
-                        <a href="${repo.html_url}" target="_blank" class="text-blue-500 hover:text-blue-400 font-semibold text-sm mt-auto inline-flex items-center">
-                            View Repository <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
+                        <p class="text-muted-custom mb-4 flex-grow text-sm line-clamp-3">${repo.description || 'No description.'}</p>
+                        <div class="mb-4">${repo.language ? `<span class="tag">${repo.language}</span>` : ''}</div>
+                        <a href="${repo.html_url}" target="_blank" class="text-blue-500 hover:text-blue-400 font-semibold text-sm mt-auto inline-flex items-center">View Repo</a>
                     `;
                     container.appendChild(card);
                 });
-            } catch (error) {
-                container.innerHTML = '<p class="text-red-400 col-span-2 text-center">Unable to load projects.</p>';
-            }
+            } catch (e) { container.innerHTML = '<p class="text-red-400 col-span-2 text-center">Load failed.</p>'; }
         }
         fetchGitHubRepos();
 
-        // --- 4. Three.js Background ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        const ambientLight = new THREE.AmbientLight(0x404040, 3);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0x8e44ad, 2);
-        directionalLight.position.set(5, 5, 5);
-        scene.add(directionalLight);
-
-        const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
-        const material = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.8, roughness: 0.1, wireframe: true });
-        const knot = new THREE.Mesh(geometry, material);
-        scene.add(knot);
-        camera.position.z = 5;
-
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-        
-        function animate() {
-            requestAnimationFrame(animate);
-            knot.rotation.x += 0.0005;
-            knot.rotation.y += 0.0005;
-            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
-            camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
-            renderer.render(scene, camera);
+        // Image Stack Rotation
+        const images = document.querySelectorAll('.stack-img');
+        let currentImgIdx = 0;
+        if(images.length > 0) {
+            setInterval(() => {
+                images.forEach(img => img.classList.remove('active', 'next'));
+                images[currentImgIdx].classList.add('active');
+                let nextIdx = (currentImgIdx + 1) % images.length;
+                images[nextIdx].classList.add('next');
+                currentImgIdx = nextIdx;
+            }, 3000);
         }
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-        animate();
 
-        // Scroll Animation
+        // --- 7. Animation Observer ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -482,7 +608,7 @@
         }, { threshold: 0.15 });
         document.querySelectorAll('.glass-card').forEach(card => { card.style.opacity = 0; observer.observe(card); });
 
-        // Add Animation Styles
+        // Add Styles
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes fade-in-down { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -493,13 +619,6 @@
             .animate-fade-in { animation: fade-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         `;
         document.head.appendChild(style);
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
     </script>
 </body>
 </html>
