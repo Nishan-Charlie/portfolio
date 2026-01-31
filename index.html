@@ -1,626 +1,1173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nishankar Sathiyamohan | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        /* --- CSS Variables for Theming --- */
-        :root {
-            --bg-color: #0a0a0a;
-            --text-color: #E0E0E0;
-            --text-muted: #9ca3af;
-            --glass-bg: rgba(16, 16, 16, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-color: #3b82f6;
-            --nav-bg: rgba(10, 10, 10, 0.5);
-            --card-hover-shadow: rgba(0,0,0,0.2);
-            --cursor-color: rgba(255, 255, 255, 0.8);
-        }
+      /* --- CSS Variables for Theming --- */
+      :root {
+        --bg-color: #0a0a0a;
+        --text-color: #e0e0e0;
+        --text-muted: #9ca3af;
+        --glass-bg: rgba(16, 16, 16, 0.65);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-color: #3b82f6;
+        --nav-bg: rgba(10, 10, 10, 0.5);
+        --card-hover-shadow: rgba(0, 0, 0, 0.2);
+        --cursor-color: rgba(255, 255, 255, 0.8);
+      }
 
-        [data-theme="light"] {
-            --bg-color: #f3f4f6;
-            --text-color: #1f2937;
-            --text-muted: #4b5563;
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.1);
-            --accent-color: #2563eb;
-            --nav-bg: rgba(255, 255, 255, 0.8);
-            --card-hover-shadow: rgba(0,0,0,0.1);
-            --cursor-color: rgba(0, 0, 0, 0.8);
-        }
+      [data-theme="light"] {
+        --bg-color: #f3f4f6;
+        --text-color: #1f2937;
+        --text-muted: #4b5563;
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(0, 0, 0, 0.1);
+        --accent-color: #2563eb;
+        --nav-bg: rgba(255, 255, 255, 0.8);
+        --card-hover-shadow: rgba(0, 0, 0, 0.1);
+        --cursor-color: rgba(0, 0, 0, 0.8);
+      }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
-            cursor: none; /* Hide default cursor */
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        overflow-x: hidden;
+        transition:
+          background-color 0.5s ease,
+          color 0.5s ease;
+        cursor: none; /* Hide default cursor */
+      }
 
-        /* --- Custom Cursor --- */
-        #cursor-dot, #cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        #cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-color);
-        }
-        #cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--cursor-color);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        
-        body.hovering #cursor-outline {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(59, 130, 246, 0.1);
-            border-color: var(--accent-color);
-        }
+      /* --- Custom Cursor --- */
+      #cursor-dot,
+      #cursor-outline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      #cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent-color);
+      }
+      #cursor-outline {
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--cursor-color);
+        transition:
+          width 0.2s,
+          height 0.2s,
+          background-color 0.2s;
+      }
 
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            transition: opacity 0.5s ease;
-        }
+      body.hovering #cursor-outline {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(59, 130, 246, 0.1);
+        border-color: var(--accent-color);
+      }
 
-        [data-theme="light"] #bg-canvas { opacity: 0.6; }
+      #bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transition: opacity 0.5s ease;
+      }
 
-        .content-section {
-            position: relative;
-            z-index: 1;
-            padding: 120px 10% 100px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+      [data-theme="light"] #bg-canvas {
+        opacity: 0.6;
+      }
 
-        /* --- 3D Tilt Card Effect --- */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            padding: 2.5rem;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
+      .content-section {
+        position: relative;
+        z-index: 1;
+        padding: 120px 10% 100px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
 
-        .glass-card > * {
-            transform: translateZ(0px);
-            transition: transform 0.3s;
-        }
+      /* --- 3D Tilt Card Effect --- */
+      .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        padding: 2.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.1s ease-out,
+          box-shadow 0.3s ease;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
 
-        .glass-card:hover {
-            box-shadow: 0 20px 40px var(--card-hover-shadow);
-            border-color: var(--accent-color);
-        }
+      .glass-card > * {
+        transform: translateZ(0px);
+        transition: transform 0.3s;
+      }
 
-        .glass-card:hover > h3, .glass-card:hover > h4 {
-            transform: translateZ(20px);
-        }
+      .glass-card:hover {
+        box-shadow: 0 20px 40px var(--card-hover-shadow);
+        border-color: var(--accent-color);
+      }
 
-        .tag {
-            display: inline-block;
-            background-color: rgba(128, 128, 128, 0.2);
-            color: var(--text-muted);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            margin: 0.25rem 0.25rem 0.25rem 0;
-            font-weight: 500;
-            border: 1px solid var(--glass-border);
-        }
+      .glass-card:hover > h3,
+      .glass-card:hover > h4 {
+        transform: translateZ(20px);
+      }
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            padding: 1rem 2rem;
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            border-bottom: 1px solid var(--glass-border);
-        }
+      .tag {
+        display: inline-block;
+        background-color: rgba(128, 128, 128, 0.2);
+        color: var(--text-muted);
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin: 0.25rem 0.25rem 0.25rem 0;
+        font-weight: 500;
+        border: 1px solid var(--glass-border);
+      }
 
-        .image-stack {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            perspective: 1000px;
-        }
-        
-        .stack-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 4px solid var(--bg-color);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            opacity: 0;
-        }
-        
-        .stack-img.active { opacity: 1; transform: translateZ(0) scale(1); z-index: 10; }
-        .stack-img.next { opacity: 0.6; transform: translate3d(20px, 20px, -50px) rotate(5deg); z-index: 5; }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        padding: 1rem 2rem;
+        background: var(--nav-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        border-bottom: 1px solid var(--glass-border);
+      }
 
-        .typewriter::after {
-            content: '|';
-            animation: blink 1s infinite;
-        }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+      .image-stack {
+        position: relative;
+        width: 320px;
+        height: 320px;
+        perspective: 1000px;
+      }
 
-        .theme-toggle {
-            cursor: pointer; padding: 8px; border-radius: 50%;
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            color: var(--text-color); transition: all 0.3s;
+      .stack-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+        border: 4px solid var(--bg-color);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+      }
+
+      .stack-img.active {
+        opacity: 1;
+        transform: translateZ(0) scale(1);
+        z-index: 10;
+      }
+      .stack-img.next {
+        opacity: 0.6;
+        transform: translate3d(20px, 20px, -50px) rotate(5deg);
+        z-index: 5;
+      }
+
+      .typewriter::after {
+        content: "|";
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
         }
-        .theme-toggle:hover { transform: rotate(15deg); background: var(--accent-color); color: white; }
-        
-        .text-custom { color: var(--text-color); }
-        .text-muted-custom { color: var(--text-muted); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .theme-toggle {
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        color: var(--text-color);
+        transition: all 0.3s;
+      }
+      .theme-toggle:hover {
+        transform: rotate(15deg);
+        background: var(--accent-color);
+        color: white;
+      }
+
+      .text-custom {
+        color: var(--text-color);
+      }
+      .text-muted-custom {
+        color: var(--text-muted);
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-color);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
     </style>
-</head>
-<body data-theme="dark">
-
+  </head>
+  <body data-theme="dark">
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
     <canvas id="bg-canvas"></canvas>
-    
-<nav class="navbar">
-    <div class="container mx-auto flex justify-between items-center">
+
+    <nav class="navbar">
+      <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center gap-8">
-            <a href="#home" class="text-xl font-bold text-custom hoverable">NS</a>
-            
-            <a href="research-helper.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors hoverable">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          <a href="#home" class="text-xl font-bold text-custom hoverable">NS</a>
+
+            <a
+            href="research-helper.html"
+            class="hidden md:flex items-center gap-2 text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors hoverable"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              ></path>
+            </svg>
+            Conference Helper
+          </a>
+            <a href="notebooks.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-400 transition-colors hoverable">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
                 </svg>
-                Conference Helper
+                Notebooks
             </a>
         </div>
-        
-        <div class="flex items-center gap-6">
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-custom hover:text-blue-500 transition-colors hoverable">About</a>
-                <a href="#experience" class="text-custom hover:text-blue-500 transition-colors hoverable">Experience</a>
-                <a href="#research" class="text-custom hover:text-blue-500 transition-colors hoverable">Research</a>
-                <a href="#projects" class="text-custom hover:text-blue-500 transition-colors hoverable">Projects</a>
-                <a href="#service" class="text-custom hover:text-blue-500 transition-colors hoverable">Service</a>
-                <a href="#blog" class="text-custom hover:text-blue-500 transition-colors hoverable">Blog</a>
-            </div>
 
-            <button id="theme-btn" class="theme-toggle hoverable" aria-label="Toggle Theme">
-                <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-            </button>
+        <div class="flex items-center gap-6">
+          <div class="hidden md:flex space-x-6">
+            <a
+              href="#about"
+              class="text-custom hover:text-blue-500 transition-colors hoverable"
+              >About</a
+            >
+            <a
+              href="#experience"
+              class="text-custom hover:text-blue-500 transition-colors hoverable"
+              >Experience</a
+            >
+            <a
+              href="#research"
+              class="text-custom hover:text-blue-500 transition-colors hoverable"
+              >Research</a
+            >
+            <a
+              href="#projects"
+              class="text-custom hover:text-blue-500 transition-colors hoverable"
+              >Projects</a
+            >
+            <a
+              href="#service"
+              class="text-custom hover:text-blue-500 transition-colors hoverable"
+              >Service</a
+            >
+            <a
+              href="#blog"
+              class="text-custom hover:text-blue-500 transition-colors hoverable"
+              >Blog</a
+            >
+          </div>
+
+          <button
+            id="theme-btn"
+            class="theme-toggle hoverable"
+            aria-label="Toggle Theme"
+          >
+            <svg
+              id="sun-icon"
+              class="w-5 h-5 hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              ></path>
+            </svg>
+            <svg
+              id="moon-icon"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              ></path>
+            </svg>
+          </button>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
     <div class="main-container">
-        <section id="home" class="content-section h-screen flex flex-col md:flex-row items-center justify-center gap-12">
-            <div class="text-center md:text-left z-10 max-w-2xl">
-                <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-down text-custom">Nishankar Sathiyamohan</h1>
-                <p id="typewriter-text" class="text-xl md:text-2xl text-muted-custom mb-4 h-8 typewriter"></p>
-                
-                <p class="text-muted-custom mb-8 flex items-center justify-center md:justify-start gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    +94 076-4246-658
+      <section
+        id="home"
+        class="content-section h-screen flex flex-col md:flex-row items-center justify-center gap-12"
+      >
+        <div class="text-center md:text-left z-10 max-w-2xl">
+          <h1
+            class="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-down text-custom"
+          >
+            Nishankar Sathiyamohan
+          </h1>
+          <p
+            id="typewriter-text"
+            class="text-xl md:text-2xl text-muted-custom mb-4 h-8 typewriter"
+          ></p>
+
+          <p
+            class="text-muted-custom mb-8 flex items-center justify-center md:justify-start gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
+            </svg>
+            +94 076-4246-658
+          </p>
+
+          <div
+            class="flex justify-center md:justify-start space-x-6 animate-fade-in-up items-center"
+          >
+            <a
+              href="https://github.com/Nishan-Charlie"
+              target="_blank"
+              class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable"
+              >GitHub</a
+            >
+            <a
+              href="https://www.linkedin.com/in/nishankar-sathiyamohan"
+              target="_blank"
+              class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable"
+              >LinkedIn</a
+            >
+            <a
+              href="mailto:nishannishankar@gmail.com"
+              class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable"
+              >Email</a
+            >
+            <a
+              href="Nishankar_S_CV.pdf"
+              download
+              class="px-4 py-2 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors rounded-full text-sm font-semibold hoverable"
+              >Download CV</a
+            >
+          </div>
+        </div>
+
+        <div class="image-stack hidden md:block animate-fade-in">
+          <img
+            src="My/profile.jpeg"
+            class="stack-img active"
+            alt="Profile"
+            onerror="this.style.display = 'none'"
+          />
+          <img
+            src="My/IEEE.jpeg"
+            class="stack-img next"
+            alt="IEEE Event"
+            onerror="this.style.display = 'none'"
+          />
+          <img
+            src="My/IEEE2.jpeg"
+            class="stack-img next"
+            alt="IEEE Event"
+            onerror="this.style.display = 'none'"
+          />
+          <img
+            src="My/IEEE3.jpeg"
+            class="stack-img next"
+            alt="IEEE Event"
+            onerror="this.style.display = 'none'"
+          />
+          <img
+            src="My/pongal.jpeg"
+            class="stack-img"
+            alt="Pongal Event"
+            onerror="this.style.display = 'none'"
+          />
+          <img
+            src="My/curriculum.jpeg"
+            class="stack-img"
+            alt="Pongal Event"
+            onerror="this.style.display = 'none'"
+          />
+        </div>
+      </section>
+
+      <section id="about" class="content-section">
+        <div class="glass-card max-w-4xl mx-auto tilt-card">
+          <h2 class="text-4xl font-bold mb-6 text-center text-custom">
+            About Me
+          </h2>
+          <div class="space-y-4">
+            <p class="text-lg text-muted-custom leading-relaxed">
+              I am a passionate and results-oriented
+              <strong>B.Sc. Engineering (Honours)</strong> graduate from the
+              <strong>University of Peradeniya</strong> (CGPA: 3.50/4.00).
+              Currently serving as a <strong>Lecturer (Probationary)</strong> at
+              the University of Sabragamuwa.
+            </p>
+            <p class="text-lg text-muted-custom leading-relaxed">
+              My academic foundation began at <strong>Hartley College</strong>,
+              Point Pedro, where I excelled in Physical Sciences with 'A'
+              distinctions in Combined Mathematics and Chemistry.
+            </p>
+            <p class="text-lg text-muted-custom leading-relaxed">
+              I am deeply committed to research in
+              <strong
+                >Computer Vision, Quantum Machine Learning, and Explainable
+                AI</strong
+              >, aiming to contribute to Hybrid Quantum-Classical frameworks.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="content-section">
+        <div class="glass-card max-w-4xl mx-auto w-full tilt-card">
+          <h2 class="text-4xl font-bold mb-8 text-center text-custom">
+            Professional Experience
+          </h2>
+          <div class="relative border-l-2 border-gray-600">
+            <div class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full -left-3 ring-8 ring-gray-900"
+              ></span>
+              <h3
+                class="flex items-center mb-1 text-lg font-semibold text-custom"
+              >
+                Lecturer (Probationary)
+                <span
+                  class="bg-blue-900 text-blue-200 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3"
+                  >Apr 2025 - Present</span
+                >
+              </h3>
+              <p
+                class="block mb-2 text-sm font-normal leading-none text-muted-custom"
+              >
+                Dept of Software Engineering, Sabaragamuwa University of Sri
+                Lanka
+              </p>
+              <ul class="list-disc ml-5 mt-2 text-sm text-muted-custom">
+                <li>
+                  <strong>UBL Coordinator:</strong> Facilitating collaboration
+                  between university and industry partners.
+                </li>
+                <li>
+                  <strong>Assistant Research Coordinator:</strong> Managing
+                  departmental research activities.
+                </li>
+              </ul>
+            </div>
+            <div class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"
+              ></span>
+              <h3
+                class="flex items-center mb-1 text-lg font-semibold text-custom"
+              >
+                Lecturer (Contract)
+                <span
+                  class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3"
+                  >Apr 2024 - Apr 2025</span
+                >
+              </h3>
+              <p
+                class="block mb-2 text-sm font-normal leading-none text-muted-custom"
+              >
+                Dept of Computer Engineering, University Of Jaffna
+              </p>
+              <p class="text-sm mt-2 text-muted-custom">
+                Taught Embedded Systems, Computing, Digital Image Processing,
+                and Algorithms.
+              </p>
+            </div>
+            <div class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"
+              ></span>
+              <h3
+                class="flex items-center mb-1 text-lg font-semibold text-custom"
+              >
+                Instructor
+                <span
+                  class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3"
+                  >Jan 2024 - Apr 2024</span
+                >
+              </h3>
+              <p
+                class="block mb-2 text-sm font-normal leading-none text-muted-custom"
+              >
+                Dept of Computer Engineering, University of Peradeniya
+              </p>
+            </div>
+            <div class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"
+              ></span>
+              <h3
+                class="flex items-center mb-1 text-lg font-semibold text-custom"
+              >
+                Software Engineering Intern
+                <span
+                  class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3"
+                  >Dec 2022 - Apr 2023</span
+                >
+              </h3>
+              <p
+                class="block mb-2 text-sm font-normal leading-none text-muted-custom"
+              >
+                Infinity Innovators Pvt, Colombo
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="content-section">
+        <div class="glass-card max-w-6xl mx-auto w-full tilt-card">
+          <h2 class="text-4xl font-bold mb-10 text-center text-custom">
+            Research & Publications
+          </h2>
+
+          <div class="flex justify-center gap-6 mb-12 flex-wrap">
+            <a
+              href="https://scholar.google.com/citations?user=c9LpLioAAAAJ"
+              target="_blank"
+              class="flex items-center gap-3 px-5 py-3 bg-gray-800/40 rounded-xl border border-gray-700 hover:border-blue-500 hover:bg-gray-800/60 transition-all group hoverable"
+            >
+              <svg
+                class="w-6 h-6 text-blue-500 group-hover:scale-110 transition-transform"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"
+                />
+              </svg>
+              <div>
+                <div class="text-custom font-bold">Google Scholar</div>
+                <div
+                  class="text-xs text-muted-custom group-hover:text-blue-400"
+                >
+                  View Citations & Papers
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://www.researchgate.net/profile/Nishankar-Sathiyamohan"
+              target="_blank"
+              class="flex items-center gap-3 px-5 py-3 bg-gray-800/40 rounded-xl border border-gray-700 hover:border-green-500 hover:bg-gray-800/60 transition-all group hoverable"
+            >
+              <svg
+                class="w-6 h-6 text-green-500 group-hover:scale-110 transition-transform"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M11.986 7.425c.33 0 .633 0 .897.025v-.063c.245-.028.423-.047.58-.047.669 0 1.93.315 2.128 1.873h1.832c-.312-3.13-2.659-3.473-3.96-3.473-.591 0-1.07.115-1.477.202V4.316h-1.63v1.61c-.552-.164-1.127-.228-1.742-.228-2.686 0-3.996 1.705-3.996 3.738 0 1.83 1.05 3.328 3.551 4.545l.951.464v2.793c-2.221-.303-3.407-1.39-3.407-3.078 0-.083.003-.17.009-.272L4.01 13.62c-.023.11-.035.261-.035.454 0 2.21 2.222 4.198 5.163 4.582v1.517h1.63V18.61c2.253-.18 3.253-1.411 3.253-2.97 0-1.74-1.288-3.064-3.266-4.004l-1.034-.492V8.49c1.9.336 2.261 1.111 2.261 2.175h1.633c0-2.37-1.742-3.24-3.525-3.24zM8.303 9.42c0-1.075.641-1.95 2.067-1.95.449 0 .816.059 1.139.13v3.012l-.744-.366c-1.62-.804-2.462-1.64-2.462-2.583v.794-.037zm5.597 7.74c0 1.05-.725 1.782-2.19 1.938v-2.73l.798.378c1.32.6 1.392 1.488 1.392 2.145v-1.73z"
+                />
+              </svg>
+              <div>
+                <div class="text-custom font-bold">ResearchGate</div>
+                <div
+                  class="text-xs text-muted-custom group-hover:text-green-400"
+                >
+                  View Research Profile
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <h3
+            class="text-2xl font-semibold mb-6 text-green-500 border-b border-gray-600 pb-2"
+          >
+            Published (Q1 Journals)
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div
+              class="p-6 rounded-lg border border-gray-700 hover:bg-gray-800/30 transition-colors"
+            >
+              <h4 class="text-xl font-bold text-custom mb-2">ViT-RoT</h4>
+              <p class="text-muted-custom text-sm mb-3">
+                Vision Transformer-Based Robust Framework for Tomato Leaf
+                Disease Recognition.
+              </p>
+              <span class="tag bg-green-900 text-green-200"
+                >Agri Engineering (2025)</span
+              >
+            </div>
+            <div
+              class="p-6 rounded-lg border border-gray-700 hover:bg-gray-800/30 transition-colors"
+            >
+              <h4 class="text-xl font-bold text-custom mb-2">TOM-SSL</h4>
+              <p class="text-muted-custom text-sm mb-3">
+                Tomato Disease Recognition using Pseudo-labelling based
+                Semi-supervised Learning.
+              </p>
+              <span class="tag bg-green-900 text-green-200"
+                >AgriEngineering (2025)</span
+              >
+            </div>
+          </div>
+
+          <h3
+            class="text-2xl font-semibold mb-6 text-purple-500 border-b border-gray-600 pb-2"
+          >
+            Under Review & Ongoing
+          </h3>
+          <div class="space-y-6">
+            <div
+              class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6"
+            >
+              <div>
+                <h4 class="text-lg font-bold text-custom">
+                  U-FedTomAtt (Under Review)
+                </h4>
+                <p class="text-muted-custom">
+                  Ultra-lightweight Federated Learning with Attention for
+                  privacy-preserving disease recognition.
                 </p>
-
-                <div class="flex justify-center md:justify-start space-x-6 animate-fade-in-up">
-                    <a href="https://github.com/Nishan-Charlie" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">GitHub</a>
-                    <a href="https://www.linkedin.com/in/nishankar-sathiyamohan" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">LinkedIn</a>
-                    <a href="mailto:nishannishankar@gmail.com" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">Email</a>
-                </div>
+              </div>
             </div>
-
-            <div class="image-stack hidden md:block animate-fade-in">
-                <img src="My/profile.jpeg" class="stack-img active" alt="Profile" onerror="this.style.display='none'">
-                <img src="My/IEEE.jpeg" class="stack-img next" alt="IEEE Event" onerror="this.style.display='none'">
-                <img src="My/IEEE2.jpeg" class="stack-img next" alt="IEEE Event" onerror="this.style.display='none'">
-                <img src="My/IEEE3.jpeg" class="stack-img next" alt="IEEE Event" onerror="this.style.display='none'">
-                <img src="My/pongal.jpeg" class="stack-img" alt="Pongal Event" onerror="this.style.display='none'">
-                <img src="My/curriculum.jpeg" class="stack-img" alt="Pongal Event" onerror="this.style.display='none'">
+            <div
+              class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6"
+            >
+              <div>
+                <h4 class="text-lg font-bold text-custom">
+                  Self-xViT (Submitted)
+                </h4>
+                <p class="text-muted-custom">
+                  Self-supervised Vision Transformer with localized attention
+                  for explainable disease detection.
+                </p>
+              </div>
             </div>
-        </section>
-
-        <section id="about" class="content-section">
-            <div class="glass-card max-w-4xl mx-auto tilt-card">
-                <h2 class="text-4xl font-bold mb-6 text-center text-custom">About Me</h2>
-                <div class="space-y-4">
-                    <p class="text-lg text-muted-custom leading-relaxed">
-                        I am a passionate and results-oriented <strong>B.Sc. Engineering (Honours)</strong> graduate from the <strong>University of Peradeniya</strong> (CGPA: 3.50/4.00). Currently serving as a <strong>Lecturer (Probationary)</strong> at the University of Sabragamuwa.
-                    </p>
-                    <p class="text-lg text-muted-custom leading-relaxed">
-                        My academic foundation began at <strong>Hartley College</strong>, Point Pedro, where I excelled in Physical Sciences with 'A' distinctions in Combined Mathematics and Chemistry.
-                    </p>
-                    <p class="text-lg text-muted-custom leading-relaxed">
-                        I am deeply committed to research in <strong>Computer Vision, Quantum Machine Learning, and Explainable AI</strong>, aiming to contribute to Hybrid Quantum-Classical frameworks.
-                    </p>
-                </div>
+            <div
+              class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6"
+            >
+              <div>
+                <h4 class="text-lg font-bold text-custom">
+                  Hybrid Quantum-Classical Anomaly Detection
+                </h4>
+                <p class="text-muted-custom">
+                  Exploring hybrid quantum neural networks for anomaly detection
+                  in autonomous vehicle networks.
+                </p>
+              </div>
             </div>
-        </section>
-
-        <section id="experience" class="content-section">
-             <div class="glass-card max-w-4xl mx-auto w-full tilt-card">
-                <h2 class="text-4xl font-bold mb-8 text-center text-custom">Professional Experience</h2>
-                <div class="relative border-l-2 border-gray-600">
-                    <div class="mb-10 ml-6">
-                        <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full -left-3 ring-8 ring-gray-900"></span>
-                        <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Lecturer (Probationary) <span class="bg-blue-900 text-blue-200 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Apr 2025 - Present</span></h3>
-                        <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Dept of Software Engineering, Sabaragamuwa University of Sri Lanka</p>
-                        <ul class="list-disc ml-5 mt-2 text-sm text-muted-custom">
-                            <li><strong>UBL Coordinator:</strong> Facilitating collaboration between university and industry partners.</li>
-                            <li><strong>Assistant Research Coordinator:</strong> Managing departmental research activities.</li>
-                        </ul>
-                    </div>
-                    <div class="mb-10 ml-6">
-                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"></span>
-                        <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Lecturer (Contract) <span class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Apr 2024 - Apr 2025</span></h3>
-                        <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Dept of Computer Engineering, University Of Jaffna</p>
-                        <p class="text-sm mt-2 text-muted-custom">Taught Embedded Systems, Computing, Digital Image Processing, and Algorithms.</p>
-                    </div>
-                    <div class="mb-10 ml-6">
-                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"></span>
-                        <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Instructor <span class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Jan 2024 - Apr 2024</span></h3>
-                        <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Dept of Computer Engineering, University of Peradeniya</p>
-                    </div>
-                    <div class="mb-10 ml-6">
-                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -left-3 ring-8 ring-gray-900"></span>
-                        <h3 class="flex items-center mb-1 text-lg font-semibold text-custom">Software Engineering Intern <span class="bg-gray-700 text-gray-300 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">Dec 2022 - Apr 2023</span></h3>
-                        <p class="block mb-2 text-sm font-normal leading-none text-muted-custom">Infinity Innovators Pvt, Colombo</p>
-                    </div>
-                </div>
+            <div
+              class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6"
+            >
+              <div>
+                <h4 class="text-lg font-bold text-custom">
+                  BACL: Skin Cancer Segmentation
+                </h4>
+                <p class="text-muted-custom">
+                  Boundary-Recognized Compositional Learning for improving
+                  segmentation accuracy.
+                </p>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section id="research" class="content-section">
-            <div class="glass-card max-w-6xl mx-auto w-full tilt-card">
-                <h2 class="text-4xl font-bold mb-10 text-center text-custom">Research & Publications</h2>
-                
-                <h3 class="text-2xl font-semibold mb-6 text-green-500 border-b border-gray-600 pb-2">Published (Q1 Journals)</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                    <div class="p-6 rounded-lg border border-gray-700 hover:bg-gray-800/30 transition-colors">
-                        <h4 class="text-xl font-bold text-custom mb-2">ViT-RoT</h4>
-                        <p class="text-muted-custom text-sm mb-3">Vision Transformer-Based Robust Framework for Tomato Leaf Disease Recognition.</p>
-                        <span class="tag bg-green-900 text-green-200">Agri Engineering (2025)</span>
-                    </div>
-                    <div class="p-6 rounded-lg border border-gray-700 hover:bg-gray-800/30 transition-colors">
-                        <h4 class="text-xl font-bold text-custom mb-2">TOM-SSL</h4>
-                        <p class="text-muted-custom text-sm mb-3">Tomato Disease Recognition using Pseudo-labelling based Semi-supervised Learning.</p>
-                        <span class="tag bg-green-900 text-green-200">AgriEngineering (2025)</span>
-                    </div>
-                </div>
-
-                <h3 class="text-2xl font-semibold mb-6 text-purple-500 border-b border-gray-600 pb-2">Under Review & Ongoing</h3>
-                <div class="space-y-6">
-                    <div class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6">
-                        <div>
-                            <h4 class="text-lg font-bold text-custom">U-FedTomAtt (Under Review)</h4>
-                            <p class="text-muted-custom">Ultra-lightweight Federated Learning with Attention for privacy-preserving disease recognition.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6">
-                        <div>
-                            <h4 class="text-lg font-bold text-custom">Self-xViT (Submitted)</h4>
-                            <p class="text-muted-custom">Self-supervised Vision Transformer with localized attention for explainable disease detection.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6">
-                        <div>
-                            <h4 class="text-lg font-bold text-custom">Hybrid Quantum-Classical Anomaly Detection</h4>
-                            <p class="text-muted-custom">Exploring hybrid quantum neural networks for anomaly detection in autonomous vehicle networks.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-4 border-l-4 border-purple-500 pl-6">
-                        <div>
-                            <h4 class="text-lg font-bold text-custom">BACL: Skin Cancer Segmentation</h4>
-                            <p class="text-muted-custom">Boundary-Recognized Compositional Learning for improving segmentation accuracy.</p>
-                        </div>
-                    </div>
-                </div>
+      <section id="projects" class="content-section">
+        <h2 class="text-4xl font-bold mb-12 text-center text-custom">
+          Featured Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div class="glass-card tilt-card">
+            <h3 class="text-xl font-bold mb-2 text-custom">
+              Computational Histopathology
+            </h3>
+            <p class="text-muted-custom mb-4">
+              Transfer learning and XAI (SHAP, LIME) for histopathology
+              datasets.
+            </p>
+            <div>
+              <span class="tag">TensorFlow</span><span class="tag">XAI</span
+              ><span class="tag">Flask</span>
             </div>
-        </section>
-
-        <section id="projects" class="content-section">
-            <h2 class="text-4xl font-bold mb-12 text-center text-custom">Featured Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <div class="glass-card tilt-card">
-                    <h3 class="text-xl font-bold mb-2 text-custom">Computational Histopathology</h3>
-                    <p class="text-muted-custom mb-4">Transfer learning and XAI (SHAP, LIME) for histopathology datasets.</p>
-                    <div><span class="tag">TensorFlow</span><span class="tag">XAI</span><span class="tag">Flask</span></div>
-                </div>
-                <div class="glass-card tilt-card">
-                    <h3 class="text-xl font-bold mb-2 text-custom">DUCAS AI</h3>
-                    <p class="text-muted-custom mb-4">Automated daily reporting system for construction projects.</p>
-                    <div><span class="tag">Azure</span><span class="tag">GPT-4o</span><span class="tag">FastAPI</span></div>
-                </div>
-                <div class="glass-card tilt-card">
-                    <h3 class="text-xl font-bold mb-2 text-custom">WAKA Marketplace</h3>
-                    <p class="text-muted-custom mb-4">Full-stack vehicle marketplace for New Zealand.</p>
-                    <div><span class="tag">React.js</span><span class="tag">AWS Serverless</span><span class="tag">Node.js</span></div>
-                </div>
-                <div class="glass-card tilt-card">
-                    <h3 class="text-xl font-bold mb-2 text-custom">Road Sign Detection</h3>
-                    <p class="text-muted-custom mb-4">YOLOv8 based detection system for low-light conditions.</p>
-                    <div><span class="tag">YOLOv8</span><span class="tag">AWS</span><span class="tag">Computer Vision</span></div>
-                </div>
+          </div>
+          <div class="glass-card tilt-card">
+            <h3 class="text-xl font-bold mb-2 text-custom">DUCAS AI</h3>
+            <p class="text-muted-custom mb-4">
+              Automated daily reporting system for construction projects.
+            </p>
+            <div>
+              <span class="tag">Azure</span><span class="tag">GPT-4o</span
+              ><span class="tag">FastAPI</span>
             </div>
-        </section>
-
-        <section id="projects" class="content-section">
-            <h2 class="text-4xl font-bold mb-4 text-center text-custom">GitHub Projects</h2>
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                 <div class="text-center col-span-2 text-muted-custom">Loading repositories...</div>
+          </div>
+          <div class="glass-card tilt-card">
+            <h3 class="text-xl font-bold mb-2 text-custom">WAKA Marketplace</h3>
+            <p class="text-muted-custom mb-4">
+              Full-stack vehicle marketplace for New Zealand.
+            </p>
+            <div>
+              <span class="tag">React.js</span
+              ><span class="tag">AWS Serverless</span
+              ><span class="tag">Node.js</span>
             </div>
-        </section>
-
-        <section id="service" class="content-section">
-            <div class="glass-card max-w-5xl mx-auto w-full tilt-card">
-                <h2 class="text-4xl font-bold mb-8 text-center text-custom">Academic Service</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4 text-blue-500">Editorial & Chair Roles</h3>
-                        <ul class="space-y-3 list-none text-muted-custom">
-                            <li>➤ <strong>Editor:</strong> ICSUSL International Conference (2025)</li>
-                            <li>➤ <strong>Publication Chair:</strong> ComURS Symposium & ICARC (2025)</li>
-                            <li>➤ <strong>Co-Chair (Open Track):</strong> ICARC Conference (2025)</li>
-                            <li>➤ <strong>Registration Chair:</strong> ICARC Conference (2025)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4 text-blue-500">Memberships</h3>
-                        <ul class="space-y-3 list-none text-muted-custom">
-                            <li>➤ Member, <strong>IEEE</strong></li>
-                            <li>➤ Member, <strong>IESL</strong> (Institution of Engineers, Sri Lanka)</li>
-                        </ul>
-                    </div>
-                </div>
+          </div>
+          <div class="glass-card tilt-card">
+            <h3 class="text-xl font-bold mb-2 text-custom">
+              Road Sign Detection
+            </h3>
+            <p class="text-muted-custom mb-4">
+              YOLOv8 based detection system for low-light conditions.
+            </p>
+            <div>
+              <span class="tag">YOLOv8</span><span class="tag">AWS</span
+              ><span class="tag">Computer Vision</span>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section id="blog" class="content-section">
-            <h2 class="text-4xl font-bold mb-4 text-center text-custom">Latest Articles</h2>
-            <p class="text-center text-muted-custom mb-12">From <a href="https://medium.com/@nishannishankar" target="_blank" class="text-blue-500 hover:underline hoverable">Medium</a></p>
-            
-            <div id="medium-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="text-center col-span-3 text-muted-custom">Fetching latest articles...</div>
-            </div>
-        </section>
+      <section id="projects" class="content-section">
+        <h2 class="text-4xl font-bold mb-4 text-center text-custom">
+          GitHub Projects
+        </h2>
+        <div
+          id="projects-grid"
+          class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+        >
+          <div class="text-center col-span-2 text-muted-custom">
+            Loading repositories...
+          </div>
+        </div>
+      </section>
 
-        <section id="achievements" class="content-section">
-             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
-                <div class="glass-card tilt-card">
-                    <h2 class="text-3xl font-bold mb-6 text-center text-custom">Awards & Honours</h2>
-                    <ul class="space-y-4 list-none text-muted-custom">
-                        <li class="flex items-start"><span class="text-yellow-500 mr-2">★</span><span><strong class="text-custom">Gold Medal</strong>: Best Young Researcher (2025)</span></li>
-                        <li class="flex items-start"><span class="text-yellow-500 mr-2">★</span><span><strong class="text-custom">Best Researcher</strong> (Faculty Level) (2025)</span></li>
-                        <li class="flex items-start"><span class="text-blue-400 mr-2">➤</span><span><strong class="text-custom">1st Place</strong>, Pre Aces Hackathon 2022</span></li>
-                        <li class="flex items-start"><span class="text-blue-400 mr-2">➤</span><span><strong class="text-custom">Semi-finalist</strong>, Deep Speed Robot Comp 2019</span></li>
-                    </ul>
-                </div>
-                <div class="glass-card tilt-card">
-                    <h2 class="text-3xl font-bold mb-6 text-center text-custom">Technical Skills</h2>
-                     <div class="flex flex-wrap gap-2">
-                        <span class="tag">Python</span><span class="tag">C++</span><span class="tag">Java</span>
-                        <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span>
-                        <span class="tag">React.js</span><span class="tag">Django</span><span class="tag">FastAPI</span>
-                        <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Docker</span>
-                     </div>
-                </div>
+      <section id="service" class="content-section">
+        <div class="glass-card max-w-5xl mx-auto w-full tilt-card">
+          <h2 class="text-4xl font-bold mb-8 text-center text-custom">
+            Academic Service
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-semibold mb-4 text-blue-500">
+                Editorial & Chair Roles
+              </h3>
+              <ul class="space-y-3 list-none text-muted-custom">
+                <li>
+                  ➤ <strong>Editor:</strong> ICSUSL International Conference
+                  (2025)
+                </li>
+                <li>
+                  ➤ <strong>Publication Chair:</strong> ComURS Symposium & ICARC
+                  (2025)
+                </li>
+                <li>
+                  ➤ <strong>Co-Chair (Open Track):</strong> ICARC Conference
+                  (2025)
+                </li>
+                <li>
+                  ➤ <strong>Registration Chair:</strong> ICARC Conference (2025)
+                </li>
+              </ul>
             </div>
-        </section>
+            <div>
+              <h3 class="text-xl font-semibold mb-4 text-blue-500">
+                Memberships
+              </h3>
+              <ul class="space-y-3 list-none text-muted-custom">
+                <li>➤ Member, <strong>IEEE</strong></li>
+                <li>
+                  ➤ Member, <strong>IESL</strong> (Institution of Engineers, Sri
+                  Lanka)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="contact" class="content-section text-center">
-            <h2 class="text-4xl font-bold mb-4 text-custom">Get In Touch</h2>
-            <div class="flex justify-center space-x-8 mt-8">
-                 <a href="https://github.com/Nishan-Charlie" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">GitHub</a>
-                <a href="https://www.linkedin.com/in/nishankar-sathiyamohan" target="_blank" class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable">LinkedIn</a>
-                <a href="mailto:nishannishankar@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors hoverable">Say Hello</a>
+      <section id="blog" class="content-section">
+        <h2 class="text-4xl font-bold mb-4 text-center text-custom">
+          Latest Articles
+        </h2>
+        <p class="text-center text-muted-custom mb-12">
+          From
+          <a
+            href="https://medium.com/@nishannishankar"
+            target="_blank"
+            class="text-blue-500 hover:underline hoverable"
+            >Medium</a
+          >
+        </p>
+
+        <div
+          id="medium-grid"
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
+          <div class="text-center col-span-3 text-muted-custom">
+            Fetching latest articles...
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements" class="content-section">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+          <div class="glass-card tilt-card">
+            <h2 class="text-3xl font-bold mb-6 text-center text-custom">
+              Awards & Honours
+            </h2>
+            <ul class="space-y-4 list-none text-muted-custom">
+              <li class="flex items-start">
+                <span class="text-yellow-500 mr-2">★</span
+                ><span
+                  ><strong class="text-custom">Gold Medal</strong>: Best Young
+                  Researcher (2025)</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-yellow-500 mr-2">★</span
+                ><span
+                  ><strong class="text-custom">Best Researcher</strong> (Faculty
+                  Level) (2025)</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-400 mr-2">➤</span
+                ><span
+                  ><strong class="text-custom">1st Place</strong>, Pre Aces
+                  Hackathon 2022</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-400 mr-2">➤</span
+                ><span
+                  ><strong class="text-custom">Semi-finalist</strong>, Deep
+                  Speed Robot Comp 2019</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="glass-card tilt-card">
+            <h2 class="text-3xl font-bold mb-6 text-center text-custom">
+              Technical Skills
+            </h2>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Python</span><span class="tag">C++</span
+              ><span class="tag">Java</span> <span class="tag">PyTorch</span
+              ><span class="tag">TensorFlow</span
+              ><span class="tag">OpenCV</span> <span class="tag">React.js</span
+              ><span class="tag">Django</span><span class="tag">FastAPI</span>
+              <span class="tag">AWS</span><span class="tag">Azure</span
+              ><span class="tag">Docker</span>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="content-section text-center">
+        <h2 class="text-4xl font-bold mb-4 text-custom">Get In Touch</h2>
+        <div class="flex justify-center space-x-8 mt-8">
+          <a
+            href="https://github.com/Nishan-Charlie"
+            target="_blank"
+            class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable"
+            >GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/nishankar-sathiyamohan"
+            target="_blank"
+            class="text-muted-custom hover:text-blue-500 transition-colors text-lg hoverable"
+            >LinkedIn</a
+          >
+          <a
+            href="mailto:nishannishankar@gmail.com"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors hoverable"
+            >Say Hello</a
+          >
+        </div>
+      </section>
     </div>
 
     <script>
-        // --- 0. Custom Cursor ---
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-        
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-        });
+      // --- 0. Custom Cursor ---
+      const cursorDot = document.getElementById("cursor-dot");
+      const cursorOutline = document.getElementById("cursor-outline");
 
-        document.querySelectorAll('.hoverable, a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-        });
+      window.addEventListener("mousemove", (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+        cursorOutline.animate(
+          { left: `${posX}px`, top: `${posY}px` },
+          { duration: 500, fill: "forwards" },
+        );
+      });
 
-        // --- 1. Typewriter Effect ---
-        const textToType = "Lecturer, Researcher & Software Developer";
-        const typeWriterElement = document.getElementById('typewriter-text');
-        let typeIndex = 0;
+      document.querySelectorAll(".hoverable, a, button").forEach((el) => {
+        el.addEventListener("mouseenter", () =>
+          document.body.classList.add("hovering"),
+        );
+        el.addEventListener("mouseleave", () =>
+          document.body.classList.remove("hovering"),
+        );
+      });
 
-        function typeWriter() {
-            if (typeIndex < textToType.length) {
-                typeWriterElement.innerHTML += textToType.charAt(typeIndex);
-                typeIndex++;
-                setTimeout(typeWriter, 50);
-            }
+      // --- 1. Typewriter Effect ---
+      const textToType = "Lecturer, Researcher & Software Developer";
+      const typeWriterElement = document.getElementById("typewriter-text");
+      let typeIndex = 0;
+
+      function typeWriter() {
+        if (typeIndex < textToType.length) {
+          typeWriterElement.innerHTML += textToType.charAt(typeIndex);
+          typeIndex++;
+          setTimeout(typeWriter, 50);
         }
-        setTimeout(typeWriter, 1000);
+      }
+      setTimeout(typeWriter, 1000);
 
-        // --- 2. Three.js Background ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true, alpha: true });
+      // --- 2. Three.js Background ---
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000,
+      );
+      const renderer = new THREE.WebGLRenderer({
+        canvas: document.getElementById("bg-canvas"),
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const ambientLight = new THREE.AmbientLight(0x404040, 3);
+      scene.add(ambientLight);
+      const directionalLight = new THREE.DirectionalLight(0x8e44ad, 2);
+      directionalLight.position.set(5, 5, 5);
+      scene.add(directionalLight);
+
+      const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        metalness: 0.8,
+        roughness: 0.1,
+        wireframe: true,
+      });
+      const knot = new THREE.Mesh(geometry, material);
+      scene.add(knot);
+
+      // Particles
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCount = 700;
+      const posArray = new Float32Array(particlesCount * 3);
+      for (let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 15;
+      }
+      particlesGeometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(posArray, 3),
+      );
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.02,
+        color: 0x3b82f6,
+        transparent: true,
+        opacity: 0.8,
+      });
+      const particlesMesh = new THREE.Points(
+        particlesGeometry,
+        particlesMaterial,
+      );
+      scene.add(particlesMesh);
+
+      camera.position.z = 5;
+
+      let mouseX = 0,
+        mouseY = 0;
+      document.addEventListener("mousemove", (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        knot.rotation.x += 0.0005;
+        knot.rotation.y += 0.0005;
+        particlesMesh.rotation.y = -mouseY * 0.1;
+        particlesMesh.rotation.x = mouseX * 0.1;
+        camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+        camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+        renderer.render(scene, camera);
+      }
+      animate();
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-        
-        const ambientLight = new THREE.AmbientLight(0x404040, 3);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0x8e44ad, 2);
-        directionalLight.position.set(5, 5, 5);
-        scene.add(directionalLight);
+      });
 
-        const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
-        const material = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.8, roughness: 0.1, wireframe: true });
-        const knot = new THREE.Mesh(geometry, material);
-        scene.add(knot);
-
-        // Particles
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 700;
-        const posArray = new Float32Array(particlesCount * 3);
-        for(let i = 0; i < particlesCount * 3; i++) { posArray[i] = (Math.random() - 0.5) * 15; }
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0x3b82f6, transparent: true, opacity: 0.8 });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        camera.position.z = 5;
-
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      // --- 3. Tilt Logic ---
+      document.querySelectorAll(".tilt-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -5;
+          const rotateY = ((x - centerX) / centerX) * 5;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
-
-        function animate() {
-            requestAnimationFrame(animate);
-            knot.rotation.x += 0.0005; knot.rotation.y += 0.0005;
-            particlesMesh.rotation.y = -mouseY * 0.1; particlesMesh.rotation.x = mouseX * 0.1;
-            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
-            camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
-            renderer.render(scene, camera);
-        }
-        animate();
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
         });
+      });
 
-        // --- 3. Tilt Logic ---
-        document.querySelectorAll('.tilt-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-                const centerX = rect.width / 2; const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -5;
-                const rotateY = ((x - centerX) / centerX) * 5;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-            card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`; });
-        });
-
-        // --- 6. GitHub & Image Stack Logic (Existing) ---
-        // (Re-using previous fetchGitHubRepos logic here)
-        async function fetchGitHubRepos() {
-            const container = document.getElementById('projects-grid');
-            try {
-                const response = await fetch(`https://api.github.com/users/Nishan-Charlie/repos?sort=pushed&per_page=6`);
-                const repos = await response.json();
-                container.innerHTML = ''; 
-                repos.forEach(repo => {
-                    const card = document.createElement('div');
-                    card.className = 'glass-card tilt-card hoverable';
-                    card.innerHTML = `
-                        <h3 class="text-xl font-bold mb-2 text-custom">${repo.name.replace(/-/g, ' ').toUpperCase()}</h3>
-                        <p class="text-muted-custom mb-4 flex-grow text-sm line-clamp-3">${repo.description || 'No description.'}</p>
-                        <div class="mb-4">${repo.language ? `<span class="tag">${repo.language}</span>` : ''}</div>
+      // --- 6. GitHub & Image Stack Logic (Existing) ---
+      // (Re-using previous fetchGitHubRepos logic here)
+      async function fetchGitHubRepos() {
+        const container = document.getElementById("projects-grid");
+        try {
+          const response = await fetch(
+            `https://api.github.com/users/Nishan-Charlie/repos?sort=pushed&per_page=6`,
+          );
+          const repos = await response.json();
+          container.innerHTML = "";
+          repos.forEach((repo) => {
+            const card = document.createElement("div");
+            card.className = "glass-card tilt-card hoverable";
+            card.innerHTML = `
+                        <h3 class="text-xl font-bold mb-2 text-custom">${repo.name.replace(/-/g, " ").toUpperCase()}</h3>
+                        <p class="text-muted-custom mb-4 flex-grow text-sm line-clamp-3">${repo.description || "No description."}</p>
+                        <div class="mb-4">${repo.language ? `<span class="tag">${repo.language}</span>` : ""}</div>
                         <a href="${repo.html_url}" target="_blank" class="text-blue-500 hover:text-blue-400 font-semibold text-sm mt-auto inline-flex items-center">View Repo</a>
                     `;
-                    container.appendChild(card);
-                });
-            } catch (e) { container.innerHTML = '<p class="text-red-400 col-span-2 text-center">Load failed.</p>'; }
+            container.appendChild(card);
+          });
+        } catch (e) {
+          container.innerHTML =
+            '<p class="text-red-400 col-span-2 text-center">Load failed.</p>';
         }
-        fetchGitHubRepos();
-        // --- 4. Theme Toggle ---
-        const themeBtn = document.getElementById('theme-btn');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const body = document.body;
+      }
+      fetchGitHubRepos();
+      // --- 4. Theme Toggle ---
+      const themeBtn = document.getElementById("theme-btn");
+      const sunIcon = document.getElementById("sun-icon");
+      const moonIcon = document.getElementById("moon-icon");
+      const body = document.body;
 
-        function updateThemeElements() {
-            const isLight = body.getAttribute('data-theme') === 'light';
-            if (isLight) {
-                sunIcon.classList.remove('hidden'); moonIcon.classList.add('hidden');
-                material.color.setHex(0x1e3a8a); particlesMaterial.color.setHex(0x000000);
-            } else {
-                sunIcon.classList.add('hidden'); moonIcon.classList.remove('hidden');
-                material.color.setHex(0xffffff); particlesMaterial.color.setHex(0x3b82f6);
-            }
+      function updateThemeElements() {
+        const isLight = body.getAttribute("data-theme") === "light";
+        if (isLight) {
+          sunIcon.classList.remove("hidden");
+          moonIcon.classList.add("hidden");
+          material.color.setHex(0x1e3a8a);
+          particlesMaterial.color.setHex(0x000000);
+        } else {
+          sunIcon.classList.add("hidden");
+          moonIcon.classList.remove("hidden");
+          material.color.setHex(0xffffff);
+          particlesMaterial.color.setHex(0x3b82f6);
         }
-        themeBtn.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeElements();
-        });
+      }
+      themeBtn.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeElements();
+      });
 
-        // --- 5. Medium Blog Fetcher ---
-        async function fetchMediumArticles() {
-            const container = document.getElementById('medium-grid');
-            const rssUrl = 'https://medium.com/feed/@nishannishankar';
-            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+      // --- 5. Medium Blog Fetcher ---
+      async function fetchMediumArticles() {
+        const container = document.getElementById("medium-grid");
+        const rssUrl = "https://medium.com/feed/@nishannishankar";
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                if (data.status === 'ok') {
-                    container.innerHTML = '';
-                    data.items.slice(0, 3).forEach(item => {
-                        let img = item.thumbnail;
-                        if (!img) {
-                            const imgMatch = item.content.match(/<img src="(.*?)"/);
-                            img = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/300x150?text=No+Image';
-                        }
-                        const card = document.createElement('div');
-                        card.className = 'glass-card tilt-card hoverable';
-                        card.innerHTML = `
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+          if (data.status === "ok") {
+            container.innerHTML = "";
+            data.items.slice(0, 3).forEach((item) => {
+              let img = item.thumbnail;
+              if (!img) {
+                const imgMatch = item.content.match(/<img src="(.*?)"/);
+                img = imgMatch
+                  ? imgMatch[1]
+                  : "https://via.placeholder.com/300x150?text=No+Image";
+              }
+              const card = document.createElement("div");
+              card.className = "glass-card tilt-card hoverable";
+              card.innerHTML = `
                             <div class="h-40 w-full mb-4 rounded-lg overflow-hidden">
                                 <img src="${img}" class="w-full h-full object-cover" alt="Article Image">
                             </div>
@@ -630,41 +1177,53 @@
                                 <a href="${item.link}" target="_blank" class="text-blue-500 hover:text-blue-400 text-sm font-semibold">Read More →</a>
                             </div>
                         `;
-                        container.appendChild(card);
-                    });
-                } else { container.innerHTML = '<p class="text-center text-muted-custom col-span-3">No articles found.</p>'; }
-            } catch (e) { container.innerHTML = '<p class="text-center text-muted-custom col-span-3">Unable to fetch articles.</p>'; }
-        }
-        fetchMediumArticles();
-
-        // --- 6. Image Stack ---
-        const images = document.querySelectorAll('.stack-img');
-        let currentImgIdx = 0;
-        if(images.length > 0) {
-            setInterval(() => {
-                images.forEach(img => img.classList.remove('active', 'next'));
-                images[currentImgIdx].classList.add('active');
-                let nextIdx = (currentImgIdx + 1) % images.length;
-                images[nextIdx].classList.add('next');
-                currentImgIdx = nextIdx;
-            }, 3000);
-        }
-
-        // --- 7. Animation Observer ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
-                    entry.target.style.opacity = 1;
-                    observer.unobserve(entry.target);
-                }
+              container.appendChild(card);
             });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.glass-card').forEach(card => { card.style.opacity = 0; observer.observe(card); });
+          } else {
+            container.innerHTML =
+              '<p class="text-center text-muted-custom col-span-3">No articles found.</p>';
+          }
+        } catch (e) {
+          container.innerHTML =
+            '<p class="text-center text-muted-custom col-span-3">Unable to fetch articles.</p>';
+        }
+      }
+      fetchMediumArticles();
 
-        // Add Styles
-        const style = document.createElement('style');
-        style.innerHTML = `
+      // --- 6. Image Stack ---
+      const images = document.querySelectorAll(".stack-img");
+      let currentImgIdx = 0;
+      if (images.length > 0) {
+        setInterval(() => {
+          images.forEach((img) => img.classList.remove("active", "next"));
+          images[currentImgIdx].classList.add("active");
+          let nextIdx = (currentImgIdx + 1) % images.length;
+          images[nextIdx].classList.add("next");
+          currentImgIdx = nextIdx;
+        }, 3000);
+      }
+
+      // --- 7. Animation Observer ---
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-fade-in");
+              entry.target.style.opacity = 1;
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      document.querySelectorAll(".glass-card").forEach((card) => {
+        card.style.opacity = 0;
+        observer.observe(card);
+      });
+
+      // Add Styles
+      const style = document.createElement("style");
+      style.innerHTML = `
             @keyframes fade-in-down { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
             .animate-fade-in-down { animation: fade-in-down 0.8s ease-out forwards; }
             @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -672,9 +1231,7 @@
             @keyframes fade-in { 0% { opacity: 0; transform: translateY(30px) scale(0.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
             .animate-fade-in { animation: fade-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         `;
-        document.head.appendChild(style);
+      document.head.appendChild(style);
     </script>
-</body>
+  </body>
 </html>
-
-

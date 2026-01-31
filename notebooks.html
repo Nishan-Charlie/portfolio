@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishankar Sathiyamohan | Notebooks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Theming --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #E0E0E0;
+            --text-muted: #9ca3af;
+            --glass-bg: rgba(16, 16, 16, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-color: #3b82f6;
+            --nav-bg: rgba(10, 10, 10, 0.5);
+            --card-hover-shadow: rgba(0,0,0,0.2);
+            --cursor-color: rgba(255, 255, 255, 0.8);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f3f4f6;
+            --text-color: #1f2937;
+            --text-muted: #4b5563;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --accent-color: #2563eb;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --card-hover-shadow: rgba(0,0,0,0.1);
+            --cursor-color: rgba(0, 0, 0, 0.8);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            cursor: none; /* Hide default cursor */
+        }
+
+        /* --- Custom Cursor --- */
+        #cursor-dot, #cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+        }
+        #cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--cursor-color);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        
+        body.hovering #cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transition: opacity 0.5s ease;
+        }
+
+        [data-theme="light"] #bg-canvas { opacity: 0.6; }
+
+        .content-section {
+            position: relative;
+            z-index: 1;
+            padding: 120px 10% 100px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3D Tilt Card Effect --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .glass-card > * {
+            transform: translateZ(0px);
+            transition: transform 0.3s;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 20px 40px var(--card-hover-shadow);
+            border-color: var(--accent-color);
+        }
+
+        .glass-card:hover > h3, .glass-card:hover > h4 {
+            transform: translateZ(20px);
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(128, 128, 128, 0.2);
+            color: var(--text-muted);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+            font-weight: 500;
+            border: 1px solid var(--glass-border);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            padding: 1rem 2rem;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .theme-toggle {
+            cursor: pointer; padding: 8px; border-radius: 50%;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: var(--text-color); transition: all 0.3s;
+        }
+        .theme-toggle:hover { transform: rotate(15deg); background: var(--accent-color); color: white; }
+        
+        .text-custom { color: var(--text-color); }
+        .text-muted-custom { color: var(--text-muted); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <canvas id="bg-canvas"></canvas>
+    
+<nav class="navbar">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-8">
+            <a href="index.html" class="text-xl font-bold text-custom hoverable">NS</a>
+            
+            <a href="research-helper.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors hoverable">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                Conference Helper
+            </a>
+            <a href="notebooks.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-orange-500 hover:text-orange-400 transition-colors hoverable">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/> <!-- Placeholder Icon for Notebooks -->
+                </svg>
+                Notebooks
+            </a>
+        </div>
+        
+        <div class="flex items-center gap-6">
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#about" class="text-custom hover:text-blue-500 transition-colors hoverable">About</a>
+                <a href="index.html#experience" class="text-custom hover:text-blue-500 transition-colors hoverable">Experience</a>
+                <a href="index.html#research" class="text-custom hover:text-blue-500 transition-colors hoverable">Research</a>
+                <a href="index.html#projects" class="text-custom hover:text-blue-500 transition-colors hoverable">Projects</a>
+                <a href="index.html#service" class="text-custom hover:text-blue-500 transition-colors hoverable">Service</a>
+                <a href="index.html#blog" class="text-custom hover:text-blue-500 transition-colors hoverable">Blog</a>
+            </div>
+
+            <button id="theme-btn" class="theme-toggle hoverable" aria-label="Toggle Theme">
+                <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    <div class="main-container">
+        <section class="content-section">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="text-center mb-16 animate-fade-in-down">
+                    <h1 class="text-5xl font-bold mb-6 text-custom">Google Colab Notebooks</h1>
+                    <p class="text-xl text-muted-custom max-w-2xl mx-auto">
+                        Explore my interactive notebooks. Run the code, experiment with the models, and see the results in real-time.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Content will be loaded dynamically via JavaScript -->
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // --- 0. Custom Cursor ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        document.querySelectorAll('.hoverable, a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // --- 1. Fetch Notebooks from GitHub ---
+        async function fetchNotebooks() {
+            const container = document.querySelector('.grid');
+            container.innerHTML = '<div class="col-span-1 md:col-span-3 text-center text-muted-custom">Loading notebooks from GitHub...</div>';
+            
+            const repoOwner = 'Nishan-Charlie';
+            const repoName = 'AA-NoteBooks';
+            const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (Array.isArray(data)) {
+                    container.innerHTML = ''; // Clear loading message
+                    const notebooks = data.filter(file => file.name.endsWith('.ipynb'));
+
+                    if (notebooks.length === 0) {
+                        container.innerHTML = '<div class="col-span-1 md:col-span-3 text-center text-muted-custom">No notebooks found in the repository.</div>';
+                        return;
+                    }
+
+                    notebooks.forEach(file => {
+                        const fileName = file.name.replace('.ipynb', '').replace(/_/g, ' ');
+                        // Construct Colab URL: https://colab.research.google.com/github/[user]/[repo]/blob/[branch]/[path]
+                        const colabUrl = `https://colab.research.google.com/github/${repoOwner}/${repoName}/blob/main/${file.path}`;
+                        
+                        const card = document.createElement('div');
+                        card.className = 'glass-card tilt-card group flex flex-col h-full';
+                        card.innerHTML = `
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="tag">Jupyter Notebook</span>
+                                <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm0 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 16h2v-2h-2v2zm0-4h2V6h-2v8z"/></svg>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-custom group-hover:text-orange-500 transition-colors line-clamp-2">${fileName}</h3>
+                            <p class="text-muted-custom mb-6 text-sm flex-grow">
+                                Interactive notebook from the <strong>${repoName}</strong> repository.
+                            </p>
+                            
+                            <div class="mt-auto">
+                                <a href="${colabUrl}" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-semibold transition-all hoverable shadow-lg shadow-orange-900/20">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-2-8h2v-2h-2v2zm8 8h-2v-10h2v10z"/></svg>
+                                    Open in Colab
+                                </a>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                    
+                    // Re-initialize tilt effect for new cards
+                    initTilt();
+
+                } else {
+                    container.innerHTML = '<div class="text-red-400 col-span-3 text-center">Failed to load notebooks.</div>';
+                }
+            } catch (error) {
+                console.error('Error fetching notebooks:', error);
+                container.innerHTML = '<div class="text-red-400 col-span-3 text-center">Error parsing GitHub data.</div>';
+            }
+        }
+
+        // --- 2. Three.js Background (Consistent with Index) ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        const ambientLight = new THREE.AmbientLight(0x404040, 3);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0x8e44ad, 2);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        // Different Geometry for Notebooks Page to distinguish it slightly? Or keep same? keeping same for consistency but maybe rotate differently.
+        const geometry = new THREE.IcosahedronGeometry(1.2, 0); 
+        const material = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.8, roughness: 0.1, wireframe: true });
+        const shape = new THREE.Mesh(geometry, material);
+        scene.add(shape);
+
+        // Particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 500;
+        const posArray = new Float32Array(particlesCount * 3);
+        for(let i = 0; i < particlesCount * 3; i++) { posArray[i] = (Math.random() - 0.5) * 15; }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0x3b82f6, transparent: true, opacity: 0.8 });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            shape.rotation.x += 0.002; shape.rotation.y += 0.001;
+            particlesMesh.rotation.y = -mouseY * 0.1; particlesMesh.rotation.x = mouseX * 0.1;
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- 3. Tilt Logic ---
+        function initTilt() {
+             document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2; const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                card.addEventListener('mouseleave', () => { card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`; });
+            });
+        }
+        initTilt(); // Init for placeholder/static elements if any (fetched ones called in fetch function)
+
+         // --- 4. Theme Toggle ---
+         const themeBtn = document.getElementById('theme-btn');
+         const sunIcon = document.getElementById('sun-icon');
+         const moonIcon = document.getElementById('moon-icon');
+         const body = document.body;
+ 
+         function updateThemeElements() {
+             const isLight = body.getAttribute('data-theme') === 'light';
+             if (isLight) {
+                 sunIcon.classList.remove('hidden'); moonIcon.classList.add('hidden');
+                 material.color.setHex(0x1e3a8a); particlesMaterial.color.setHex(0x000000);
+             } else {
+                 sunIcon.classList.add('hidden'); moonIcon.classList.remove('hidden');
+                 material.color.setHex(0xffffff); particlesMaterial.color.setHex(0x3b82f6);
+             }
+         }
+         themeBtn.addEventListener('click', () => {
+             const currentTheme = body.getAttribute('data-theme');
+             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+             body.setAttribute('data-theme', newTheme);
+             localStorage.setItem('theme', newTheme);
+             updateThemeElements();
+         });
+         
+         // Init Theme
+         if(localStorage.getItem('theme') === 'light') {
+             body.setAttribute('data-theme', 'light');
+             updateThemeElements();
+         }
+
+        // --- 7. Animation Observer ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    entry.target.style.opacity = 1;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+         // Add Styles
+         const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fade-in-down { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
+            .animate-fade-in-down { animation: fade-in-down 0.8s ease-out forwards; }
+        `;
+        document.head.appendChild(style);
+
+        // Start Fetch
+        fetchNotebooks();
+    </script>
+</body>
+</html>
