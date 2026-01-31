@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Hub | Nishankar Sathiyamohan</title>
+    <title>Research Ecosystem | Nishankar Sathiyamohan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -11,36 +11,38 @@
         :root {
             --bg-color: #0a0a0a;
             --text-color: #E0E0E0;
-            --glass-bg: rgba(16, 16, 16, 0.8);
+            --glass-bg: rgba(16, 16, 16, 0.85);
             --glass-border: rgba(255, 255, 255, 0.1);
             --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
-            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
         }
         [data-theme="light"] {
             --bg-color: #f8fafc;
             --text-color: #1e293b;
-            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-bg: rgba(255, 255, 255, 0.9);
             --glass-border: rgba(0, 0, 0, 0.1);
         }
-        body { font-family: 'Poppins', sans-serif; color: var(--text-color); background-color: var(--bg-color); transition: 0.5s; overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text-color); background-color: var(--bg-color); transition: 0.5s; }
         #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; }
-        .glass-card { background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; transition: 0.3s; }
-        .tab-btn.active { border-bottom: 3px solid var(--accent-blue); color: var(--accent-blue); font-weight: 700; }
-        .nav-link:hover { color: var(--accent-blue); }
+        .glass-card { background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 20px; transition: 0.3s; }
+        .glass-card:hover { border-color: var(--accent-blue); transform: translateY(-4px); }
+        .tab-btn { transition: all 0.3s; border-bottom: 2px solid transparent; opacity: 0.6; }
+        .tab-btn.active { border-bottom: 2px solid var(--accent-blue); color: var(--accent-blue); opacity: 1; font-weight: 700; }
         .hidden-section { display: none; }
+        .tag-pill { font-size: 0.7rem; padding: 2px 8px; border-radius: 99px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--accent-blue); }
     </style>
 </head>
 <body data-theme="dark">
 
     <canvas id="bg-canvas"></canvas>
 
-    <nav class="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/10 px-8 py-4">
-        <div class="container mx-auto flex justify-between items-center">
+    <nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 px-6 py-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <a href="index.html" class="text-lg font-bold hover:text-blue-500 transition">← Nishankar's Portfolio</a>
-            <div class="flex gap-8">
-                <button onclick="showTab('hub')" id="tab-hub" class="tab-btn active px-2 py-1">Research Hub</button>
-                <button onclick="showTab('datasets')" id="tab-datasets" class="tab-btn px-2 py-1">Datasets & Links</button>
+            <div class="flex gap-4 md:gap-8 overflow-x-auto">
+                <button onclick="showTab('hub')" id="tab-hub" class="tab-btn active whitespace-nowrap pb-1">Research Hub</button>
+                <button onclick="showTab('toolkit')" id="tab-toolkit" class="tab-btn whitespace-nowrap pb-1">Rankings & Grants</button>
+                <button onclick="showTab('datasets')" id="tab-datasets" class="tab-btn whitespace-nowrap pb-1">Datasets & Links</button>
             </div>
         </div>
     </nav>
@@ -48,178 +50,123 @@
     <main class="container mx-auto pt-32 pb-20 px-6">
 
         <section id="hub-section">
-            <h1 class="text-5xl font-bold mb-12 text-center">Research Focus Domains</h1>
+            <header class="mb-12 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Research Domains</h1>
+                <p class="text-gray-400">Core focus areas in Computer Science & Engineering</p>
+            </header>
             
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card p-6">
+                    <h2 class="text-xl font-bold mb-2 flex items-center gap-2">⚛️ Quantum Computing</h2>
+                    <p class="text-sm text-gray-400 mb-4">Hybrid classical-quantum architectures, QViT, and quantum self-attention mechanisms.</p>
+                    <div class="flex flex-wrap gap-2"><span class="tag-pill">Hybrid Models</span><span class="tag-pill">QML</span></div>
+                </div>
+                <div class="glass-card p-6">
+                    <h2 class="text-xl font-bold mb-2 flex items-center gap-2">👁️ Computer Vision</h2>
+                    <p class="text-sm text-gray-400 mb-4">Medical segmentation, agri-tech vision systems, and lightweight Vision Transformers.</p>
+                    <div class="flex flex-wrap gap-2"><span class="tag-pill">ViT</span><span class="tag-pill">SqueezeNet</span></div>
+                </div>
+                <div class="glass-card p-6">
+                    <h2 class="text-xl font-bold mb-2 flex items-center gap-2">🧊 3D Reconstruction</h2>
+                    <p class="text-sm text-gray-400 mb-4">Neural Radiance Fields (NeRF), point clouds, and object digitization.</p>
+                    <div class="flex flex-wrap gap-2"><span class="tag-pill">Gaussian Splatting</span><span class="tag-pill">3D-CV</span></div>
+                </div>
+                <div class="glass-card p-6">
+                    <h2 class="text-xl font-bold mb-2 flex items-center gap-2">⚠️ Anomaly Detection</h2>
+                    <p class="text-sm text-gray-400 mb-4">Detection in 5G networks using unsupervised autoencoders and diffusion.</p>
+                    <div class="flex flex-wrap gap-2"><span class="tag-pill">5G Security</span><span class="tag-pill">Autoencoders</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="toolkit-section" class="hidden-section">
+            <header class="mb-12 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Research Toolkit</h1>
+                <p class="text-gray-400">Essential rankers, quality checkers, and funding portals</p>
+            </header>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-card p-8">
-                    <div class="flex items-center gap-4 mb-4">
-                        <span class="p-3 bg-purple-500/20 rounded-xl text-purple-400">⚛️</span>
-                        <h2 class="text-2xl font-bold">Quantum Machine Learning</h2>
-                    </div>
-                    <p class="text-gray-400 mb-6">Investigating hybrid classical-quantum models and Quantum Vision Transformers (QViT) for high-dimensional medical data.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1 rounded-full text-purple-300">Variational Circuits</span>
-                        <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1 rounded-full text-purple-300">Qiskit</span>
-                        <span class="text-xs bg-purple-500/10 border border-purple-500/30 px-3 py-1 rounded-full text-purple-300">PennyLane</span>
-                    </div>
-                    <a href="https://pennylane.ai/qml" target="_blank" class="text-purple-400 hover:underline">Explore QML Theory →</a>
+                <div class="glass-card p-8 border-l-4 border-green-500">
+                    <h3 class="text-2xl font-bold mb-4 text-green-400">Sri Lanka Research Grants</h3>
+                    <p class="text-gray-400 mb-6">A central resource for local researchers to find funding opportunities and project support through .LK domain registry initiatives.</p>
+                    <a href="https://www.domains.lk/research-grants/" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">Apply for Grants →</a>
                 </div>
 
-                <div class="glass-card p-8">
-                    <div class="flex items-center gap-4 mb-4">
-                        <span class="p-3 bg-blue-500/20 rounded-xl text-blue-400">🧊</span>
-                        <h2 class="text-2xl font-bold">3D Reconstruction & NeRF</h2>
+                <div class="glass-card p-8 border-l-4 border-blue-500">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-400">Global Rankers</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                            <span>CORE Conference Portal</span>
+                            <a href="http://portal.core.edu.au/conf-ranks/" target="_blank" class="text-blue-500 text-sm">Visit →</a>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                            <span>Google Scholar (Top Venues)</span>
+                            <a href="https://scholar.google.com/citations?view_op=top_venues" target="_blank" class="text-blue-500 text-sm">Visit →</a>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                            <span>CSRankings.org</span>
+                            <a href="https://csrankings.org/" target="_blank" class="text-blue-500 text-sm">Visit →</a>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>SJR (Journal Rankings)</span>
+                            <a href="https://www.scimagojr.com/" target="_blank" class="text-blue-500 text-sm">Visit →</a>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mb-6">Developing Neural Radiance Fields (NeRF) and Gaussian Splatting techniques for real-time asset digitization.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs bg-blue-500/10 border border-blue-500/30 px-3 py-1 rounded-full text-blue-300">Gaussian Splatting</span>
-                        <span class="text-xs bg-blue-500/10 border border-blue-500/30 px-3 py-1 rounded-full text-blue-300">Point Clouds</span>
-                        <span class="text-xs bg-blue-500/10 border border-blue-500/30 px-3 py-1 rounded-full text-blue-300">Open3D</span>
-                    </div>
-                    <a href="https://colmap.github.io/" target="_blank" class="text-blue-400 hover:underline">SOTA Baselines →</a>
-                </div>
-
-                <div class="glass-card p-8">
-                    <div class="flex items-center gap-4 mb-4">
-                        <span class="p-3 bg-red-500/20 rounded-xl text-red-400">⚠️</span>
-                        <h2 class="text-2xl font-bold">Anomaly Detection</h2>
-                    </div>
-                    <p class="text-gray-400 mb-6">Researching unsupervised Autoencoders and diffusion models for industrial defect detection in 5G and IoT networks.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs bg-red-500/10 border border-red-500/30 px-3 py-1 rounded-full text-red-300">PyTorch Anomaly</span>
-                        <span class="text-xs bg-red-500/10 border border-red-500/30 px-3 py-1 rounded-full text-red-300">Autoencoders</span>
-                        <span class="text-xs bg-red-500/10 border border-red-500/30 px-3 py-1 rounded-full text-red-300">5G Security</span>
-                    </div>
-                    <a href="https://github.com/openvinotoolkit/anomalib" target="_blank" class="text-red-400 hover:underline">Anomalib Framework →</a>
-                </div>
-
-                <div class="glass-card p-8">
-                    <div class="flex items-center gap-4 mb-4">
-                        <span class="p-3 bg-cyan-500/20 rounded-xl text-cyan-400">👁️</span>
-                        <h2 class="text-2xl font-bold">Computer Vision</h2>
-                    </div>
-                    <p class="text-gray-400 mb-6">Specializing in lightweight Vision Transformers (ViT) and federated learning for agriculture and medical diagnostics.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full text-cyan-300">Vision Transformers</span>
-                        <span class="text-xs bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full text-cyan-300">XAI</span>
-                        <span class="text-xs bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full text-cyan-300">Segmentation</span>
-                    </div>
-                    <a href="https://paperswithcode.com/area/computer-vision" target="_blank" class="text-cyan-400 hover:underline">Latest Benchmarks →</a>
                 </div>
             </div>
         </section>
 
         <section id="datasets-section" class="hidden-section">
-            <h1 class="text-5xl font-bold mb-12 text-center">Datasets & Resources</h1>
-            
-            <div class="space-y-8">
-                <div class="glass-card p-8 overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="border-b border-white/10 text-blue-400">
-                                <th class="pb-4">Domain</th>
-                                <th class="pb-4">Dataset Name</th>
-                                <th class="pb-4">Description</th>
-                                <th class="pb-4">Link</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm text-gray-300">
-                            <tr class="border-b border-white/5">
-                                <td class="py-4 font-bold">Vision</td>
-                                <td class="py-4">COCO / ImageNet</td>
-                                <td class="py-4">The industry standard for object detection and classification.</td>
-                                <td class="py-4"><a href="https://cocodataset.org/" class="text-blue-500">Source</a></td>
-                            </tr>
-                            <tr class="border-b border-white/5">
-                                <td class="py-4 font-bold">Anomaly</td>
-                                <td class="py-4">MVTec AD</td>
-                                <td class="py-4">Real-world dataset for unsupervised industrial anomaly detection.</td>
-                                <td class="py-4"><a href="https://www.mvtec.com/company/research/datasets/mvtec-ad" class="text-blue-500">Source</a></td>
-                            </tr>
-                            <tr class="border-b border-white/5">
-                                <td class="py-4 font-bold">3D Recon</td>
-                                <td class="py-4">Digital Twin Catalog</td>
-                                <td class="py-4">2,400+ photorealistic 3D object models for reconstruction.</td>
-                                <td class="py-4"><a href="https://www.projectaria.com/datasets/dtc/" class="text-blue-500">Source</a></td>
-                            </tr>
-                            <tr class="border-b border-white/5">
-                                <td class="py-4 font-bold">Maritime</td>
-                                <td class="py-4">MTReD</td>
-                                <td class="py-4">Benchmark dataset for maritime 3D reconstruction (New 2025).</td>
-                                <td class="py-4"><a href="https://arxiv.org/abs/2503.00853" class="text-blue-500">Source</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="glass-card p-6">
-                        <h3 class="font-bold mb-4 text-purple-400">Quantum Learning Platforms</h3>
-                        <ul class="space-y-3 text-sm">
-                            <li>➤ <a href="https://quantum-computing.ibm.com/" class="hover:text-white">IBM Quantum Lab</a></li>
-                            <li>➤ <a href="https://pennylane.ai/qml/datasets.html" class="hover:text-white">QML Datasets (PennyLane)</a></li>
-                        </ul>
-                    </div>
-                    <div class="glass-card p-6">
-                        <h3 class="font-bold mb-4 text-red-400">Anomaly Detection Tools</h3>
-                        <ul class="space-y-3 text-sm">
-                            <li>➤ <a href="https://github.com/M-3LAB/awesome-industrial-anomaly-detection" class="hover:text-white">Awesome Anomaly Detection Repo</a></li>
-                            <li>➤ <a href="https://2026.msrconf.org/track/msr-2026-data-and-tool-showcase-track" class="hover:text-white">MSR 2026 Data Showcase</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-12 text-center">Datasets Navigator</h1>
+            <div class="glass-card p-8 overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b border-white/10 text-blue-400">
+                            <th class="pb-4">Domain</th>
+                            <th class="pb-4">Resource</th>
+                            <th class="pb-4">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm text-gray-300">
+                        <tr class="border-b border-white/5"><td class="py-4">Quantum</td><td><a href="https://pennylane.ai/qml/datasets.html" class="text-blue-500">PennyLane Datasets</a></td><td>Quantum chemistry & optimization datasets.</td></tr>
+                        <tr class="border-b border-white/5"><td class="py-4">CV</td><td><a href="https://paperswithcode.com/datasets" class="text-blue-500">PapersWithCode</a></td><td>The ultimate portal for datasets by SOTA result.</td></tr>
+                        <tr class="border-b border-white/5"><td class="py-4">Anomaly</td><td><a href="https://www.mvtec.com/company/research/datasets/mvtec-ad" class="text-blue-500">MVTec AD</a></td><td>Standard for industrial anomaly detection.</td></tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
     </main>
 
     <script>
-        // --- Tab Switching Logic ---
         function showTab(tab) {
-            document.getElementById('hub-section').classList.add('hidden-section');
-            document.getElementById('datasets-section').classList.add('hidden-section');
-            document.getElementById('tab-hub').classList.remove('active');
-            document.getElementById('tab-datasets').classList.remove('active');
-
-            if(tab === 'hub') {
-                document.getElementById('hub-section').classList.remove('hidden-section');
-                document.getElementById('tab-hub').classList.add('active');
-            } else {
-                document.getElementById('datasets-section').classList.remove('hidden-section');
-                document.getElementById('tab-datasets').classList.add('active');
-            }
+            ['hub', 'toolkit', 'datasets'].forEach(t => {
+                document.getElementById(`${t}-section`).classList.add('hidden-section');
+                document.getElementById(`tab-${t}`).classList.remove('active');
+            });
+            document.getElementById(`${tab}-section`).classList.remove('hidden-section');
+            document.getElementById(`tab-${tab}`).classList.add('active');
         }
 
-        // --- Three.js Background (Icosahedron for complex research feel) ---
+        // --- Three.js ---
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const geometry = new THREE.IcosahedronGeometry(2, 1);
+        const geometry = new THREE.OctahedronGeometry(2, 2);
         const material = new THREE.MeshStandardMaterial({ color: 0x3b82f6, wireframe: true });
         const mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
-
-        const pointLight = new THREE.PointLight(0xffffff, 1);
-        pointLight.position.set(5, 5, 5);
-        scene.add(pointLight);
-
+        scene.add(new THREE.PointLight(0xffffff, 1).set(5, 5, 5));
         camera.position.z = 5;
 
         function animate() {
             requestAnimationFrame(animate);
-            mesh.rotation.y += 0.005;
-            mesh.rotation.x += 0.002;
+            mesh.rotation.y += 0.003;
             renderer.render(scene, camera);
         }
         animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
     </script>
 </body>
 </html>
