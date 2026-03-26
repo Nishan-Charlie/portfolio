@@ -103,6 +103,8 @@ a {
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    max-width: 1400px;
+    width: 100%;
 }
 
 .logo {
@@ -111,11 +113,12 @@ a {
     font-weight: 700;
     color: var(--accent);
     flex-shrink: 0;
+    margin-right: auto;
 }
 
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     list-style: none;
     font-weight: 500;
     font-size: 0.85rem;
@@ -443,6 +446,118 @@ a {
     height: 8px;
     border-radius: 50%;
     background: var(--accent);
+}
+
+/* --- Bored? Button --- */
+
+.bored-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    background: linear-gradient(135deg, var(--accent-glow) 0%, rgba(56, 189, 248, 0.2) 100%);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.bored-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease-out;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.bored-btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.bored-btn:hover {
+    color: white !important;
+    background: var(--accent);
+    box-shadow: 0 0 30px var(--accent);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.bored-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Floating Animation for the button itself */
+.bored-btn {
+    animation: float-btn 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes float-btn {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.2; }
+    50% { transform: scale(1.1); opacity: 0.1; }
+    100% { transform: scale(0.95); opacity: 0.2; }
+}
+
+/* --- Games Hub --- */
+
+.game-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+#game-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.game-ui {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.game-controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 1rem;
+}
+
+.game-hud {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    text-align: right;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    z-index: 100;
 }
 
 /* --- Utilities --- */

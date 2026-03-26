@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Computing Lab | Nishankar's Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="icon.jpg" type="image/jpeg">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Three.js & Chart.js CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- MathJax -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        quantum: {
+                            deep: '#030712',
+                            indigo: '#1e1b4b',
+                            teal: '#2dd4bf',
+                            purple: '#a855f7',
+                            slate: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #2dd4bf;
+            --accent-glow: rgba(45, 212, 191, 0.2);
+        }
+        body { background-color: #030712; color: #f8fafc; scroll-behavior: smooth; }
+        .glass { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .quantum-bg { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at top right, #1e1b4b, transparent), radial-gradient(circle at bottom left, #030712, transparent); }
+        .gate { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: 800; cursor: move; transition: all 0.2s; font-size: 0.7rem; user-select: none; position: relative; z-index: 5; }
+        .gate:hover { transform: scale(1.1); box-shadow: 0 0 15px var(--accent-glow); }
+        .gate-h { background: var(--accent); color: #030712; }
+        .gate-x { background: #f43f5e; color: white; }
+        .gate-y { background: #8b5cf6; color: white; }
+        .gate-z { background: #3b82f6; color: white; }
+        .gate-s { background: #f59e0b; color: #030712; }
+        .gate-t { background: #f97316; color: #030712; }
+        .gate-rx { background: linear-gradient(135deg, #f43f5e, #fb923c); color: white; font-size: 0.6rem; }
+        .gate-ry { background: linear-gradient(135deg, #8b5cf6, #fb923c); color: white; font-size: 0.6rem; }
+        .gate-rz { background: linear-gradient(135deg, #3b82f6, #fb923c); color: white; font-size: 0.6rem; }
+        .gate-c { background: #f59e0b; color: #030712; border-radius: 50%; width: 20px; height: 20px; font-size: 1rem; }
+        .gate-cz { background: #eab308; color: #030712; font-size: 0.6rem; }
+        .gate-swap { background: #e2e8f0; color: #030712; font-size: 0.55rem; }
+        .gate-cswap { background: linear-gradient(135deg, #f59e0b, #e2e8f0); color: #030712; font-size: 0.45rem; }
+        .gate-i { background: rgba(255,255,255,0.1); color: #64748b; border: 1px dashed #334155; }
+        .gate-m { background: #1e293b; color: var(--accent); border: 1px solid rgba(45,212,191,0.3); }
+        .gate-cnot-target { background: transparent; border: 2px solid #f43f5e; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; color: #f43f5e; }
+        .q-wire { border-bottom: 2px solid rgba(255, 255, 255, 0.1); height: 50px; position: relative; display: flex; align-items: center; }
+        .q-slot { width: 50px; height: 50px; border-right: 1px dashed rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; position: relative; }
+        .q-slot:hover { background: rgba(56, 189, 248, 0.05); }
+        .circuit-scroll { overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+        
+        /* Connector lines between control and target */
+        .connector-line { position: absolute; width: 2px; background: #f59e0b; left: 50%; transform: translateX(-50%); z-index: 2; pointer-events: none; }
+        
+        /* Angle popover */
+        .angle-popover { position: fixed; z-index: 100; background: #1e293b; border: 1px solid rgba(45,212,191,0.3); border-radius: 16px; padding: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,0.6); min-width: 220px; }
+        .angle-popover input[type=range] { width: 100%; accent-color: var(--accent); }
+        
+        /* Gate palette categories */
+        .palette-category { display: flex; flex-direction: column; gap: 0.5rem; }
+        .palette-category-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #475569; }
+        .palette-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        
+        /* Quick-start guide */
+        .guide-panel { transition: max-height 0.4s ease, opacity 0.3s ease; overflow: hidden; }
+        .guide-panel.collapsed { max-height: 0; opacity: 0; }
+        .guide-panel.expanded { max-height: 600px; opacity: 1; }
+        .guide-step { display: flex; align-items: flex-start; gap: 1rem; padding: 0.75rem; border-radius: 12px; background: rgba(255,255,255,0.02); }
+        .guide-step-num { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: var(--accent); color: #030712; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; }
+        
+        .pulse-accent { animation: pulse-accent 2s infinite; }
+        @keyframes pulse-accent { 0%, 100% { box-shadow: 0 0 10px var(--accent-glow); } 50% { box-shadow: 0 0 25px rgba(45, 212, 191, 0.4); } }
+        
+        /* Particle Background */
+        #quantum-particles { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
+
+        /* Gate tooltip */
+        .gate-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.65rem; color: #94a3b8; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 50; }
+        .gate:hover .gate-tooltip { opacity: 1; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <div class="quantum-bg"></div>
+    <canvas id="quantum-particles"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass">
+        <div class="max-w-[1600px] mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="icon.jpg" alt="NS" class="w-10 h-10 rounded-full border border-teal-500/30 group-hover:scale-110 transition-transform">
+                <span class="font-serif text-2xl font-bold bg-gradient-to-r from-white to-teal-400 bg-clip-text text-transparent">Quantum Lab</span>
+            </a>
+            <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#simulator" class="hover:text-teal-400 transition-colors uppercase tracking-widest">Simulator</a>
+                <a href="#algorithms" class="hover:text-teal-400 transition-colors uppercase tracking-widest">Library</a>
+                <a href="#qml" class="hover:text-teal-400 transition-colors uppercase tracking-widest">QML Playground</a>
+                <a href="#about" class="hover:text-teal-400 transition-colors uppercase tracking-widest">About</a>
+                <a href="index.html" class="px-5 py-2 border border-teal-500/50 rounded-full text-teal-400 hover:bg-teal-500 hover:text-quantum-deep transition-all font-bold">PORTFOLIO</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="pt-40 pb-20 px-6">
+        <div class="max-w-[1400px] mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-bold tracking-widest uppercase mb-6 fade-up">
+                <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                Next-Gen Simulation Platform
+            </div>
+            <h1 class="font-serif text-6xl md:text-8xl font-bold mb-8 tracking-tighter fade-up" style="animation-delay: 100ms">
+                Demystifying the <br>
+                <span class="bg-gradient-to-r from-teal-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent italic">Subatomic Logic</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10 fade-up" style="animation-delay: 200ms">
+                An interactive flagship portal for Quantum Circuits and Machine Learning. Designed as an educational gateway to the era of quantum supremacy.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 fade-up" style="animation-delay: 300ms">
+                <a href="#simulator" class="px-8 py-4 bg-teal-500 text-quantum-deep font-bold rounded-xl hover:shadow-[0_0_30px_rgba(45,212,191,0.4)] transition-all transform hover:-translate-y-1">Start Experimenting</a>
+                <a href="#algorithms" class="px-8 py-4 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-all border border-slate-700">Algorithm Library</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Simulator Workspace -->
+    <section id="simulator" class="py-20 px-6 scroll-mt-20">
+        <div class="max-w-[1600px] mx-auto">
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                
+                <!-- Left: Palette & Builder -->
+                <div class="xl:col-span-8 flex flex-col gap-6">
+                    <!-- Quick-Start Guide -->
+                    <div class="glass p-4 rounded-3xl">
+                        <button onclick="toggleGuide()" class="w-full flex items-center justify-between text-left">
+                            <h3 class="text-sm font-bold flex items-center gap-2">
+                                <span class="text-teal-400">📖</span> How to Use This Simulator
+                            </h3>
+                            <span id="guide-arrow" class="text-slate-500 text-xs transition-transform">▼</span>
+                        </button>
+                        <div id="guide-panel" class="guide-panel collapsed mt-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="guide-step">
+                                    <div class="guide-step-num">1</div>
+                                    <div><p class="text-xs font-bold text-white">Drag & Drop Gates</p><p class="text-[10px] text-slate-400">Drag any gate from the palette onto the circuit grid. Click a placed gate to remove it.</p></div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="guide-step-num">2</div>
+                                    <div><p class="text-xs font-bold text-white">Create Controlled Gates</p><p class="text-[10px] text-slate-400">Place a <b class="text-amber-400">● CTRL</b> dot and a target gate on the <b>same column</b>. They auto-connect as CNOT, Toffoli, etc.</p></div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="guide-step-num">3</div>
+                                    <div><p class="text-xs font-bold text-white">Rotation Gates (Rx, Ry, Rz)</p><p class="text-[10px] text-slate-400">After dropping a rotation gate, a <b class="text-teal-400">θ angle slider</b> appears. Set the rotation angle (0 to 2π).</p></div>
+                                </div>
+                                <div class="guide-step">
+                                    <div class="guide-step-num">4</div>
+                                    <div><p class="text-xs font-bold text-white">Run & Analyze</p><p class="text-[10px] text-slate-400">Click <b class="text-teal-400">▶ RUN</b> to simulate. Results update instantly in the histogram, Bloch sphere, and state table.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool Palette -->
+                    <div class="glass p-6 rounded-3xl">
+                        <div class="flex items-center justify-between mb-5">
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <span class="text-teal-400">⚡</span> Gate Palette
+                            </h3>
+                            <div class="flex gap-3">
+                                <button onclick="undo()" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-teal-400 transition-colors">Undo</button>
+                                <button onclick="clearCircuit()" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-red-400 transition-colors">Clear All</button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-4" id="palette">
+                            <!-- Single-Qubit Gates -->
+                            <div class="palette-category">
+                                <span class="palette-category-label">Single-Qubit</span>
+                                <div class="palette-row">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-h" draggable="true" ondragstart="drag(event)" data-gate="H"><span class="gate-tooltip">Hadamard · Creates superposition</span>H</div>
+                                        <span class="text-[9px] font-bold text-slate-600">H</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-x" draggable="true" ondragstart="drag(event)" data-gate="X"><span class="gate-tooltip">Pauli-X · Bit flip (NOT)</span>X</div>
+                                        <span class="text-[9px] font-bold text-slate-600">X</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-y" draggable="true" ondragstart="drag(event)" data-gate="Y"><span class="gate-tooltip">Pauli-Y · Bit+Phase flip</span>Y</div>
+                                        <span class="text-[9px] font-bold text-slate-600">Y</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-z" draggable="true" ondragstart="drag(event)" data-gate="Z"><span class="gate-tooltip">Pauli-Z · Phase flip</span>Z</div>
+                                        <span class="text-[9px] font-bold text-slate-600">Z</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-i" draggable="true" ondragstart="drag(event)" data-gate="I"><span class="gate-tooltip">Identity · No operation</span>I</div>
+                                        <span class="text-[9px] font-bold text-slate-600">I</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Phase & Rotation Gates -->
+                            <div class="palette-category">
+                                <span class="palette-category-label">Phase & Rotation</span>
+                                <div class="palette-row">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-s" draggable="true" ondragstart="drag(event)" data-gate="S"><span class="gate-tooltip">S Gate · π/2 phase</span>S</div>
+                                        <span class="text-[9px] font-bold text-slate-600">S</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-t" draggable="true" ondragstart="drag(event)" data-gate="T"><span class="gate-tooltip">T Gate · π/4 phase</span>T</div>
+                                        <span class="text-[9px] font-bold text-slate-600">T</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-rx" draggable="true" ondragstart="drag(event)" data-gate="Rx"><span class="gate-tooltip">Rx(θ) · X-axis rotation</span>Rx</div>
+                                        <span class="text-[9px] font-bold text-slate-600">Rx(θ)</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-ry" draggable="true" ondragstart="drag(event)" data-gate="Ry"><span class="gate-tooltip">Ry(θ) · Y-axis rotation</span>Ry</div>
+                                        <span class="text-[9px] font-bold text-slate-600">Ry(θ)</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-rz" draggable="true" ondragstart="drag(event)" data-gate="Rz"><span class="gate-tooltip">Rz(θ) · Z-axis rotation</span>Rz</div>
+                                        <span class="text-[9px] font-bold text-slate-600">Rz(θ)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Multi-Qubit Gates -->
+                            <div class="palette-category">
+                                <span class="palette-category-label">Multi-Qubit & Control</span>
+                                <div class="palette-row">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-c" draggable="true" ondragstart="drag(event)" data-gate="C"><span class="gate-tooltip">Control · Connect to target gate in same column</span>●</div>
+                                        <span class="text-[9px] font-bold text-slate-600">CTRL</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-swap" draggable="true" ondragstart="drag(event)" data-gate="SWAP"><span class="gate-tooltip">SWAP · Place on 2 qubits in same column</span>SW</div>
+                                        <span class="text-[9px] font-bold text-slate-600">SWAP</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="gate gate-m" draggable="true" ondragstart="drag(event)" data-gate="M"><span class="gate-tooltip">Measure · Collapse to classical bit</span>M</div>
+                                        <span class="text-[9px] font-bold text-slate-600">MEAS</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-[10px] text-slate-600 mt-1">
+                                <b class="text-amber-400">Tip:</b> CNOT = ●+X · Toffoli = ●+●+X · CZ = ●+Z · CSWAP = ●+SW+SW · Controlled-H = ●+H
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Circuit Grid -->
+                    <div class="glass p-8 rounded-3xl flex-grow circuit-scroll relative min-h-[500px]">
+                        <div id="circuit-builder" class="flex flex-col gap-0 w-max">
+                            <!-- Qubit wires will be injected here -->
+                        </div>
+                        <div id="loading-overlay" class="absolute inset-0 bg-quantum-deep/80 hidden items-center justify-center z-20 backdrop-blur-sm rounded-3xl">
+                            <div class="flex flex-col items-center gap-4">
+                                <div class="w-12 h-12 border-4 border-teal-500/20 border-t-teal-500 rounded-full animate-spin"></div>
+                                <p class="text-sm font-bold text-teal-400 tracking-widest uppercase">Calculating Overlaps...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Controls -->
+                    <div class="glass p-6 rounded-3xl flex items-center justify-between">
+                        <div class="flex items-center gap-6">
+                            <button onclick="runCircuit()" class="px-6 py-2 bg-teal-500 text-quantum-deep font-bold rounded-lg hover:scale-105 transition-transform flex items-center gap-2">
+                                <span class="text-lg">▶</span> RUN
+                            </button>
+                            <label class="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                Qubits: 
+                                <select id="qubit-count" onchange="changeQubitCount(this.value)" class="bg-slate-800 border border-slate-700 rounded-md px-2 py-1 outline-none text-teal-400">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8" selected>8</option>
+                                </select>
+                            </label>
+                            <label class="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-widest border-l border-slate-800 pl-6">
+                                Shots: 
+                                <select id="shots" class="bg-slate-800 border border-slate-700 rounded-md px-2 py-1 outline-none text-teal-400">
+                                    <option value="1">1 (Single)</option>
+                                    <option value="1024" selected>1024</option>
+                                    <option value="4096">4096</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="flex gap-4">
+                            <button onclick="shareCircuit()" class="text-xs font-bold uppercase text-teal-400 hover:text-white transition-colors">Share Circuit</button>
+                            <button onclick="exportCircuit()" class="text-xs font-bold uppercase text-slate-500 hover:text-white transition-colors">Export JSON</button>
+                            <button onclick="copyCode()" class="text-xs font-bold uppercase text-slate-500 hover:text-white transition-colors">Copy OpenQASM</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visualizers -->
+                <div class="xl:col-span-4 flex flex-col gap-6">
+                    <!-- Bloch Sphere -->
+                    <div class="glass p-6 rounded-3xl h-[400px] relative">
+                        <h3 class="text-sm font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <span class="text-teal-400">◯</span> Bloch Sphere <span class="text-[10px] text-slate-500">(Q0)</span>
+                        </h3>
+                        <div id="bloch-container" class="w-full h-[300px]"></div>
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1">
+                            <span class="w-2 h-2 rounded-full bg-teal-500/20 active-dot"></span>
+                            <span class="w-2 h-2 rounded-full bg-slate-700"></span>
+                            <span class="w-2 h-2 rounded-full bg-slate-700"></span>
+                        </div>
+                    </div>
+
+                    <!-- Measurement Histogram -->
+                    <div class="glass p-6 rounded-3xl h-[400px] flex flex-col">
+                        <h3 class="text-sm font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <span class="text-teal-400">📊</span> Probabilities
+                        </h3>
+                        <div class="flex-grow flex items-center justify-center">
+                            <canvas id="histogramChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- State Vector Table -->
+                    <div class="glass p-6 rounded-3xl flex-grow max-h-[400px] overflow-y-auto scrollbar-thin">
+                        <h3 class="text-sm font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <span class="text-teal-400">Mat</span> State Matrix |ψ⟩
+                        </h3>
+                        <table class="w-full text-left text-xs font-mono">
+                            <thead class="text-slate-500 border-b border-slate-700">
+                                <tr>
+                                    <th class="py-2">State</th>
+                                    <th>Amp |α|</th>
+                                    <th>Phase θ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="state-table-body" class="text-slate-300">
+                                <!-- Computed states injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Library -->
+    <section id="algorithms" class="py-20 bg-slate-900/50 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <header class="mb-12">
+                <h2 class="font-serif text-5xl font-bold mb-4">The Algorithm <span class="italic text-purple-400">Vault</span></h2>
+                <p class="text-slate-400 max-w-2xl">One-click recipes for the most famous quantum procedures. Learn how they leverage interference and entanglement.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Bell State -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-purple-500/50 transition-all" onclick="loadExample('bell')">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">👯</div>
+                    <h3 class="text-xl font-bold mb-3">Bell State (Entanglement)</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">The fundamental unit of entanglement. A qubit pair where measurement of one instantly determines the other.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-purple-400 uppercase">2 Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-purple-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+
+                <!-- Quantum Teleportation -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-teal-500/50 transition-all" onclick="loadExample('teleport')">
+                    <div class="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🛸</div>
+                    <h3 class="text-xl font-bold mb-3">Quantum Teleportation</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">Move a quantum state across positions without moving the physical qubit itself.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-teal-400 uppercase">3 Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-teal-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+
+                <!-- Grover's Search -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-indigo-500/50 transition-all" onclick="loadExample('grover')">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🔍</div>
+                    <h3 class="text-xl font-bold mb-3">Grover's Search</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">Quadratic speedup for unstructured databases. Finds the 'needle' in an O(√N) entries.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-indigo-400 uppercase">3+ Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-indigo-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+
+                <!-- GHZ State -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-pink-500/50 transition-all" onclick="loadExample('ghz')">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🔗</div>
+                    <h3 class="text-xl font-bold mb-3">GHZ State</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">Greenberger–Horne–Zeilinger state: maximal 3-qubit entanglement used to test local hidden variable theories.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-pink-400 uppercase">3 Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-pink-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+
+                <!-- QFT -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-cyan-500/50 transition-all" onclick="loadExample('qft')">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🌊</div>
+                    <h3 class="text-xl font-bold mb-3">Quantum Fourier Transform</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">The core subroutine of Shor's factoring algorithm. Transforms computational basis to frequency domain.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-cyan-400 uppercase">3 Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-cyan-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+
+                <!-- Deutsch-Jozsa -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-emerald-500/50 transition-all" onclick="loadExample('deutsch')">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">⚖️</div>
+                    <h3 class="text-xl font-bold mb-3">Deutsch-Jozsa</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">Determines if a function is constant or balanced with a single query — exponential speedup over classical.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">3 Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-emerald-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+
+                <!-- Phase Kickback -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-amber-500/50 transition-all" onclick="loadExample('kickback')">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">⚡</div>
+                    <h3 class="text-xl font-bold mb-3">Phase Kickback</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">When a controlled gate acts on an eigenstate, the eigenvalue "kicks back" as a phase to the control qubit.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-amber-400 uppercase">2 Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-amber-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+
+                <!-- Superdense Coding -->
+                <div class="glass p-8 rounded-3xl group cursor-pointer hover:border-rose-500/50 transition-all" onclick="loadExample('superdense')">
+                    <div class="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">📡</div>
+                    <h3 class="text-xl font-bold mb-3">Superdense Coding</h3>
+                    <p class="text-sm text-slate-400 mb-6 line-clamp-2">Transmit 2 classical bits of information using only 1 qubit, by exploiting pre-shared entanglement.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold tracking-widest text-rose-400 uppercase">2 Qubits</span>
+                        <span class="text-xs font-bold text-slate-400 group-hover:text-rose-400 transition-colors">Load Circuit →</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Explanation Panel (Hidden by default, shown on load) -->
+            <div id="explanation-panel" class="mt-12 glass p-10 rounded-[40px] hidden fade-up">
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <div class="lg:w-1/2">
+                        <h3 id="panel-title" class="font-serif text-3xl font-bold mb-4 text-teal-400">Algorithm Details</h3>
+                        <div id="panel-math" class="prose prose-invert mt-6 math-container opacity-80">
+                            <!-- MathJax injected here -->
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 bg-slate-950/50 rounded-3xl p-8 border border-slate-800">
+                        <h4 class="text-xs font-bold tracking-widest uppercase text-slate-500 mb-4">Step-by-Step Logic</h4>
+                        <div id="panel-steps" class="space-y-4 text-sm text-slate-400">
+                            <!-- Steps injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QML Playground -->
+    <section id="qml" class="py-20 px-6 scroll-mt-20">
+        <div class="container mx-auto">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-5xl font-bold mb-4">The <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">QML Playground</span></h2>
+                <p class="text-slate-400">Where Variational Algorithms meet real-world optimization challenges.</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- VQE -->
+                <div class="glass p-10 rounded-[40px] flex flex-col">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <span class="text-[10px] font-bold text-pink-400 uppercase tracking-widest">Variational Quantum Eigensolver</span>
+                            <h3 class="text-2xl font-bold">H₂ Ground State Energy</h3>
+                        </div>
+                        <button onclick="runVQE()" class="px-6 py-2 bg-pink-500 text-white font-bold rounded-xl hover:bg-pink-400 transition-all">OPTIMIZE ✦</button>
+                    </div>
+                    <div class="flex-grow bg-slate-950/50 rounded-2xl p-6 h-[300px] mb-8">
+                        <canvas id="vqeChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-400">Estimating the potential energy surface of Hydrogen molecules. The optimizer adjusts parameters θ in real-time to find the minimum global energy.</p>
+                </div>
+
+                <!-- Max-Cut QAOA -->
+                <div class="glass p-10 rounded-[40px] flex flex-col">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <span class="text-[10px] font-bold text-teal-400 uppercase tracking-widest">Approximate Optimization</span>
+                            <h3 class="text-2xl font-bold">QAOA Max-Cut Solver</h3>
+                        </div>
+                        <button onclick="runQAOA()" class="px-6 py-2 bg-teal-500 text-quantum-deep font-bold rounded-xl hover:bg-teal-400 transition-all">SOLVE ✦</button>
+                    </div>
+                    <div class="flex-grow bg-slate-950/50 rounded-2xl p-6 h-[300px] mb-8 flex items-center justify-center">
+                        <div id="qaoa-graph" class="w-full h-full"></div>
+                    </div>
+                    <p class="text-sm text-slate-400">Solving combinatorial optimization. Finding the optimal division of graph nodes such that the weighted cross-cut is maximized.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Credits & Tech -->
+    <section id="about" class="py-20 bg-quantum-deep">
+        <div class="container mx-auto px-6 max-w-[1000px]">
+            <div class="glass p-12 rounded-[50px] border-t-2 border-teal-500/20">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="w-32 h-32 rounded-3xl bg-gradient-to-tr from-teal-500 to-indigo-500 flex items-center justify-center text-5xl">⚛️</div>
+                    <div>
+                        <h2 class="font-serif text-4xl font-bold mb-4">About This Project</h2>
+                        <p class="text-slate-400 mb-8 leading-relaxed text-lg">
+                            This Quantum Lab was built as a demonstration of high-performance client-side simulation. By leveraging <span class="text-teal-400 font-bold">ES6 TypedArrays</span> and <span class="text-teal-400 font-bold">Linear Algebra engine</span>, I've enabled real-time state manipulation for up to 8 qubits without a single server call.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-bold text-slate-400 border border-slate-700">VANILLA JS</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-bold text-slate-400 border border-slate-700">THREE.JS</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-bold text-slate-400 border border-slate-700">CHART.JS</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-bold text-slate-400 border border-slate-700">TAILWIND CSS</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs font-bold text-slate-400 border border-slate-700">MATHJAX</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/Nishan-Charlie" target="_blank" class="text-teal-400 font-bold hover:underline">View on GitHub →</a>
+                            <a href="index.html" class="text-slate-400 font-bold hover:underline">Return to Portfolio →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">Designed and Developed by <span class="text-white font-bold">Nishankar Sathiyamohan</span></p>
+            <p>Built as a Flagship Laboratory – March 2026</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE LOGIC SCRIPT -->
+    <script>
+        // --- QUANTUM STATE ENGINE ---
+        class QuantumState {
+            constructor(numQubits) {
+                this.n = numQubits;
+                this.dim = Math.pow(2, numQubits);
+                this.state = new Float64Array(this.dim * 2);
+                this.state[0] = 1.0;
+            }
+
+            applyGate(gateName, target, control = null, angle = Math.PI) {
+                const nextState = new Float64Array(this.dim * 2);
+                const h = 1 / Math.sqrt(2);
+
+                for (let i = 0; i < this.dim; i++) {
+                    const real = this.state[i * 2];
+                    const imag = this.state[i * 2 + 1];
+
+                    if (control !== null && !((i >> control) & 1)) {
+                        nextState[i * 2] += real;
+                        nextState[i * 2 + 1] += imag;
+                        continue;
+                    }
+
+                    if (gateName === 'H') {
+                        const bit = (i >> target) & 1;
+                        const partner = i ^ (1 << target);
+                        const sign = bit === 0 ? 1 : -1;
+                        nextState[i * 2] += real * h;
+                        nextState[i * 2 + 1] += imag * h;
+                        nextState[partner * 2] += sign * real * h;
+                        nextState[partner * 2 + 1] += sign * imag * h;
+                    }
+                    else if (gateName === 'X') {
+                        const partner = i ^ (1 << target);
+                        nextState[partner * 2] += real;
+                        nextState[partner * 2 + 1] += imag;
+                    }
+                    else if (gateName === 'Y') {
+                        const bit = (i >> target) & 1;
+                        const partner = i ^ (1 << target);
+                        const sign = bit === 0 ? 1 : -1;
+                        nextState[partner * 2] += -sign * imag;
+                        nextState[partner * 2 + 1] += sign * real;
+                    }
+                    else if (gateName === 'Z') {
+                        const bit = (i >> target) & 1;
+                        const sign = bit === 0 ? 1 : -1;
+                        nextState[i * 2] += real * sign;
+                        nextState[i * 2 + 1] += imag * sign;
+                    }
+                    else if (gateName === 'S') {
+                        const bit = (i >> target) & 1;
+                        if (bit === 1) { nextState[i * 2] += -imag; nextState[i * 2 + 1] += real; }
+                        else { nextState[i * 2] += real; nextState[i * 2 + 1] += imag; }
+                    }
+                    else if (gateName === 'T') {
+                        const bit = (i >> target) & 1;
+                        const r2 = Math.sqrt(2);
+                        if (bit === 1) { nextState[i * 2] += (real - imag) / r2; nextState[i * 2 + 1] += (real + imag) / r2; }
+                        else { nextState[i * 2] += real; nextState[i * 2 + 1] += imag; }
+                    }
+                    else if (gateName === 'Rx') {
+                        const bit = (i >> target) & 1;
+                        const partner = i ^ (1 << target);
+                        const cosH = Math.cos(angle / 2), sinH = Math.sin(angle / 2);
+                        // Rx = [[cos(t/2), -i*sin(t/2)], [-i*sin(t/2), cos(t/2)]]
+                        if (bit === 0) {
+                            nextState[i * 2] += real * cosH;
+                            nextState[i * 2 + 1] += imag * cosH;
+                            nextState[partner * 2] += imag * sinH;
+                            nextState[partner * 2 + 1] += -real * sinH;
+                        } else {
+                            nextState[i * 2] += real * cosH;
+                            nextState[i * 2 + 1] += imag * cosH;
+                            nextState[partner * 2] += imag * sinH;
+                            nextState[partner * 2 + 1] += -real * sinH;
+                        }
+                    }
+                    else if (gateName === 'Ry') {
+                        const bit = (i >> target) & 1;
+                        const partner = i ^ (1 << target);
+                        const cosH = Math.cos(angle / 2), sinH = Math.sin(angle / 2);
+                        // Ry = [[cos(t/2), -sin(t/2)], [sin(t/2), cos(t/2)]]
+                        if (bit === 0) {
+                            nextState[i * 2] += real * cosH;
+                            nextState[i * 2 + 1] += imag * cosH;
+                            nextState[partner * 2] += real * sinH;
+                            nextState[partner * 2 + 1] += imag * sinH;
+                        } else {
+                            nextState[i * 2] += real * cosH;
+                            nextState[i * 2 + 1] += imag * cosH;
+                            nextState[partner * 2] += -real * sinH;
+                            nextState[partner * 2 + 1] += -imag * sinH;
+                        }
+                    }
+                    else if (gateName === 'Rz') {
+                        const bit = (i >> target) & 1;
+                        const phase = bit === 0 ? -angle / 2 : angle / 2;
+                        const cosP = Math.cos(phase), sinP = Math.sin(phase);
+                        nextState[i * 2] += real * cosP - imag * sinP;
+                        nextState[i * 2 + 1] += real * sinP + imag * cosP;
+                    }
+                    else if (gateName === 'I') {
+                        nextState[i * 2] += real;
+                        nextState[i * 2 + 1] += imag;
+                    }
+                    else {
+                        nextState[i * 2] += real;
+                        nextState[i * 2 + 1] += imag;
+                    }
+                }
+                this.state = nextState;
+            }
+
+            applyToffoli(target, control1, control2) {
+                const nextState = new Float64Array(this.state);
+                for (let i = 0; i < this.dim; i++) {
+                    if (((i >> control1) & 1) && ((i >> control2) & 1)) {
+                        const partner = i ^ (1 << target);
+                        nextState[partner * 2] = this.state[i * 2];
+                        nextState[partner * 2 + 1] = this.state[i * 2 + 1];
+                        nextState[i * 2] = this.state[partner * 2];
+                        nextState[i * 2 + 1] = this.state[partner * 2 + 1];
+                    }
+                }
+                this.state = nextState;
+            }
+
+            applySwap(q1, q2) {
+                const nextState = new Float64Array(this.state);
+                for (let i = 0; i < this.dim; i++) {
+                    const b1 = (i >> q1) & 1, b2 = (i >> q2) & 1;
+                    if (b1 !== b2) {
+                        const partner = i ^ (1 << q1) ^ (1 << q2);
+                        nextState[partner * 2] = this.state[i * 2];
+                        nextState[partner * 2 + 1] = this.state[i * 2 + 1];
+                    }
+                }
+                this.state = nextState;
+            }
+
+            applyCSwap(control, q1, q2) {
+                const nextState = new Float64Array(this.state);
+                for (let i = 0; i < this.dim; i++) {
+                    if ((i >> control) & 1) {
+                        const b1 = (i >> q1) & 1, b2 = (i >> q2) & 1;
+                        if (b1 !== b2) {
+                            const partner = i ^ (1 << q1) ^ (1 << q2);
+                            nextState[partner * 2] = this.state[i * 2];
+                            nextState[partner * 2 + 1] = this.state[i * 2 + 1];
+                            nextState[i * 2] = this.state[partner * 2];
+                            nextState[i * 2 + 1] = this.state[partner * 2 + 1];
+                        }
+                    }
+                }
+                this.state = nextState;
+            }
+
+            getProbabilities() {
+                const probs = [];
+                for (let i = 0; i < this.dim; i++) {
+                    const r = this.state[i * 2], im = this.state[i * 2 + 1];
+                    probs.push(r * r + im * im);
+                }
+                return probs;
+            }
+        }
+
+        // --- CIRCUIT UI LOGIC ---
+        let currentCircuit = [];
+        let numQubits = 8;
+        let numSteps = 24;
+        let draggingGate = null;
+
+        function toggleGuide() {
+            const panel = document.getElementById('guide-panel');
+            const arrow = document.getElementById('guide-arrow');
+            if (panel.classList.contains('collapsed')) {
+                panel.classList.remove('collapsed');
+                panel.classList.add('expanded');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                panel.classList.remove('expanded');
+                panel.classList.add('collapsed');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function initCircuit() {
+            const builder = document.getElementById('circuit-builder');
+            builder.innerHTML = '';
+            for (let q = 0; q < numQubits; q++) {
+                const wire = document.createElement('div');
+                wire.className = 'q-wire';
+                wire.innerHTML = `<span class="absolute -left-10 font-mono text-xs text-slate-500">q${q}</span>`;
+                for (let s = 0; s < numSteps; s++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'q-slot';
+                    slot.dataset.qubit = q;
+                    slot.dataset.step = s;
+                    slot.ondragover = (e) => e.preventDefault();
+                    slot.ondrop = (e) => drop(e);
+                    wire.appendChild(slot);
+                }
+                builder.appendChild(wire);
+            }
+        }
+
+        function drag(event) {
+            draggingGate = event.target.closest('[data-gate]').dataset.gate;
+        }
+
+        function isRotationGate(gate) {
+            return gate === 'Rx' || gate === 'Ry' || gate === 'Rz';
+        }
+
+        function showAnglePopover(gateEntry, slotElement) {
+            removeAnglePopover();
+            const rect = slotElement.getBoundingClientRect();
+            const pop = document.createElement('div');
+            pop.className = 'angle-popover';
+            pop.id = 'angle-popover';
+            pop.style.left = Math.min(rect.right + 10, window.innerWidth - 250) + 'px';
+            pop.style.top = rect.top + 'px';
+            const angleVal = gateEntry.angle !== undefined ? gateEntry.angle : Math.PI;
+            pop.innerHTML = `
+                <div class="text-xs font-bold text-teal-400 mb-2">${gateEntry.gate}(θ) Parameter</div>
+                <div class="flex items-center gap-2 mb-2">
+                    <input type="range" min="0" max="6.2832" step="0.0001" value="${angleVal}"
+                        oninput="updateAngle(this.value, '${gateEntry.qubit}_${gateEntry.step}')">
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-400">θ = <span id="angle-display-${gateEntry.qubit}_${gateEntry.step}" class="text-white font-mono">${(angleVal / Math.PI).toFixed(3)}π</span></span>
+                    <div class="flex gap-2">
+                        <button onclick="setQuickAngle(${gateEntry.qubit}, ${gateEntry.step}, Math.PI)" class="px-2 py-0.5 bg-slate-700 rounded text-[10px] text-slate-300 hover:bg-slate-600">π</button>
+                        <button onclick="setQuickAngle(${gateEntry.qubit}, ${gateEntry.step}, Math.PI/2)" class="px-2 py-0.5 bg-slate-700 rounded text-[10px] text-slate-300 hover:bg-slate-600">π/2</button>
+                        <button onclick="setQuickAngle(${gateEntry.qubit}, ${gateEntry.step}, Math.PI/4)" class="px-2 py-0.5 bg-slate-700 rounded text-[10px] text-slate-300 hover:bg-slate-600">π/4</button>
+                    </div>
+                </div>
+                <button onclick="removeAnglePopover(); runCircuit();" class="mt-3 w-full py-1.5 bg-teal-500 text-quantum-deep font-bold text-xs rounded-lg hover:bg-teal-400">Apply</button>
+            `;
+            document.body.appendChild(pop);
+        }
+
+        function updateAngle(val, key) {
+            const [q, s] = key.split('_').map(Number);
+            const entry = currentCircuit.find(g => g.qubit === q && g.step === s && isRotationGate(g.gate));
+            if (entry) entry.angle = parseFloat(val);
+            const display = document.getElementById(`angle-display-${key}`);
+            if (display) display.textContent = (parseFloat(val) / Math.PI).toFixed(3) + 'π';
+        }
+
+        function setQuickAngle(q, s, val) {
+            const entry = currentCircuit.find(g => g.qubit === q && g.step === s && isRotationGate(g.gate));
+            if (entry) {
+                entry.angle = val;
+                removeAnglePopover();
+                const slot = document.querySelector(`.q-slot[data-qubit="${q}"][data-step="${s}"]`);
+                if (slot) showAnglePopover(entry, slot);
+                runCircuit();
+            }
+        }
+
+        function removeAnglePopover() {
+            const pop = document.getElementById('angle-popover');
+            if (pop) pop.remove();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const slot = event.target.closest('.q-slot');
+            if (!slot || !draggingGate) return;
+
+            const qubit = parseInt(slot.dataset.qubit);
+            const step = parseInt(slot.dataset.step);
+
+            currentCircuit = currentCircuit.filter(g => !(g.qubit === qubit && g.step === step));
+
+            const entry = { gate: draggingGate, qubit, step };
+            if (isRotationGate(draggingGate)) entry.angle = Math.PI;
+
+            currentCircuit.push(entry);
+            renderCircuit();
+            runCircuit();
+
+            if (isRotationGate(draggingGate)) {
+                setTimeout(() => showAnglePopover(entry, slot), 100);
+            }
+        }
+
+        function renderCircuit() {
+            const slots = document.querySelectorAll('.q-slot');
+            slots.forEach(s => s.innerHTML = '');
+            document.querySelectorAll('.connector-line').forEach(l => l.remove());
+
+            currentCircuit.forEach(g => {
+                const slot = document.querySelector(`.q-slot[data-qubit="${g.qubit}"][data-step="${g.step}"]`);
+                if (!slot) return;
+
+                const div = document.createElement('div');
+                const gateKey = g.gate.toLowerCase();
+
+                if (g.gate === 'C') {
+                    div.className = 'gate gate-c shadow-lg cursor-pointer';
+                    div.innerText = '●';
+                } else if (g.gate === 'SWAP') {
+                    div.className = 'gate gate-swap shadow-lg cursor-pointer';
+                    div.innerText = '×';
+                } else if (isRotationGate(g.gate)) {
+                    div.className = `gate gate-${gateKey} shadow-lg cursor-pointer`;
+                    const angleStr = g.angle !== undefined ? (g.angle / Math.PI).toFixed(1) + 'π' : 'π';
+                    div.innerHTML = `${g.gate}<span class="absolute -bottom-4 text-[8px] text-slate-400 font-mono">${angleStr}</span>`;
+                } else {
+                    div.className = `gate gate-${gateKey} shadow-lg cursor-pointer`;
+                    div.innerText = g.gate;
+                }
+
+                div.onclick = (e) => {
+                    e.stopPropagation();
+                    if (isRotationGate(g.gate)) {
+                        showAnglePopover(g, slot);
+                    } else {
+                        currentCircuit = currentCircuit.filter(x => x !== g);
+                        renderCircuit();
+                        runCircuit();
+                    }
+                };
+                div.oncontextmenu = (e) => {
+                    e.preventDefault();
+                    currentCircuit = currentCircuit.filter(x => x !== g);
+                    renderCircuit();
+                    runCircuit();
+                };
+                slot.appendChild(div);
+            });
+
+            drawConnectors();
+        }
+
+        function drawConnectors() {
+            const stepGroups = {};
+            currentCircuit.forEach(g => {
+                if (!stepGroups[g.step]) stepGroups[g.step] = [];
+                stepGroups[g.step].push(g);
+            });
+
+            Object.values(stepGroups).forEach(gatesInStep => {
+                const controls = gatesInStep.filter(g => g.gate === 'C');
+                const targets = gatesInStep.filter(g => g.gate !== 'C' && g.gate !== 'I' && g.gate !== 'M');
+
+                if (controls.length === 0 || targets.length === 0) return;
+
+                const allQubits = gatesInStep.map(g => g.qubit);
+                const minQ = Math.min(...allQubits);
+                const maxQ = Math.max(...allQubits);
+
+                const step = gatesInStep[0].step;
+                const topSlot = document.querySelector(`.q-slot[data-qubit="${minQ}"][data-step="${step}"]`);
+                const botSlot = document.querySelector(`.q-slot[data-qubit="${maxQ}"][data-step="${step}"]`);
+
+                if (!topSlot || !botSlot) return;
+
+                const topRect = topSlot.getBoundingClientRect();
+                const botRect = botSlot.getBoundingClientRect();
+                const builderRect = document.getElementById('circuit-builder').getBoundingClientRect();
+
+                const line = document.createElement('div');
+                line.className = 'connector-line';
+                line.style.top = (topRect.top - builderRect.top + 25) + 'px';
+                line.style.height = (botRect.top - topRect.top) + 'px';
+                line.style.left = (topSlot.offsetLeft + 25) + 'px';
+
+                document.getElementById('circuit-builder').appendChild(line);
+            });
+        }
+
+        // --- SIMULATION RUNNER ---
+        let chart = null;
+
+        function runCircuit() {
+            const overlay = document.getElementById('loading-overlay');
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+
+            setTimeout(() => {
+                try {
+                    const qs = new QuantumState(numQubits);
+                    const steps = Array.from({length: numSteps}, (_, s) => {
+                        return currentCircuit.filter(g => g.step === s);
+                    });
+
+                    steps.forEach(gatesInStep => {
+                        const controls = gatesInStep.filter(g => g.gate === 'C');
+                        const xGates = gatesInStep.filter(g => g.gate === 'X');
+                        const swapGates = gatesInStep.filter(g => g.gate === 'SWAP');
+                        const otherGates = gatesInStep.filter(g => !['C','SWAP','M','I','X'].includes(g.gate));
+
+                        if (controls.length === 2 && xGates.length === 1) {
+                            qs.applyToffoli(xGates[0].qubit, controls[0].qubit, controls[1].qubit);
+                        }
+                        else if (controls.length === 1 && xGates.length === 1 && otherGates.length === 0 && swapGates.length === 0) {
+                            qs.applyGate('X', xGates[0].qubit, controls[0].qubit);
+                        }
+                        else if (controls.length === 1 && swapGates.length === 2) {
+                            qs.applyCSwap(controls[0].qubit, swapGates[0].qubit, swapGates[1].qubit);
+                        }
+                        else if (swapGates.length === 2 && controls.length === 0) {
+                            qs.applySwap(swapGates[0].qubit, swapGates[1].qubit);
+                        }
+                        else if (controls.length >= 1 && otherGates.length >= 1 && xGates.length === 0 && swapGates.length === 0) {
+                            otherGates.forEach(g => {
+                                qs.applyGate(g.gate, g.qubit, controls[0].qubit, g.angle || Math.PI);
+                            });
+                        }
+                        else {
+                            [...xGates, ...otherGates].forEach(g => {
+                                const ctrl = controls.length > 0 ? controls[0].qubit : null;
+                                qs.applyGate(g.gate, g.qubit, ctrl, g.angle || Math.PI);
+                            });
+                        }
+                    });
+
+                    updateVisuals(qs);
+                } catch(err) {
+                    console.error('Simulation error:', err);
+                } finally {
+                    overlay.classList.add('hidden');
+                    overlay.classList.remove('flex');
+                }
+            }, 50);
+        }
+
+        function updateVisuals(qs) {
+            const probs = qs.getProbabilities();
+            const labels = Array.from({length: qs.dim}, (_, i) => i.toString(2).padStart(numQubits, '0'));
+
+            const canvas = document.getElementById('histogramChart');
+            const ctx = canvas.getContext('2d');
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, '#2dd4bf');
+            gradient.addColorStop(1, '#1e1b4b');
+            const glowGradient = ctx.createLinearGradient(0, 0, 0, 400);
+            glowGradient.addColorStop(0, 'rgba(45, 212, 191, 0.4)');
+            glowGradient.addColorStop(1, 'rgba(30, 27, 75, 0)');
+
+            if (!chart) {
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            { label: 'Probability', data: probs, backgroundColor: gradient, borderRadius: 6, borderWidth: 0, barPercentage: 0.8 },
+                            { label: 'Glow', data: probs, backgroundColor: glowGradient, borderRadius: 10, borderWidth: 0, barPercentage: 1.1, categoryPercentage: 1 }
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        animation: { duration: 800, easing: 'easeOutQuart' },
+                        scales: {
+                            y: { beginAtZero: true, max: 1, grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: 'rgba(255,255,255,0.3)', font: { size: 10, weight: 'bold' } } },
+                            x: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.3)', font: { size: numQubits > 6 ? 6 : 9, family: 'Fira Code' }, maxRotation: 90, minRotation: 90, autoSkip: numQubits > 6 } }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { backgroundColor: 'rgba(3,7,18,0.9)', titleFont: { size: 14, weight: 'bold' }, bodyFont: { size: 12 }, padding: 12, borderColor: 'rgba(45,212,191,0.3)', borderWidth: 1, callbacks: { label: (c) => `Probability: ${(c.raw * 100).toFixed(2)}%` } }
+                        }
+                    }
+                });
+            } else {
+                chart.data.labels = labels;
+                chart.data.datasets[0].data = probs;
+                chart.data.datasets[1].data = probs;
+                chart.options.scales.x.ticks.autoSkip = numQubits > 6;
+                chart.options.scales.x.ticks.font.size = numQubits > 6 ? 6 : 9;
+                chart.update();
+            }
+
+            // State Table with actual phase
+            const tbody = document.getElementById('state-table-body');
+            tbody.innerHTML = '';
+            probs.forEach((p, i) => {
+                if (p > 0.0005) {
+                    const phase = Math.atan2(qs.state[i * 2 + 1], qs.state[i * 2]);
+                    tbody.innerHTML += `<tr class="hover:bg-teal-500/5"><td class="py-2 text-teal-400 font-bold">|${i.toString(2).padStart(numQubits, '0')}⟩</td><td>${(p * 100).toFixed(1)}%</td><td>${(phase / Math.PI).toFixed(2)}π</td></tr>`;
+                }
+            });
+
+            // Bloch Sphere
+            if (window.updateBlochArrow) {
+                let alpha_r = 0, alpha_i = 0, beta_r = 0, beta_i = 0;
+                for (let i = 0; i < qs.dim; i++) {
+                    if ((i >> 0) & 1) { beta_r += qs.state[i * 2]; beta_i += qs.state[i * 2 + 1]; }
+                    else { alpha_r += qs.state[i * 2]; alpha_i += qs.state[i * 2 + 1]; }
+                }
+                const mag = Math.sqrt(alpha_r**2 + alpha_i**2 + beta_r**2 + beta_i**2) || 1;
+                updateBlochArrow(alpha_r/mag, alpha_i/mag, beta_r/mag, beta_i/mag);
+            }
+        }
+
+        // --- EXAMPLES LOADERS ---
+        function loadExample(id) {
+            currentCircuit = [];
+            removeAnglePopover();
+            const panel = document.getElementById('explanation-panel');
+            panel.classList.remove('hidden');
+            const title = document.getElementById('panel-title');
+            const math = document.getElementById('panel-math');
+            const steps = document.getElementById('panel-steps');
+
+            if (id === 'bell') {
+                changeQubitCount(2);
+                currentCircuit = [{gate:'H',qubit:0,step:0},{gate:'C',qubit:0,step:1},{gate:'X',qubit:1,step:1}];
+                title.innerText = "Bell State Formation";
+                math.innerHTML = "\\[ |\\Psi^+\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle) \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>H(q0): Creates superposition |+⟩|0⟩</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>CNOT(q0→q1): Entangles into Bell pair.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">Result:</span><p>50% |00⟩ + 50% |11⟩</p></div>`;
+            } else if (id === 'teleport') {
+                changeQubitCount(3);
+                currentCircuit = [{gate:'H',qubit:1,step:0},{gate:'C',qubit:1,step:1},{gate:'X',qubit:2,step:1},{gate:'C',qubit:0,step:2},{gate:'X',qubit:1,step:2},{gate:'H',qubit:0,step:3}];
+                title.innerText = "Quantum Teleportation";
+                math.innerHTML = "\\[ |\\psi\\rangle \\otimes |\\beta_{00}\\rangle \\rightarrow \\text{Bell Measurement} \\rightarrow \\text{Correction} \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>Create Bell pair (q1, q2).</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>Bell measurement on (q0, q1).</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">03.</span><p>State of q0 teleported to q2.</p></div>`;
+            } else if (id === 'grover') {
+                changeQubitCount(3);
+                currentCircuit = [{gate:'H',qubit:0,step:0},{gate:'H',qubit:1,step:0},{gate:'H',qubit:2,step:0},{gate:'C',qubit:0,step:1},{gate:'C',qubit:1,step:1},{gate:'X',qubit:2,step:1},{gate:'H',qubit:0,step:2},{gate:'H',qubit:1,step:2},{gate:'H',qubit:2,step:2},{gate:'X',qubit:0,step:3},{gate:'X',qubit:1,step:3},{gate:'X',qubit:2,step:3},{gate:'C',qubit:0,step:4},{gate:'C',qubit:1,step:4},{gate:'X',qubit:2,step:4},{gate:'X',qubit:0,step:5},{gate:'X',qubit:1,step:5},{gate:'X',qubit:2,step:5},{gate:'H',qubit:0,step:6},{gate:'H',qubit:1,step:6},{gate:'H',qubit:2,step:6}];
+                title.innerText = "Grover's Search Algorithm";
+                math.innerHTML = "\\[ G = (2|s\\rangle\\langle s| - I)O \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>Uniform superposition via H gates.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>Oracle: Phase-flip marked item.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">03.</span><p>Diffusion: Amplify marked amplitude.</p></div>`;
+            } else if (id === 'ghz') {
+                changeQubitCount(3);
+                currentCircuit = [{gate:'H',qubit:0,step:0},{gate:'C',qubit:0,step:1},{gate:'X',qubit:1,step:1},{gate:'C',qubit:0,step:2},{gate:'X',qubit:2,step:2}];
+                title.innerText = "GHZ State (Maximal Entanglement)";
+                math.innerHTML = "\\[ |GHZ\\rangle = \\frac{1}{\\sqrt{2}}(|000\\rangle + |111\\rangle) \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>H(q0): Superposition.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>CNOT(q0→q1): Entangle q0, q1.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">03.</span><p>CNOT(q0→q2): Extend to 3-qubit GHZ.</p></div>`;
+            } else if (id === 'qft') {
+                changeQubitCount(3);
+                currentCircuit = [{gate:'H',qubit:0,step:0},{gate:'C',qubit:1,step:1},{gate:'S',qubit:0,step:1},{gate:'C',qubit:2,step:2},{gate:'T',qubit:0,step:2},{gate:'H',qubit:1,step:3},{gate:'C',qubit:2,step:4},{gate:'S',qubit:1,step:4},{gate:'H',qubit:2,step:5},{gate:'SWAP',qubit:0,step:6},{gate:'SWAP',qubit:2,step:6}];
+                title.innerText = "Quantum Fourier Transform (3-qubit)";
+                math.innerHTML = "\\[ QFT|j\\rangle = \\frac{1}{\\sqrt{N}} \\sum_{k=0}^{N-1} e^{2\\pi i jk/N} |k\\rangle \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>H + controlled rotations on q0.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>H + controlled-S on q1.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">03.</span><p>H on q2, SWAP q0↔q2 for bit reversal.</p></div>`;
+            } else if (id === 'deutsch') {
+                changeQubitCount(3);
+                currentCircuit = [{gate:'X',qubit:2,step:0},{gate:'H',qubit:0,step:1},{gate:'H',qubit:1,step:1},{gate:'H',qubit:2,step:1},{gate:'C',qubit:0,step:2},{gate:'X',qubit:2,step:2},{gate:'H',qubit:0,step:3},{gate:'H',qubit:1,step:3}];
+                title.innerText = "Deutsch-Jozsa Algorithm";
+                math.innerHTML = "\\[ U_f|x\\rangle|y\\rangle = |x\\rangle|y \\oplus f(x)\\rangle \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>Prepare ancilla |1⟩, then H all.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>Oracle (balanced function via CNOT).</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">03.</span><p>H on inputs — non-zero = balanced.</p></div>`;
+            } else if (id === 'kickback') {
+                changeQubitCount(2);
+                currentCircuit = [{gate:'X',qubit:1,step:0},{gate:'H',qubit:0,step:1},{gate:'C',qubit:0,step:2},{gate:'Z',qubit:1,step:2},{gate:'H',qubit:0,step:3}];
+                title.innerText = "Phase Kickback";
+                math.innerHTML = "\\[ CU|+\\rangle|u\\rangle = e^{i\\phi}|-\\rangle|u\\rangle \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>q1 = |1⟩ (eigenstate of Z).</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>H(q0): superposition control.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">03.</span><p>CZ: eigenvalue kicks back to q0.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">04.</span><p>H(q0): phase → amplitude → q0=|1⟩.</p></div>`;
+            } else if (id === 'superdense') {
+                changeQubitCount(2);
+                currentCircuit = [{gate:'H',qubit:0,step:0},{gate:'C',qubit:0,step:1},{gate:'X',qubit:1,step:1},{gate:'X',qubit:0,step:2},{gate:'C',qubit:0,step:3},{gate:'X',qubit:1,step:3},{gate:'H',qubit:0,step:4}];
+                title.innerText = "Superdense Coding";
+                math.innerHTML = "\\[ |\\beta_{ij}\\rangle \\xrightarrow{\\text{Bell measurement}} ij \\]";
+                steps.innerHTML = `<div class="flex gap-3"><span class="text-teal-400 font-bold">01.</span><p>Create Bell pair (Alice, Bob).</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">02.</span><p>Alice encodes 2 bits via X/Z.</p></div><div class="flex gap-3"><span class="text-teal-400 font-bold">03.</span><p>Bob decodes via CNOT + H.</p></div>`;
+            }
+
+            renderCircuit();
+            runCircuit();
+            if (window.MathJax) MathJax.typeset();
+            document.getElementById('explanation-panel').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // --- THREE.JS BLOCH SPHERE ---
+        function initBloch() {
+            const container = document.getElementById('bloch-container');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+            container.appendChild(renderer.domElement);
+
+            const sphere = new THREE.Mesh(
+                new THREE.SphereGeometry(2, 32, 32),
+                new THREE.MeshBasicMaterial({ color: 0x2dd4bf, wireframe: true, opacity: 0.1, transparent: true })
+            );
+            scene.add(sphere);
+
+            const lineMat = new THREE.LineBasicMaterial({ color: 0x475569 });
+            scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-3,0,0), new THREE.Vector3(3,0,0)]), lineMat));
+            scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-3,0), new THREE.Vector3(0,3,0)]), lineMat));
+
+            const arrow = new THREE.Line(
+                new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,2,0)]),
+                new THREE.LineBasicMaterial({ color: 0x2dd4bf, linewidth: 3 })
+            );
+            scene.add(arrow);
+            camera.position.z = 5;
+
+            window.updateBlochArrow = (ar, ai, br, bi) => {
+                const alpha_mag = Math.sqrt(ar*ar + ai*ai);
+                const theta = 2 * Math.acos(Math.min(1, alpha_mag));
+                const phi = Math.atan2(bi, br) - Math.atan2(ai, ar);
+                const x = Math.sin(theta)*Math.cos(phi), z = Math.sin(theta)*Math.sin(phi), y = Math.cos(theta);
+                arrow.geometry.setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(x*2.5, y*2.5, z*2.5)]);
+            };
+
+            (function animate() {
+                requestAnimationFrame(animate);
+                sphere.rotation.y += 0.005;
+                renderer.render(scene, camera);
+            })();
+        }
+
+        // --- QML SIMS ---
+        function runQAOA() {
+            const container = document.getElementById('qaoa-graph');
+            container.innerHTML = `<svg width="100%" height="100%" viewBox="0 0 200 200"><line x1="50" y1="50" x2="150" y2="50" stroke="#475569" stroke-width="2"/><line x1="50" y1="50" x2="100" y2="150" stroke="#475569" stroke-width="2"/><line x1="150" y1="50" x2="100" y2="150" stroke="#475569" stroke-width="2"/><circle cx="50" cy="50" r="10" fill="#2dd4bf" id="n1"/><circle cx="150" cy="50" r="10" fill="#2dd4bf" id="n2"/><circle cx="100" cy="150" r="10" fill="#f472b6" id="n3"/><text x="45" y="30" fill="white" font-size="10">v1</text><text x="145" y="30" fill="white" font-size="10">v2</text><text x="95" y="175" fill="white" font-size="10">v3</text></svg>`;
+            let step = 0;
+            const interval = setInterval(() => {
+                const n1 = document.getElementById('n1'), n2 = document.getElementById('n2');
+                if (n1) n1.setAttribute('fill', step % 2 === 0 ? '#2dd4bf' : '#f472b6');
+                if (n2) n2.setAttribute('fill', step % 2 === 0 ? '#f472b6' : '#2dd4bf');
+                if (step++ > 10) clearInterval(interval);
+            }, 300);
+        }
+
+        function runVQE() {
+            const ctx = document.getElementById('vqeChart').getContext('2d');
+            const data = [];
+            for (let i = 0; i < 50; i++) data.push(-1.137 + Math.exp(-0.15*i)*0.5 + (Math.random()-0.5)*0.01);
+            new Chart(ctx, {
+                type: 'line',
+                data: { labels: Array.from({length:50},(_,i)=>i), datasets: [{ label: 'H2 Energy (Hartree)', data, borderColor: '#f472b6', tension: 0.4, borderWidth: 3, pointRadius: 0 }] },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: false, grid: { color: 'rgba(255,255,255,0.05)' } } } }
+            });
+        }
+
+        // --- PARTICLE BACKGROUND ---
+        function initParticles() {
+            const c = document.getElementById('quantum-particles');
+            const ctx = c.getContext('2d');
+            let pts = [];
+            function resize() { c.width = window.innerWidth; c.height = window.innerHeight; }
+            window.addEventListener('resize', resize);
+            resize();
+            for (let i = 0; i < 100; i++) pts.push({ x: Math.random()*c.width, y: Math.random()*c.height, vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5, s: Math.random()*2 });
+            (function draw() {
+                ctx.clearRect(0,0,c.width,c.height);
+                ctx.fillStyle = 'rgba(45, 212, 191, 0.2)';
+                pts.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>c.width)p.vx*=-1; if(p.y<0||p.y>c.height)p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.s,0,7); ctx.fill(); });
+                requestAnimationFrame(draw);
+            })();
+        }
+
+        // --- UTILITIES ---
+        function clearCircuit() { currentCircuit = []; removeAnglePopover(); renderCircuit(); runCircuit(); }
+        function undo() { currentCircuit.pop(); removeAnglePopover(); renderCircuit(); runCircuit(); }
+
+        function exportCircuit() {
+            const blob = new Blob([JSON.stringify(currentCircuit, null, 2)], {type: 'application/json'});
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'quantum_circuit.json'; a.click();
+        }
+
+        function copyCode() {
+            let qasm = `OPENQASM 2.0;\ninclude "qelib1.inc";\nqreg q[${numQubits}];\ncreg c[${numQubits}];\n\n`;
+            [...currentCircuit].sort((a,b) => a.step - b.step).forEach(g => {
+                if (['C','M','I','SWAP'].includes(g.gate)) return;
+                const ctrl = currentCircuit.find(x => x.gate === 'C' && x.step === g.step);
+                if (ctrl) {
+                    if (g.gate === 'X') qasm += `cx q[${ctrl.qubit}], q[${g.qubit}];\n`;
+                    else if (g.gate === 'Z') qasm += `cz q[${ctrl.qubit}], q[${g.qubit}];\n`;
+                    else if (isRotationGate(g.gate)) qasm += `c${g.gate.toLowerCase()}(${(g.angle||Math.PI).toFixed(4)}) q[${ctrl.qubit}], q[${g.qubit}];\n`;
+                    else qasm += `c${g.gate.toLowerCase()} q[${ctrl.qubit}], q[${g.qubit}];\n`;
+                } else {
+                    if (isRotationGate(g.gate)) qasm += `${g.gate.toLowerCase()}(${(g.angle||Math.PI).toFixed(4)}) q[${g.qubit}];\n`;
+                    else qasm += `${g.gate.toLowerCase()} q[${g.qubit}];\n`;
+                }
+            });
+            navigator.clipboard.writeText(qasm).then(() => alert("OpenQASM copied!"));
+        }
+
+        function shareCircuit() {
+            const url = window.location.origin + window.location.pathname + "?circuit=" + btoa(JSON.stringify(currentCircuit));
+            navigator.clipboard.writeText(url).then(() => alert("Shareable link copied!"));
+        }
+
+        function changeQubitCount(val) {
+            numQubits = parseInt(val);
+            document.getElementById('qubit-count').value = val;
+            currentCircuit = currentCircuit.filter(g => g.qubit < numQubits);
+            if (chart) { chart.destroy(); chart = null; }
+            initCircuit();
+            renderCircuit();
+        }
+
+        // --- KEYBOARD SHORTCUTS ---
+        window.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+            if (e.key === 'r' || e.key === 'R') runCircuit();
+            if (e.key === 'Escape') { clearCircuit(); removeAnglePopover(); }
+            if (e.key === 'Backspace' || e.key === 'Delete') { undo(); }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.angle-popover') && !e.target.closest('.gate')) removeAnglePopover();
+        });
+
+        function handleShared() {
+            const data = new URLSearchParams(window.location.search).get('circuit');
+            if (data) { try { currentCircuit = JSON.parse(atob(data)); renderCircuit(); runCircuit(); } catch(e) {} }
+        }
+
+        // --- INIT ---
+        window.onload = () => {
+            initCircuit();
+            initBloch();
+            initParticles();
+            runCircuit();
+            handleShared();
+        };
+    </script>
+</body>
+</html>
