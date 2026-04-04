@@ -3,410 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nishankar Sathiyamohan - Lecturer (Probationary) at University of Sabragamuwa. Researcher in Computer Vision, Quantum ML, and Explainable AI.">
-    <title>Nishankar Sathiyamohan | Academic Portfolio</title>
-    
+    <meta name="description" content="Nishankar Sathiyamohan — Lecturer (Probationary) at University of Sabaragamuwa. Researcher in Computer Vision, Quantum ML, and Explainable AI.">
+    <title>Nishankar Sathiyamohan</title>
     <link rel="icon" href="icon.jpg" type="image/jpeg">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="dark">
-    <!-- Subtle Background -->
-    <canvas id="bg-canvas" style="position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; opacity: 0.15;"></canvas>
+<body>
 
-    <nav class="navbar">
-        <div class="container">
-            <a href="#home" class="logo" style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="icon.jpg" alt="Logo" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
-                <span>NS.</span>
-            </a>
-            <ul class="nav-links" style="gap: 1.1rem;">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#experience">Exp</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="quantum.html" class="text-accent">Quantum</a></li>
-                <li><a href="research-helper.html">Resources</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="moments.html">Moments</a></li>
-                <li><a href="games.html" class="bored-btn"><span>Games</span></a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li>
-                    <div class="nav-controls" style="gap: 0.5rem;">
-                <button id="theme-toggle" class="btn btn-outline" style="padding: 0.5rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; border-radius: 50%; transform: translate(15px, -10px);">🌙</button>
-            </div>
-                </li>
-            </ul>
-            
-        </div>
-    </nav>
+    <div class="page-wrap">
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container hero-content">
-                <div class="fade-up">
-                    <span class="tag">Lecturer (Probationary)</span>
-                    <h1>Nishankar <span class="text-accent">Sathiyamohan</span></h1>
-                    <p>Computer Science & Engineering graduate from University of Peradeniya. Exploring the intersection of Vision, Quantum Computing, and AI.</p>
-                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                        <a href="Nishankar_S_CV.pdf" download class="btn btn-primary">Download CV</a>
-                        <a href="#research" class="btn btn-outline">View Publications</a>
+        <!-- ===== SIDEBAR / HEADER ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-inner">
+                <img src="My/profile.jpeg" alt="Nishankar Sathiyamohan" class="avatar">
+                <h1 class="name">Nishankar<br>Sathiyamohan</h1>
+                <p class="title-badge">Lecturer (Probationary)</p>
+                <p class="affil">University of Sabaragamuwa, Sri Lanka</p>
+
+                <nav class="side-nav">
+                    <a href="#about">About</a>
+                    <a href="#research-interests">Research</a>
+                    <a href="#publications">Publications</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#teaching">Teaching</a>
+                    <a href="#skills">Skills &amp; Tools</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#writing">Writing</a>
+                    <a href="#contact">Contact</a>
+                    <a href="quantum.html" class="active-special">Quantum Sim</a>
+                </nav>
+
+                <div class="sidebar-links">
+                    <a href="Nishankar_S_CV.pdf" download class="cv-btn">⬇ Download CV</a>
+                    <div class="social-row">
+                        <a href="mailto:nishannishankar@gmail.com" title="Email">✉</a>
+                        <a href="https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en" target="_blank" title="Google Scholar">GS</a>
+                        <a href="https://github.com/Nishan-Charlie" target="_blank" title="GitHub">GH</a>
+                        <a href="https://linkedin.com/in/nishankar-sathiyamohan" target="_blank" title="LinkedIn">in</a>
+                        <a href="https://www.researchgate.net/profile/Nishankar-Sathiyamohan-2" target="_blank" title="ResearchGate">RG</a>
+                        <a href="https://medium.com/@nishannishankar" target="_blank" title="Medium">M</a>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <div class="profile-grid">
-                    <div class="profile-img-container">
-                        <img src="My/profile.jpeg" alt="Nishankar Sathiyamohan" class="profile-img">
+                <button id="theme-toggle" class="theme-btn" title="Toggle theme">☀</button>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="main-content">
+
+            <!-- ABOUT -->
+            <section id="about">
+                <h2>About</h2>
+                <p>
+                    I am an Honors Engineering graduate specialised in Computer Engineering from the
+                    <strong>University of Peradeniya, Sri Lanka</strong>. Currently, I serve as a
+                    <strong>Lecturer (Probationary)</strong> at the University of Sabaragamuwa, where
+                    I am also the Assistant Research Coordinator.
+                </p>
+                <p>
+                    My work sits at the intersection of <strong>Computer Vision</strong>, <strong>3D Reconstruction</strong>,
+                    <strong>Hybrid Quantum-Classical Machine Learning</strong>, and
+                    <strong>Explainable AI (XAI)</strong>. I am particularly interested in building
+                    robust, interpretable models for agricultural and medical image analysis, and in
+                    exploring how 3D computer vision and quantum computing can augment classical deep learning pipelines.
+                </p>
+                <p>
+                    Beyond research, I am passionate about bridging rigorous academic methodology
+                    with practical deployment — from federated learning on edge devices to
+                    semi-supervised learning under label scarcity.
+                </p>
+            </section>
+
+            <hr>
+
+            <!-- RESEARCH INTERESTS -->
+            <section id="research-interests">
+                <h2>Research Interests</h2>
+                <ul class="interest-list">
+                    <li>
+                        <strong>Computer Vision &amp; 3D Reconstruction</strong>
+                        — 3D computer vision, SLAM, point cloud analysis, Vision Transformers, object detection, semantic segmentation, self-supervised &amp; semi-supervised learning
+                    </li>
+                    <li>
+                        <strong>Quantum Machine Learning</strong>
+                        — Hybrid quantum-classical architectures, variational quantum circuits, quantum feature maps
+                    </li>
+                    <li>
+                        <strong>Explainable AI (XAI)</strong>
+                        — Attention visualisation, Grad-CAM, LIME/SHAP, model transparency in safety-critical systems
+                    </li>
+                    <li>
+                        <strong>Anomaly Detection</strong>
+                        — Physiological signal analysis, unsupervised outlier detection, dataset construction
+                    </li>
+                    <li>
+                        <strong>Federated &amp; Edge Learning</strong>
+                        — Ultra-lightweight models, privacy-preserving distributed training, TinyML
+                    </li>
+                    <li>
+                        <strong>Precision Agriculture &amp; Medical Imaging</strong>
+                        — Plant disease recognition, MRI synthesis, multimodal healthcare analytics
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <!-- PUBLICATIONS -->
+            <section id="publications">
+                <h2>Publications</h2>
+
+                <h3 class="pub-group-label">Journal Articles (Published)</h3>
+                <ol class="pub-list">
+                    <li class="pub-item">
+                        <p class="pub-title-text">ViT-RoT: Vision Transformer-Based Robust Framework for Tomato Leaf Disease Recognition</p>
+                        <p class="pub-meta">S. Nishankar, V. Pavindran, T. Mithuran, S. Nimishan, S. Thuseethan, Y. Sebastian</p>
+                        <p class="pub-venue"><em>AgriEngineering</em>, Vol. 7, No. 6, 2025 &nbsp;·&nbsp;
+                            <span class="badge q1">Q1</span>
+                            &nbsp;·&nbsp; DOI: <a href="https://doi.org/10.3390/agriengineering7060185" target="_blank">10.3390/agriengineering7060185</a>
+                        </p>
+                    </li>
+                    <li class="pub-item">
+                        <p class="pub-title-text">TOM-SSL: Tomato Disease Recognition using Pseudo-labelling based Semi-supervised Learning</p>
+                        <p class="pub-meta">S. Nishankar, T. Mithuran, S. Nimishan, V. Pavindran, S. Thuseethan</p>
+                        <p class="pub-venue"><em>AgriEngineering</em>, Vol. 7, No. 8, 2025 &nbsp;·&nbsp;
+                            <span class="badge q1">Q1</span>
+                            &nbsp;·&nbsp; DOI: <a href="https://doi.org/10.3390/agriengineering7080248" target="_blank">10.3390/agriengineering7080248</a>
+                        </p>
+                    </li>
+                </ol>
+
+                <h3 class="pub-group-label">Preprints &amp; Under Review</h3>
+                <ol class="pub-list" start="3">
+                    <li class="pub-item">
+                        <p class="pub-title-text">U-FedTomAtt: Ultra-lightweight Federated Learning with Attention for Tomato Disease Recognition</p>
+                        <p class="pub-meta">George, R., Nishankar, S., Thuseethan, S., Wimalasooriya, C., et al.</p>
+                        <p class="pub-venue"><em>arXiv:2602.16749</em>, Feb 2026 &nbsp;·&nbsp; <span class="badge under-review">IEEE TIFS – Under Review</span></p>
+                    </li>
+                    <li class="pub-item">
+                        <p class="pub-title-text">Self-xViT: Self-supervised Vision Transformer for Explainable Tomato Leaf Disease Detection</p>
+                        <p class="pub-meta">S. Nishankar, G. Rajalingam, S. Thuseethan, Y. Sebastian, et al.</p>
+                        <p class="pub-venue">Jan 2026 &nbsp;·&nbsp; <span class="badge under-review">Applied Intelligence – Under Review</span></p>
+                    </li>
+                    <li class="pub-item">
+                        <p class="pub-title-text">Deep Semi-supervised Learning for Medical Image Analysis: A Survey <em>(* Equal Contribution)</em></p>
+                        <p class="pub-meta">T. Shyamalee*, S. Nishankar*, S. Thuseethan, C. Wimalasooriya, Y. Sebastian</p>
+                        <p class="pub-venue">Sept 2025 &nbsp;·&nbsp; <span class="badge under-review">ACM CSUR – Under Revision</span></p>
+                    </li>
+                    <li class="pub-item">
+                        <p class="pub-title-text">SLIF-Brinjal: An In-Field Leaf Dataset for Disease Recognition in Precision Agriculture</p>
+                        <p class="pub-meta">R. George, S. Nishankar, S. Thuseethan, K. Pakeerathan, R. G. Ragel</p>
+                        <p class="pub-venue">Feb 2026 &nbsp;·&nbsp; <span class="badge under-review">Scientific Data – Under Review</span></p>
+                    </li>
+                    <li class="pub-item">
+                        <p class="pub-title-text">From Unimodal to Multimodal Deep Physiological Signal Analysis in Healthcare: A Survey</p>
+                        <p class="pub-meta">T. Bakmeedeniya, R. G. Ragel, P. Vigneshwaran, S. Nishankar, S. Thuseethan</p>
+                        <p class="pub-venue">Mar 2026 &nbsp;·&nbsp; <span class="badge under-review">Computer Science Review – Under Review</span></p>
+                    </li>
+                    <li class="pub-item">
+                        <p class="pub-title-text">Trends, Challenges and Future Directions in Deep Learning for Citrus Leaf Disease Recognition: A Survey</p>
+                        <p class="pub-meta">T. Godage, S. Nishankar, S. Vasanthapriyan, S. Thuseethan, Z. Liang</p>
+                        <p class="pub-venue">Jan 2026 &nbsp;·&nbsp; <span class="badge under-review">Artificial Intelligence – Under Review</span></p>
+                    </li>
+                </ol>
+
+                <p class="scholar-link">
+                    Full list: <a href="https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                    &nbsp;·&nbsp;
+                    <a href="https://www.researchgate.net/profile/Nishankar-Sathiyamohan-2" target="_blank">ResearchGate</a>
+                </p>
+            </section>
+
+            <hr>
+
+            <!-- EXPERIENCE -->
+            <section id="experience">
+                <h2>Academic &amp; Professional Experience</h2>
+                <table class="exp-table">
+                    <tbody>
+                        <tr>
+                            <td class="exp-date">Apr 2025 – Present</td>
+                            <td>
+                                <strong>Lecturer (Probationary)</strong> — University of Sabaragamuwa, Sri Lanka<br>
+                                <span class="exp-note">Assistant Research Coordinator</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="exp-date">Apr 2024 – Apr 2025</td>
+                            <td>
+                                <strong>Lecturer (Contract)</strong> — University of Jaffna, Sri Lanka<br>
+                                <span class="exp-note">Embedded Systems · Digital Image Processing · Algorithms &amp; Data Structures</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="exp-date">Jan 2024 – Apr 2024</td>
+                            <td>
+                                <strong>Instructor</strong> — University of Peradeniya, Sri Lanka
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="exp-date">Dec 2022 – Apr 2023</td>
+                            <td>
+                                <strong>Software Engineering Intern</strong> — Infinity Innovators Pvt., Colombo<br>
+                                <span class="exp-note">Full-stack development · Agile workflows</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr>
+
+            <!-- TEACHING -->
+            <section id="teaching">
+                <h2>Teaching</h2>
+                <p class="section-note">Modules I have taught or currently facilitate across universities:</p>
+                <div class="tag-cloud">
+                    <span>Software Engineering</span>
+                    <span>Embedded Systems</span>
+                    <span>Digital Image Processing</span>
+                    <span>Algorithms &amp; Data Structures</span>
+                    <span>Computer Vision</span>
+                    <span>Object-Oriented Programming</span>
+                    <span>Database Systems</span>
+                    <span>Operating Systems</span>
+                    <span>Computer Networks</span>
+                    <span>Machine Learning</span>
+                </div>
+            </section>
+
+            <hr>
+
+            <!-- SKILLS & TOOLS -->
+            <section id="skills">
+                <h2>Skills &amp; Tools</h2>
+
+                <div class="skills-grid">
+                    <div class="skill-group">
+                        <h4>Programming</h4>
+                        <ul>
+                            <li>Python — expert (PyTorch, TensorFlow, Keras)</li>
+                            <li>C / C++ — proficient</li>
+                            <li>Java — proficient</li>
+                            <li>JavaScript / HTML / CSS — proficient</li>
+                            <li>R — familiar</li>
+                            <li>SQL — proficient</li>
+                        </ul>
                     </div>
-                    <div>
-                        <h2 class="mb-2">About Me</h2>
-                        <p class="mb-2">I am an honors engineering graduate specialized in Computer Engineering. Currently, I serve as a Lecturer (Probationary) at the University of Sabragamuwa, where I bridge the gap between academic research and industrial application.</p>
-                        <p class="mb-2">My research is driven by a curiosity for <strong>Hybrid Quantum-Classical frameworks</strong> and their application in Computer Vision and Anomaly Detection. I focus on making AI models more robust and explainable.</p>
-                        <h3 class="mt-4 mb-2" style="font-size: 1.2rem;">Research Interests</h3>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                            <span class="tag">Computer Vision</span>
-                            <span class="tag">Quantum Machine Learning</span>
-                            <span class="tag">Explainable AI (XAI)</span>
-                            <span class="tag">Anomaly Detection</span>
-                        </div>
+                    <div class="skill-group">
+                        <h4>ML &amp; DL Frameworks</h4>
+                        <ul>
+                            <li>PyTorch, TensorFlow, Keras</li>
+                            <li>Hugging Face Transformers</li>
+                            <li>scikit-learn, XGBoost</li>
+                            <li>PennyLane (Quantum ML)</li>
+                            <li>Qiskit (IBM Quantum)</li>
+                            <li>OpenCV, Albumentations, Open3D</li>
+                            <li>MONAI (Medical Imaging), PyTorch3D</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Research &amp; Analysis</h4>
+                        <ul>
+                            <li>Grad-CAM / SHAP / LIME (XAI)</li>
+                            <li>Federated Learning (PySyft, Flower)</li>
+                            <li>Signal Processing (MNE, SciPy)</li>
+                            <li>Point Cloud Analysis</li>
+                            <li>Statistical Analysis (SPSS, R)</li>
+                            <li>LaTeX (scientific writing)</li>
+                            <li>Git / GitHub</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Platforms &amp; Environments</h4>
+                        <ul>
+                            <li>Linux (Ubuntu / CentOS)</li>
+                            <li>Google Colab, Kaggle, Jupyter</li>
+                            <li>Docker &amp; Conda environments</li>
+                            <li>Raspberry Pi / Arduino (Edge AI)</li>
+                            <li>AWS (basic) · Google Cloud (basic)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Methodologies</h4>
+                        <ul>
+                            <li>Semi-supervised &amp; Self-supervised Learning</li>
+                            <li>Transfer &amp; Few-shot Learning</li>
+                            <li>Variational Autoencoders &amp; GANs</li>
+                            <li>Attention Mechanisms (ViT, BERT)</li>
+                            <li>3D Reconstruction (SLAM, SfM)</li>
+                            <li>Quantum Variational Circuits</li>
+                            <li>Agile &amp; SCRUM</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Languages</h4>
+                        <ul>
+                            <li>Tamil — native</li>
+                            <li>English — professional</li>
+                            <li>Sinhala — conversational</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="section">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 3rem;">Professional Journey</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <span class="timeline-date">Apr 2025 – Present</span>
-                        <h3 class="pub-title">Lecturer (Probationary)</h3>
-                        <p class="text-accent">University of Sabragamuwa</p>
-                        <p class="text-muted" style="font-size: 0.9rem;">UBL Coordinator & Assistant Research Coordinator.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-date">Apr 2024 – Apr 2025</span>
-                        <h3 class="pub-title">Lecturer (Contract)</h3>
-                        <p class="text-accent">University of Jaffna</p>
-                        <p class="text-muted" style="font-size: 0.9rem;">Taught Embedded Systems, Digital Image Processing, and Algorithms.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-date">Jan 2024 – Apr 2024</span>
-                        <h3 class="pub-title">Instructor</h3>
-                        <p class="text-accent">University of Peradeniya</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-date">Dec 2022 – Apr 2023</span>
-                        <h3 class="pub-title">Software Engineering Intern</h3>
-                        <p class="text-accent">Infinity Innovators Pvt, Colombo</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <hr>
 
-        <!-- Research Section -->
-        <section id="research" class="section">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 1rem;">Selected Publications</h2>
-                <p class="text-muted" style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">Peer-reviewed journals, surveys, and research preprints in Computer Vision and AI.</p>
-                <div class="grid-2">
-                    <div class="card">
-                        <span class="tag">Journal Article (Q1)</span>
-                        <h3 class="pub-title">ViT-RoT: Vision Transformer-Based Robust Framework for Tomato Leaf Disease Recognition</h3>
-                        <p class="pub-authors">S. Nishankar, V. Pavindran, T. Mithuran, S. Nimishan, S. Thuseethan, and Y. Sebastian</p>
-                        <span class="publication-journal">AgriEngineering, Vol. 7, No. 6, 2025</span>
-                        <p class="text-muted mt-2" style="font-size: 0.85rem;">DOI: 10.3390/agriengineering7060185 | Jun 2025</p>
-                    </div>
-                    <div class="card">
-                        <span class="tag">Journal Article (Q1)</span>
-                        <h3 class="pub-title">TOM-SSL: Tomato Disease Recognition using Pseudo-labelling based Semi-supervised Learning</h3>
-                        <p class="pub-authors">S. Nishankar, T. Mithuran, S. Nimishan, V. Pavindran, and S. Thuseethan</p>
-                        <span class="publication-journal">AgriEngineering, Vol. 7, No. 8, 2025</span>
-                        <p class="text-muted mt-2" style="font-size: 0.85rem;">DOI: 10.3390/agriengineering7080248 | Jul 2025</p>
-                    </div>
-                    <div class="card">
-                        <span class="tag">IEEE TIFS (Under Review)</span>
-                        <h3 class="pub-title">U-FedTomAtt: Ultra-lightweight Federated Learning with Attention for Tomato Disease Recognition</h3>
-                        <p class="pub-authors">George, R., Nishankar, S., Thuseethan, S., Wimalasooriya, C., et al.</p>
-                        <span class="publication-journal">arXiv:2602.16749, Feb 2026</span>
-                    </div>
-                    <div class="card">
-                        <span class="tag">ACM CSUR (Revision)</span>
-                        <h3 class="pub-title">Deep Semi-supervised Learning for Medical Image Analysis: A Survey</h3>
-                        <p class="pub-authors">T. Shyamalee*, S. Nishankar*, S. Thuseethan, C. Wimalasooriya, and Y. Sebastian</p>
-                        <span class="publication-journal">Sept 2025 (*Equal Contribution)</span>
-                    </div>
-                    <div class="card">
-                        <span class="tag">Applied Intelligence (Under Review)</span>
-                        <h3 class="pub-title">Self-xViT: Self-supervised Vision Transformer for Explainable Tomato Leaf Disease Detection</h3>
-                        <p class="pub-authors">S. Nishankar, G. Rajalingam, S. Thuseethan, Y. Sebastian, et al.</p>
-                        <span class="publication-journal">Jan 2026</span>
-                    </div>
-                    <div class="card">
-                        <span class="tag">Computer Science Review (Under Review)</span>
-                        <h3 class="pub-title">From Unimodal to Multimodal Deep Physiological Signal Analysis in Healthcare: A Survey</h3>
-                        <p class="pub-authors">T. Bakmeedeniya, R. G. Ragel, P. Vigneshwaran, S. Nishankar, and S. Thuseethan</p>
-                        <span class="publication-journal">Mar 2026</span>
-                    </div>
-                    <div class="card">
-                        <span class="tag">Scientific Data (Under Review)</span>
-                        <h3 class="pub-title">SLIF-Brinjal: An In-Field Leaf Dataset for Disease Recognition in Precision Agriculture</h3>
-                        <p class="pub-authors">R. George, S. Nishankar, S. Thuseethan, K. Pakeerathan, R. G. Ragel</p>
-                        <span class="publication-journal">Feb 2026</span>
-                    </div>
-                    <div class="card">
-                        <span class="tag">Artificial Intelligence (Under Review)</span>
-                        <h3 class="pub-title">Trends, Challenges and Future Directions in Deep Learning for Citrus Leaf Disease Recognition: A Survey</h3>
-                        <p class="pub-authors">T. Godage, S. Nishankar, S. Vasanthapriyan, S. Thuseethan, Z. Liang</p>
-                        <span class="publication-journal">Jan 2026</span>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 3rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <a href="https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en" target="_blank" class="btn btn-primary">Google Scholar</a>
-                    <a href="https://www.researchgate.net/profile/Nishankar-Sathiyamohan-2" target="_blank" class="btn btn-outline">ResearchGate</a>
-                    <a href="research-helper.html" class="btn btn-outline">Academic Ecosystem</a>
-                </div>
-            </div>
-        </section>
+            <!-- PROJECTS -->
+            <section id="projects">
+                <h2>Selected Projects</h2>
+                <table class="proj-table">
+                    <tbody>
+                        <tr>
+                            <td><a href="https://github.com/Nishan-Charlie/ViT-RoT" target="_blank"><strong>ViT-RoT</strong></a></td>
+                            <td>Robust Vision Transformer for early tomato leaf disease detection. Published in AgriEngineering.</td>
+                            <td class="lang-cell">Python</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/Nishan-Charlie/MRI-ImageGenration" target="_blank"><strong>MRI Image Generation</strong></a></td>
+                            <td>Attention UNet + RL fine-tuning pipeline for high-fidelity MRI image synthesis.</td>
+                            <td class="lang-cell">Python</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/Nishan-Charlie/TinyML_Emotional_Detection" target="_blank"><strong>TinyML Emotion AI</strong></a></td>
+                            <td>Real-time emotion detection optimised for resource-constrained edge devices.</td>
+                            <td class="lang-cell">Python / C</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/Nishan-Charlie/1D-MobileNetV2" target="_blank"><strong>1D-MobileNetV2</strong></a></td>
+                            <td>Lightweight MobileNetV2 adaptation for efficient 1D physiological signal processing.</td>
+                            <td class="lang-cell">Python</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/Nishan-Charlie/QR-code-generator" target="_blank"><strong>C QR Generator</strong></a></td>
+                            <td>Low-level, terminal-based QR code generator implemented entirely in C.</td>
+                            <td class="lang-cell">C</td>
+                        </tr>
+                        <tr>
+                            <td><a href="quantum.html" target="_blank"><strong>Quantum Simulation Lab</strong></a></td>
+                            <td>Interactive flagship lab for quantum circuits, variational algorithms (VQE/QAOA), and real-time Bloch sphere visualization.</td>
+                            <td class="lang-cell">JavaScript / Three.js</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="scholar-link"><a href="https://github.com/Nishan-Charlie" target="_blank">View all repositories on GitHub →</a></p>
+            </section>
 
-        <!-- Teaching Section -->
-        <section id="teaching" class="section">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 1rem;">Teaching & Coursework</h2>
-                <p class="text-muted" style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">Course materials and lecture notes for the modules I facilitate.</p>
-                <div class="grid-3">
-                    <div class="card">
-                        <h3 class="mb-2" style="font-size: 1.1rem;">Software Engineering</h3>
-                        <p class="text-muted" style="font-size: 0.85rem;">Lecture notes on SDLC, design patterns, and agile methodologies.</p>
-                        <a href="#" class="text-accent mt-4 inline-block" style="font-size: 0.85rem; font-weight: 600;">View Notes →</a>
-                    </div>
-                    <div class="card">
-                        <h3 class="mb-2" style="font-size: 1.1rem;">Embedded Systems</h3>
-                        <p class="text-muted" style="font-size: 0.85rem;">Materials covering microcontroller architectures and RTOS.</p>
-                        <a href="#" class="text-accent mt-4 inline-block" style="font-size: 0.85rem; font-weight: 600;">View Notes →</a>
-                    </div>
-                    <div class="card">
-                        <h3 class="mb-2" style="font-size: 1.1rem;">Computer Vision</h3>
-                        <p class="text-muted" style="font-size: 0.85rem;">Introductory slides on image processing, kernels, and CNNs.</p>
-                        <a href="#" class="text-accent mt-4 inline-block" style="font-size: 0.85rem; font-weight: 600;">View Notes →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <hr>
 
+            <!-- WRITING -->
+            <section id="writing">
+                <h2>Technical Writing</h2>
+                <p class="section-note">In-depth articles on AI, Computer Vision, and Quantum Computing published on Medium.</p>
+                <ul class="writing-list">
+                    <li>
+                        <a href="https://medium.com/@nishannishankar/understanding-vision-transformers-vit-with-hugging-face-implementation-8f69b8ef67c8" target="_blank">
+                            Understanding Vision Transformers (ViT) with Hugging Face Implementation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://medium.com/@nishannishankar/dino-understanding-emerging-properties-in-self-supervised-vision-transformers-3f7d1f9a6f3b" target="_blank">
+                            DINO: Emerging Properties in Self-Supervised Vision Transformers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://medium.com/@nishannishankar/first-step-into-robotics-a-beginners-guide-to-webots-7c3a8e9e9e8e" target="_blank">
+                            First Step into Robotics: A Beginner's Guide to WeBots
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://medium.com/@nishannishankar/mastering-competitive-programming-exploring-the-best-learning-platforms-7e28f3a3a4e9" target="_blank">
+                            Mastering Competitive Programming: Best Platforms &amp; Strategies
+                        </a>
+                    </li>
+                </ul>
+                <p class="scholar-link"><a href="https://medium.com/@nishannishankar" target="_blank">Read all articles on Medium →</a></p>
+            </section>
 
-        <!-- Articles Section (Medium) -->
-        <section id="articles" class="section" style="background: var(--bg-secondary);">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 1rem;">Medium Articles</h2>
-                <p class="text-muted" style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">In-depth technical writing on Computer Vision, AI, and robotics.</p>
-                <div class="grid-2">
-                    <a href="https://medium.com/@nishannishankar/understanding-vision-transformers-vit-with-hugging-face-implementation-8f69b8ef67c8" target="_blank" class="article-card">
-                        <div class="card-icon">📄</div>
-                        <h3 class="card-title">Understanding Vision Transformers (ViT)</h3>
-                        <p class="card-description">A comprehensive guide to ViT architecture with a practical Hugging Face implementation.</p>
-                        <div class="card-footer">
-                            <span>Read on Medium</span>
-                            <span>→</span>
-                        </div>
-                    </a>
-                    <a href="https://medium.com/@nishannishankar/dino-understanding-emerging-properties-in-self-supervised-vision-transformers-3f7d1f9a6f3b" target="_blank" class="article-card">
-                        <div class="card-icon">🧬</div>
-                        <h3 class="card-title">DINO: Self-Supervised ViTs</h3>
-                        <p class="card-description">Exploring emerging properties in self-supervised Vision Transformers through the DINO framework.</p>
-                        <div class="card-footer">
-                            <span>Read on Medium</span>
-                            <span>→</span>
-                        </div>
-                    </a>
-                    <a href="https://medium.com/@nishannishankar/first-step-into-robotics-a-beginners-guide-to-webots-7c3a8e9e9e8e" target="_blank" class="article-card">
-                        <div class="card-icon">🤖</div>
-                        <h3 class="card-title">First Step into Robotics</h3>
-                        <p class="card-description">A beginner-friendly guide to getting started with robotics simulation using WeBots.</p>
-                        <div class="card-footer">
-                            <span>Read on Medium</span>
-                            <span>→</span>
-                        </div>
-                    </a>
-                    <a href="https://medium.com/@nishannishankar/mastering-competitive-programming-exploring-the-best-learning-platforms-7e28f3a3a4e9" target="_blank" class="article-card">
-                        <div class="card-icon">🏆</div>
-                        <h3 class="card-title">Mastering Competitive Programming</h3>
-                        <p class="card-description">Evaluating the best platforms and strategies for excelling in competitive programming.</p>
-                        <div class="card-footer">
-                            <span>Read on Medium</span>
-                            <span>→</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+            <hr>
 
-        <!-- Projects Section (GitHub) -->
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 1rem;">Open Source Projects</h2>
-                <p class="text-muted" style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">A collection of my research implementations and technical tools on GitHub.</p>
-                <div class="grid-3">
-                    <a href="https://github.com/Nishan-Charlie/ViT-RoT" target="_blank" class="repo-card">
-                        <div class="card-icon">🌾</div>
-                        <h3 class="card-title">ViT-RoT</h3>
-                        <p class="card-description">Robust Vision Transformer framework for early detection of tomato leaf diseases.</p>
-                        <div class="card-footer">
-                            <div class="lang-tag"><span class="lang-dot" style="background: #3572A5;"></span> Python</div>
-                            <span>⭐ Star</span>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Nishan-Charlie/MRI-ImageGenration" target="_blank" class="repo-card">
-                        <div class="card-icon">🧠</div>
-                        <h3 class="card-title">MRI Image Generation</h3>
-                        <p class="card-description">Attention UNet pipeline with RL finetuning for high-fidelity MRI image synthesis.</p>
-                        <div class="card-footer">
-                            <div class="lang-tag"><span class="lang-dot" style="background: #3572A5;"></span> Python</div>
-                            <span>⭐ Star</span>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Nishan-Charlie/TinyML_Emotional_Detection" target="_blank" class="repo-card">
-                        <div class="card-icon">😊</div>
-                        <h3 class="card-title">TinyML Emotion AI</h3>
-                        <p class="card-description">Real-time emotion detection optimized for resource-constrained edge devices.</p>
-                        <div class="card-footer">
-                            <div class="lang-tag"><span class="lang-dot" style="background: #3572A5;"></span> Python</div>
-                            <span>⭐ Star</span>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Nishan-Charlie/Pdf-Spliter" target="_blank" class="repo-card">
-                        <div class="card-icon">📄</div>
-                        <h3 class="card-title">PDF Splitter</h3>
-                        <p class="card-description">Flash-based web tool for precise extraction and splitting of PDF document pages.</p>
-                        <div class="card-footer">
-                            <div class="lang-tag"><span class="lang-dot" style="background: #f1e05a;"></span> JavaScript</div>
-                            <span>⭐ Star</span>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Nishan-Charlie/QR-code-generator" target="_blank" class="repo-card">
-                        <div class="card-icon">🏁</div>
-                        <h3 class="card-title">C QR Generator</h3>
-                        <p class="card-description">Low-level, terminal-based QR code generator implemented entirely in C.</p>
-                        <div class="card-footer">
-                            <div class="lang-tag"><span class="lang-dot" style="background: #555555;"></span> C</div>
-                            <span>⭐ Star</span>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Nishan-Charlie/1D-MobileNetV2" target="_blank" class="repo-card">
-                        <div class="card-icon">📊</div>
-                        <h3 class="card-title">1D MobileNetV2</h3>
-                        <p class="card-description">Lightweight MobileNetV2 adaptation for efficient 1D signal processsing.</p>
-                        <div class="card-footer">
-                            <div class="lang-tag"><span class="lang-dot" style="background: #3572A5;"></span> Python</div>
-                            <span>⭐ Star</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+            <!-- CONTACT -->
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>I welcome collaboration, research inquiries, and academic discussions.</p>
+                <table class="contact-table">
+                    <tbody>
+                        <tr>
+                            <td>Email</td>
+                            <td><a href="mailto:nishannishankar@gmail.com">nishannishankar@gmail.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td><a href="https://linkedin.com/in/nishankar-sathiyamohan" target="_blank">linkedin.com/in/nishankar-sathiyamohan</a></td>
+                        </tr>
+                        <tr>
+                            <td>Google Scholar</td>
+                            <td><a href="https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en" target="_blank">Scholar Profile</a></td>
+                        </tr>
+                        <tr>
+                            <td>ResearchGate</td>
+                            <td><a href="https://www.researchgate.net/profile/Nishankar-Sathiyamohan-2" target="_blank">ResearchGate Profile</a></td>
+                        </tr>
+                        <tr>
+                            <td>GitHub</td>
+                            <td><a href="https://github.com/Nishan-Charlie" target="_blank">github.com/Nishan-Charlie</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="section" style="background: var(--bg-secondary);">
-            <div class="container" style="text-align: center; max-width: 700px;">
-                <h2 style="margin-bottom: 1rem;">Get in Touch</h2>
-                <p class="text-muted" style="margin-bottom: 2rem;">I'm always open to discussing new projects, research collaborations, or opportunities. Feel free to reach out!</p>
-                <a href="mailto:nishannishankar@gmail.com" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.1rem;">Say Hello!</a>
-            </div>
-        </section>
+            <hr>
 
-        <style>
-            /* Removed lab-specific styles */
-        </style>
-    </main>
+            <!-- QUANTUM SIM PREVIEW/CTA -->
+            <section id="quantum-sim">
+                <h2>Quantum Simulation Lab</h2>
+                <p>
+                    I have developed an interactive, client-side Quantum Circuit Simulator that allows for real-time
+                    manipulation of quantum states, visualization on the Bloch Sphere, and execution of complex algorithms 
+                    like Grover's Search and Shor's subroutines.
+                </p>
+                <a href="quantum.html" class="lab-cta-btn">
+                    Launch Interactive Quantum Lab →
+                </a>
+            </section>
 
-    <footer style="padding: 4rem 0; background: var(--bg-secondary); border-top: 1px solid var(--border);">
-        <div class="container" style="text-align: center;">
-            <p class="mb-2">Nishankar Sathiyamohan</p>
-            <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="mailto:nishannishankar@gmail.com" class="text-muted hover:text-accent">Email</a>
-                <a href="https://linkedin.com/in/nishankar-sathiyamohan" class="text-muted hover:text-accent">LinkedIn</a>
-                <a href="https://github.com/Nishan-Charlie" class="text-muted hover:text-accent">GitHub</a>
-                <a href="https://medium.com/@nishannishankar" class="text-muted hover:text-accent">Medium</a>
-                <a href="https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en" class="text-muted hover:text-accent">Scholar</a>
-                <a href="https://www.researchgate.net/profile/Nishankar-Sathiyamohan-2" class="text-muted hover:text-accent">ResearchGate</a>
-            </div>
-            <p class="text-muted" style="font-size: 0.8rem;">&copy; 2026 Nishankar Sathiyamohan. Built for Academic Excellence.</p>
-        </div>
-    </footer>
+            <footer>
+                <p>© 2026 Nishankar Sathiyamohan · University of Sabaragamuwa, Sri Lanka</p>
+            </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        </main>
+    </div>
+
     <script>
-        // --- Toggle Light/Dark ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
+        // Theme toggle
+        const btn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', saved);
+        btn.textContent = saved === 'dark' ? '☀' : '☾';
 
-        function updateIcon(theme) {
-            themeToggle.innerText = theme === 'dark' ? '☀️' : '🌙';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
+        btn.addEventListener('click', () => {
+            const cur = html.getAttribute('data-theme');
+            const next = cur === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            btn.textContent = next === 'dark' ? '☀' : '☾';
         });
 
-        // Initialize Theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        body.setAttribute('data-theme', savedTheme);
-        updateIcon(savedTheme);
-
-        // --- Intersection Observer for Animations ---
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        // Active nav highlight on scroll
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.side-nav a');
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    navLinks.forEach(a => a.classList.remove('active'));
+                    const active = document.querySelector(`.side-nav a[href="#${e.target.id}"]`);
+                    if (active) active.classList.add('active');
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // --- Subtle Three.js Background ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 1000;
-        const posArray = new Float32Array(particlesCount * 3);
-        for(let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 10;
-        }
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0x38bdf8 });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        camera.position.z = 3;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.0005;
-            renderer.render(scene, camera);
-        }
-        animate();
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(s => observer.observe(s));
     </script>
 </body>
 </html>
