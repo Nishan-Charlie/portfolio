@@ -518,8 +518,20 @@ section h2 {
 }
 
 .collab {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 16px;
   border-top: 2px solid var(--accent);
-  padding-top: 12px;
+  padding-top: 14px;
+}
+
+.collab-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  background: var(--card);
 }
 
 .collab h3 {
