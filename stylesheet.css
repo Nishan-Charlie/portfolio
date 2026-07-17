@@ -639,6 +639,42 @@ section h2 {
 }
 
 /* ==========================================================================
+   Research supervision
+   ========================================================================== */
+
+#supervision .pub { grid-template-columns: 240px 1fr; }
+
+.sup-thumb {
+  width: 240px;
+  aspect-ratio: 16 / 10;
+}
+
+.student-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 10px;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+.student-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1px var(--rule);
+  flex: none;
+}
+
+.student-line strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ==========================================================================
    Projects
    ========================================================================== */
 
@@ -775,8 +811,9 @@ section h2 {
 }
 
 @media (max-width: 560px) {
-  .pub { grid-template-columns: 1fr; gap: 12px; }
+  .pub, #supervision .pub { grid-template-columns: 1fr; gap: 12px; }
   .pub-thumb, .pub-thumb-tile { width: 100%; max-width: 300px; aspect-ratio: 16 / 7; }
+  .sup-thumb { max-width: 100%; aspect-ratio: 16 / 9; }
   .news-list li { grid-template-columns: 1fr; gap: 0; }
 }
 

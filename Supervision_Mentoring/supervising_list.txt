@@ -1,0 +1,28 @@
+Name:
+N.A.Rajapaksha
+Project Title:
+ Multi-Document Event-Level Summarization for Sinhala News 
+Small Description:
+This research proposes a framework for automatically generating concise summaries of Sinhala news events by grouping multiple news articles that report the same event. The framework collects news articles from multiple Sinhala news websites through web scraping, preprocesses the text, classifies events using Sinhala-BERT, groups semantically related articles using UMAP and HDBSCAN with hierarchical event clustering, and generates event-level extractive summaries using the TextRank algorithm. The system is evaluated using classification metrics (Accuracy, Precision, Recall, F1-score), clustering quality (Silhouette Score), and manual human evaluation of the generated summaries.
+GitHub Link:
+https://github.com/NipunRajapaksha/Sinhala-Multi-Document-Summarization.git
+
+
+Name:
+L.D. Weerakoon
+Project Title:
+Sinhala Sarcasm Detection Using Mamba State Space Model: A Comparative Study with Transformer-Based Models
+Small Description:
+This research investigates the effectiveness of the Mamba State Space Model for sarcasm detection in Sinhala, a low-resource language, and compares its performance with transformer-based pretrained language models, namely SinhalaBERTo, IndicBERT, and mBERT. Sarcasm detection is a challenging Natural Language Processing (NLP) task because the intended meaning of a statement often differs from its literal interpretation, making conventional sentiment analysis methods less effective. Using an annotated dataset of approximately 3,000 Sinhala YouTube comments, the study develops a custom Mamba-based sequence classification model and fine-tunes three transformer-based models for binary sarcasm classification. The models are evaluated using standard classification metrics, including accuracy, precision, recall, Macro F1-score, Weighted F1-score, and confusion matrices. The findings demonstrate that SinhalaBERTo achieves the highest performance due to its language-specific pretraining, while the proposed Mamba model outperforms mBERT and shows that State Space Models are a feasible alternative for Sinhala NLP tasks. This study contributes to the limited body of research on Sinhala sarcasm detection and provides empirical evidence on the applicability of Mamba-based architectures for low-resource language processing.
+GitHub Link:https://github.com/Lasindu09/Sinhala-Sarcasm-Detection
+
+
+
+
+
+
+
+
+
+
+

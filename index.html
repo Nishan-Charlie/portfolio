@@ -28,9 +28,9 @@
     <nav class="site-nav" aria-label="Site">
       <a href="#news">news</a>
       <a href="#publications">publications</a>
-      <a href="#experience">experience</a>
       <a href="#collaborations">collaborations</a>
       <a href="#teaching">teaching</a>
+      <a href="#supervision">supervision</a>
       <a href="#projects">projects</a>
       <a class="nav-cv" href="Nishankar_S_CV_July-4.pdf" download>CV ↓</a>
     </nav>
@@ -519,6 +519,61 @@
       <li><span class="role">Co-Chair</span><span>Open Track &amp; Registration, ICARC International Conference 2026</span></li>
       <li><span class="role">Member</span><span>Institute of Electrical and Electronics Engineers (IEEE)</span></li>
     </ul>
+  </section>
+
+
+  <!-- ========== RESEARCH SUPERVISION ==========
+       HOW TO ADD A SUPERVISED PROJECT: copy one <article> block and edit:
+         • methodology thumbnail (links to the full-size image)
+         • project title, student line (avatar + name), description, links
+       Assets live in Supervision_Mentoring/. -->
+  <section id="supervision">
+    <p class="eyebrow">Mentoring</p>
+    <h2>Research Supervision</h2>
+    <p class="section-note">Final-year research projects I supervise in the Department of Software Engineering,
+      Sabaragamuwa University of Sri Lanka.</p>
+
+    <article class="pub">
+      <a href="Supervision_Mentoring/NARajapaksha.jpeg" target="_blank" rel="noopener">
+        <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/NARajapaksha.jpeg" alt="Methodology diagram: multi-document event-level summarization pipeline for Sinhala news">
+      </a>
+      <div>
+        <h3 class="pub-title">Multi-Document Event-Level Summarization for Sinhala News</h3>
+        <p class="student-line">
+          <img class="student-avatar" src="Supervision_Mentoring/N.A.Rajapaksha.jpeg" alt="Portrait of N. A. Rajapaksha">
+          <span><strong>N. A. Rajapaksha</strong> · Final-year research project</span>
+        </p>
+        <p class="pub-desc">A framework that scrapes 10,000+ articles from Sinhala news websites, classifies events
+          with Sinhala-BERT, groups related coverage using UMAP and HDBSCAN with hierarchical event clustering,
+          and generates event-level extractive summaries with TextRank — evaluated on classification metrics,
+          clustering quality, and human judgment of summary quality.</p>
+        <p class="pub-links">
+          <a href="https://github.com/NipunRajapaksha/Sinhala-Multi-Document-Summarization" target="_blank" rel="noopener">code</a>
+          <a href="Supervision_Mentoring/NARajapaksha.jpeg" target="_blank" rel="noopener">methodology</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="pub">
+      <a href="Supervision_Mentoring/Weerakoon_methodology.jpeg" target="_blank" rel="noopener">
+        <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/Weerakoon_methodology.jpeg" alt="Methodology diagram: Sinhala sarcasm detection with Mamba state space model">
+      </a>
+      <div>
+        <h3 class="pub-title">Sinhala Sarcasm Detection Using Mamba State Space Models: A Comparative Study with Transformer-Based Models</h3>
+        <p class="student-line">
+          <img class="student-avatar" src="Supervision_Mentoring/LDWeerakoon.jpeg" alt="Portrait of L. D. Weerakoon">
+          <span><strong>L. D. Weerakoon</strong> · Final-year research project</span>
+        </p>
+        <p class="pub-desc">Benchmarks a custom Mamba state-space classifier against SinhalaBERTo, IndicBERT, and
+          mBERT for sarcasm detection on ~3,000 annotated Sinhala YouTube comments. SinhalaBERTo leads thanks to
+          language-specific pretraining, while the Mamba model outperforms mBERT — evidence that state space
+          models are a feasible alternative for low-resource Sinhala NLP.</p>
+        <p class="pub-links">
+          <a href="https://github.com/Lasindu09/Sinhala-Sarcasm-Detection" target="_blank" rel="noopener">code</a>
+          <a href="Supervision_Mentoring/Weerakoon_methodology.jpeg" target="_blank" rel="noopener">methodology</a>
+        </p>
+      </div>
+    </article>
   </section>
 
 
