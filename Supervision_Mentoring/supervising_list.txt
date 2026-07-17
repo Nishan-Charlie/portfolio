@@ -17,7 +17,24 @@ This research investigates the effectiveness of the Mamba State Space Model for 
 GitHub Link:https://github.com/Lasindu09/Sinhala-Sarcasm-Detection
 
 
+Name:
+T.P.H. Nethmin
+Title:
+A Cloud-Native Dynamic Pricing Engine for Shared Public-Private Parking Ecosystems Using Demand Forecasting
+Summary:
+This study proposes a cloud-native dynamic pricing framework using historical parking transactions, weather, and event data to forecast demand and optimize parking prices. Seven forecasting models- Histogram Gradient Boosting Regressor, XGBoost Regressor, Random Forest Regressor, LSTM, CNN-LSTM, LSTM-GRU, and Transformer were evaluated using forecasting accuracy, revenue, price stability, and operational fairness metrics. Results showed different strengths across models, while the Transformer achieved the best overall operational performance. The deployed cloud solution achieved a 100% API success rate, demonstrating practical feasibility for real-world parking management.
+GitHub Repositories:
+Forecasting models, pricing engine, and evaluation:
+https://github.com/Hashara13/Dynamic-Parking-Pricing-Engine
+Azure Function App Deployment:
+https://github.com/Hashara13/Dynamic-Pricing-Engine-Azure-Function-App
+Cloud API performance Testing:
+https://github.com/Hashara13/Dynamic-Pricing-Engine-Cloud-API-Test
+Web Dashboard:
+https://github.com/Hashara13/shared-parking-Prices
 
+Publication Acceptance:
+Accepted for Poster Presentation at iPURSE2026, University of Peradeniya
 
 
 
