@@ -38,8 +38,45 @@ Accepted for Poster Presentation at iPURSE2026, University of Peradeniya
 
 
 
+Name : Tharindu Darshana Rathnasuriya
+Title : Enhancing Temporal Consistency in Audio-visual Segmentation
+Description
+This research studies a common problem in Audio-Visual Segmentation (AVS) called temporal
+inconsistency. Temporal inconsistency happens when a model produces different and unstable
+segmentation masks from one video frame to the next, causing flickering results, even when the
+model appears accurate on individual frames.
+The study uses AVSegFormer as the baseline model and evaluates its performance on the
+AVSBench dataset, which contains both single-source (S4) and multi-source (MS3) videos. To
+measure performance, four evaluation metrics are used:
+mIoU and F-score to measure segmentation accuracy.
+Mask Consistency Score (MCS) to measure how consistently the model performs across an
+entire video.
+Warp IoU to measure how smoothly predictions change between consecutive frames.
+The results show that traditional accuracy metrics such as mIoU and F-score do not fully reveal
+temporal instability. Although the baseline model achieves reasonable accuracy, many videos
+still show inconsistent predictions across frames, especially in the more difficult multi-source
+setting.
+To improve temporal consistency, four different methods are tested:
+Temporal Self-Attention – uses information from neighboring frames to improve feature
+representations.
+Recurrent Query Propagation – passes object-related information from one frame to the next
+through the decoder.
+Flow-Warped Consistency Loss – adds a training loss that encourages predictions to remain
+consistent between frames using optical flow.
+Recurrent Query with Auxiliary Cross-Frame Supervision – extends Method 2 by adding an
+extra training objective that helps predict future-frame masks.
+Among all methods, Recurrent Query Propagation performs the best. It improves both
+segmentation accuracy and temporal consistency, especially on the challenging multi-source
+dataset. The results suggest that directly incorporating temporal information into the model
+architecture is more effective than simply smoothing features or adding consistency-based
+training losses.
+https://github.com/TDRathnasuriya/Research_Project
 
 
-
+Name: S.A.G.N. Jayasekara
+Index No: 20APC4636
+Title: Balancing Privacy, Accuracy, and Fairness: A Comparative Study of Privacy-Preserving Techniques in Pedestrian Detection Models for Public Surveillance
+Description: This research investigates the privacy-utility trade-off in public surveillance by conducting a comprehensive comparative analysis of image anonymization techniques, including Gaussian blurring, pixelation, masking, and a novel Pose-Conditioned Silhouette (PCS) approach. The study evaluates how these methods influence the performance of both convolutional (YOLOv8) and transformer-based (RT-DETR) object detection models on the WiderPerson dataset. By quantifying privacy protection through the Structural Similarity Index (SSIM) and measuring detection accuracy via standard metrics like mAP50, the project aims to identify optimal anonymization strategies that balance personal privacy with the operational requirements of pedestrian detection.
+GitHub repo: https://github.com/gnjayasekara/final-year-research.git
 
 

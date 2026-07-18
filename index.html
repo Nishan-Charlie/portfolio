@@ -26,8 +26,8 @@
   <div class="container">
     <a class="brand" href="#top">Nishankar Sathiyamohan</a>
     <nav class="site-nav" aria-label="Site">
-      <a href="#news">news</a>
       <a href="#publications">publications</a>
+      <!-- <a href="#news">news</a> -->
       <!-- <a href="#collaborations">collaborations</a> -->
       <a href="#teaching">teaching</a>
       <a href="#supervision">supervision</a>
@@ -531,8 +531,8 @@
 
   <!-- ========== RESEARCH SUPERVISION ==========
        HOW TO ADD A SUPERVISED PROJECT: copy one <article> block and edit:
-         • methodology thumbnail (links to the full-size image)
-         • project title, student line (avatar + name), description, links
+         • thumbnail: methodology image, GIF, or <video> demo clip
+         • project title, student name line, description, links
        Assets live in Supervision_Mentoring/. -->
   <section id="supervision">
     <p class="eyebrow">Mentoring</p>
@@ -541,9 +541,7 @@
       Sabaragamuwa University of Sri Lanka.</p>
 
     <article class="pub">
-      <!-- <a href="Supervision_Mentoring/NARajapaksha.jpeg" target="_blank" rel="noopener"> -->
-        <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/NARajapaksha.jpeg" alt="Methodology diagram: multi-document event-level summarization pipeline for Sinhala news">
-      </a>
+      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/NARajapaksha.jpeg" alt="Methodology diagram: multi-document event-level summarization pipeline for Sinhala news">
       <div>
         <h3 class="pub-title">Multi-Document Event-Level Summarization for Sinhala News</h3>
         <p class="student-line">
@@ -562,9 +560,7 @@
     </article>
 
     <article class="pub">
-      <!-- <a href="Supervision_Mentoring/Weerakoon_methodology.jpeg" target="_blank" rel="noopener"> -->
-        <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/Weerakoon_methodology.jpeg" alt="Methodology diagram: Sinhala sarcasm detection with Mamba state space model">
-      </a>
+      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/Weerakoon_methodology.jpeg" alt="Methodology diagram: Sinhala sarcasm detection with Mamba state space model">
       <div>
         <h3 class="pub-title">Sinhala Sarcasm Detection Using Mamba State Space Models: A Comparative Study with Transformer-Based Models</h3>
         <p class="student-line">
@@ -583,9 +579,7 @@
     </article>
 
     <article class="pub">
-      <!-- <a href="Supervision_Mentoring/T.P.H. Nethmin_methodology.jpeg" target="_blank" rel="noopener"> -->
-        <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/T.P.H. Nethmin_methodology.jpeg" alt="Methodology diagram: cloud-native dynamic parking pricing pipeline">
-      </a>
+      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/T.P.H. Nethmin_methodology.jpeg" alt="Methodology diagram: cloud-native dynamic parking pricing pipeline">
       <div>
         <h3 class="pub-title">A Cloud-Native Dynamic Pricing Engine for Shared Public-Private Parking Ecosystems Using Demand Forecasting</h3>
         <p class="student-line">
@@ -606,6 +600,43 @@
         </p>
       </div>
     </article>
+
+    <article class="pub">
+      <video class="pub-thumb sup-thumb" src="Supervision_Mentoring/Tharindu.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Demo clip: audio-visual segmentation masks staying consistent across video frames"></video>
+      <div>
+        <h3 class="pub-title">Enhancing Temporal Consistency in Audio-Visual Segmentation</h3>
+        <p class="student-line">
+          <span><strong>T. D. Rathnasuriya</strong> · Final-year research project</span>
+        </p>
+        <p class="pub-desc">Tackles temporal inconsistency in audio-visual segmentation — flickering masks between
+          video frames — using AVSegFormer on the AVSBench single- and multi-source benchmarks. Introduces
+          consistency-aware evaluation (Mask Consistency Score, Warp IoU) alongside mIoU and F-score, and compares
+          four remedies; recurrent query propagation improves both accuracy and temporal stability, especially on
+          the harder multi-source videos.</p>
+        <p class="pub-links">
+          <a href="https://github.com/TDRathnasuriya/Research_Project" target="_blank" rel="noopener">code</a>
+          <a href="Supervision_Mentoring/Tharindu.mp4" target="_blank" rel="noopener">demo</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="pub">
+      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/Jayasekara.gif" loading="lazy" alt="Animated demo: pedestrian detection under different anonymization techniques">
+      <div>
+        <h3 class="pub-title">Balancing Privacy, Accuracy, and Fairness: Privacy-Preserving Techniques in Pedestrian Detection for Public Surveillance</h3>
+        <p class="student-line">
+          <span><strong>S. A. G. N. Jayasekara</strong> · Final-year research project</span>
+        </p>
+        <p class="pub-desc">Quantifies the privacy-utility trade-off in public surveillance by comparing anonymization
+          techniques — Gaussian blurring, pixelation, masking, and a novel Pose-Conditioned Silhouette approach —
+          across convolutional (YOLOv8) and transformer-based (RT-DETR) detectors on the WiderPerson dataset,
+          measuring privacy via SSIM and detection accuracy via mAP50.</p>
+        <p class="pub-links">
+          <a href="https://github.com/gnjayasekara/final-year-research" target="_blank" rel="noopener">code</a>
+          <a href="Supervision_Mentoring/Jayasekara.gif" target="_blank" rel="noopener">demo</a>
+        </p>
+      </div>
+    </article>
   </section>
 
 
@@ -614,7 +645,7 @@
        image, title + link, tags, and description. Research-related work sits in
        the first (always visible) grid; everything else in .more-projects. -->
   <section id="projects">
-    <p class="eyebrow">Open source &amp; My leasure time builds</p>
+    <p class="eyebrow">Open source &amp; my leisure time builds</p>
     <h2>Code Bases I developed past 5 years</h2>
     <p class="section-note">Selected research code and side projects. More on
       <a href="https://github.com/Nishan-Charlie" target="_blank" rel="noopener">GitHub</a>.</p>
