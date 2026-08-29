@@ -684,9 +684,9 @@
       <div class="project-card">
         <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/quantum_simulation.png" alt="Quantum Simulation Lab"></div>
         <div class="project-card-content">
-          <h3 class="project-card-title"><a href="quantum.html" target="_blank">Quantum Simulation Lab</a></h3>
-          <div class="project-card-tags"><span class="tag">Three.js</span><span class="tag">Quantum</span></div>
-          <p class="project-card-description">Quantum circuit simulator with real-time Bloch sphere visualization, VQE, and Grover's Search.</p>
+          <h3 class="project-card-title"><a href="quantum.html" target="_blank">Quantum Circuit Lab</a></h3>
+          <div class="project-card-tags"><span class="tag">Teaching</span><span class="tag">Quantum</span></div>
+          <p class="project-card-description">A state-vector simulator with a nine-step build-along course. Drag gates onto graph paper and watch a qubit's Bloch arrow vanish the moment you entangle it. No dependencies.</p>
           <div class="project-card-links"><a href="quantum.html" target="_blank">demo</a></div>
         </div>
       </div>
@@ -1052,6 +1052,10 @@
 <!-- ========== FOOTER ========== -->
 <footer class="site-foot">
   <div class="container">
+    <!-- Hidden until a real number arrives, so a counter outage leaves no stub. -->
+    <p class="visit-count" id="visit-count" hidden>
+      <span class="visit-dot" aria-hidden="true"></span><span id="visit-number"></span> visits
+    </p>
     &copy; 2026 Nishankar Sathiyamohan · Sabaragamuwa University of Sri Lanka<br>
     Layout originally adapted from <a href="https://github.com/jonbarron/jonbarron.github.io" target="_blank" rel="noopener">Jon Barron</a>.
   </div>
@@ -1102,6 +1106,38 @@
         })
         .then(function () { btn.disabled = false; });
     });
+  })();
+
+  /* Visitor counter. The live tally is kept by abacus.jasoncameron.dev (free,
+     no account); BASE is a fixed starting offset added on top, so the figure
+     shown is BASE + recorded visits. Counts once per browser session — a
+     refresh re-reads rather than re-incrementing. If the service is
+     unreachable the element simply stays hidden. */
+  (function () {
+    var BASE = 50;
+    var API = 'https://abacus.jasoncameron.dev/';
+    var KEY = 'nishankar-space/site-visits';
+
+    var wrap = document.getElementById('visit-count');
+    var out = document.getElementById('visit-number');
+    if (!wrap || !out) return;
+
+    var counted;
+    try { counted = sessionStorage.getItem('visit-counted'); } catch (e) { counted = null; }
+
+    fetch(API + (counted ? 'get/' : 'hit/') + KEY)
+      .then(function (r) {
+        if (r.status === 404) return { value: 0 };   // nobody has visited yet
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        var n = BASE + (typeof d.value === 'number' ? d.value : 0);
+        out.textContent = n.toLocaleString('en-US');
+        wrap.hidden = false;
+        try { sessionStorage.setItem('visit-counted', '1'); } catch (e) {}
+      })
+      .catch(function () { /* leave the counter hidden */ });
   })();
 </script>
 

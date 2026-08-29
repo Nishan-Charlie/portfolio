@@ -834,6 +834,29 @@ section h2 {
 
 .site-foot a { color: var(--muted); }
 
+/* Block-level flex at fit-content so the pill hugs its text but still sits on
+   its own centred line above the copyright. */
+.visit-count {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 16px;
+  padding: 4px 13px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.visit-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(14, 107, 90, 0.14);
+}
+
 /* ==========================================================================
    Contact — cal.com booking card + FormSubmit message form
    ========================================================================== */
