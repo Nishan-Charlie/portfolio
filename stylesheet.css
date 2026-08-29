@@ -1,14 +1,22 @@
 /* ==========================================================================
    Nishankar Sathiyamohan — academic homepage
-   Type:   Newsreader (display) · Source Sans 3 (body) · IBM Plex Mono (meta)
+
+   Type is assigned by ROLE, not by decoration:
+     --display  Archivo    structure — name, section headings, brand
+     --text     Spectral   content   — prose, paper titles, form input
+     --mono     DM Mono    data      — venues, chips, dates, tags, nav
+   Swap a face by editing one variable below; nothing else needs to change.
+
    Color:  paper #FCFCFA · ink #20262B · viridian accent #0E6B5A
    ========================================================================== */
 
 :root {
   --paper: #fcfcfa;
   --ink: #20262b;
-  --muted: #5b6670;
-  --faint: #8b949c;
+  /* Contrast vs --paper: muted 7.5:1, faint 4.9:1 — both clear WCAG AA,
+     which the previous #8b949c faint (3.0:1) did not. */
+  --muted: #4a545e;
+  --faint: #667079;
   --accent: #0e6b5a;
   --accent-dark: #0a5245;
   --accent-tint: #e9f2ef;
@@ -16,9 +24,16 @@
   --amber-tint: #faf1df;
   --rule: #e4e7e4;
   --card: #ffffff;
-  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-  --sans: 'Source Sans 3', 'Segoe UI', Helvetica, Arial, sans-serif;
-  --mono: 'IBM Plex Mono', Consolas, 'Courier New', monospace;
+  --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --text: 'Spectral', Georgia, 'Times New Roman', serif;
+  --mono: 'DM Mono', Consolas, 'Courier New', monospace;
+
+  /* Aliases kept so any stray older reference still resolves sensibly. */
+  --serif: var(--display);
+  --sans: var(--text);
+
+  /* Comfortable reading measure for prose inside the wider container. */
+  --measure: 70ch;
 }
 
 * { box-sizing: border-box; }
@@ -31,17 +46,19 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.6;
+  font-family: var(--text);
+  font-size: 17.5px;
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+/* Fluid gutter: stays tight on narrow screens (where the nav needs every
+   pixel to hold one row) and opens up on wide ones. */
 .container {
-  max-width: 880px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 clamp(22px, 3vw, 40px);
 }
 
 a {
@@ -91,10 +108,10 @@ p:last-child { margin-bottom: 0; }
 }
 
 .brand {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.15rem;
-  font-weight: 500;
+  font-family: var(--display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   color: var(--ink);
   white-space: nowrap;
 }
@@ -106,10 +123,10 @@ p:last-child { margin-bottom: 0; }
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 6px 16px;
+  gap: 6px 18px;
   font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
+  font-size: 0.86rem;
+  letter-spacing: 0.01em;
 }
 
 .site-nav a { color: var(--muted); }
@@ -118,7 +135,7 @@ p:last-child { margin-bottom: 0; }
 .site-nav .nav-cv {
   color: #fff;
   background: var(--accent);
-  padding: 4px 14px;
+  padding: 5px 15px;
   border-radius: 999px;
 }
 
@@ -134,24 +151,31 @@ p:last-child { margin-bottom: 0; }
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 250px;
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 76px;
   align-items: center;
-  padding: 56px 0 48px;
+  padding: 72px 0 60px;
 }
+
+/* The hero column is wider than a comfortable measure, so cap the running
+   text. The name is display type and deliberately spans the full column. */
+.hero .roles,
+.hero .bio { max-width: 68ch; }
 
 .hero h1 {
-  font-family: var(--serif);
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-size: clamp(2.1rem, 5vw, 2.9rem);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  margin: 0 0 10px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.3rem, 5.2vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0 0 14px;
 }
 
+/* Surname carries the accent through weight contrast rather than italics —
+   a grotesque italic here would read as an afterthought. */
 .hero h1 em {
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
   color: var(--accent);
 }
 
@@ -167,6 +191,29 @@ p:last-child { margin-bottom: 0; }
 }
 
 .hero .bio { font-size: 1rem; }
+
+/* "Open for collaboration" badge — mono, accent-tinted, echoes the pub chips */
+.open-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 5px 13px;
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+.open-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(14, 107, 90, 0.16);
+}
 
 .contact-row {
   display: flex;
@@ -222,7 +269,7 @@ section {
 
 .eyebrow {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
@@ -230,18 +277,17 @@ section {
 }
 
 section h2 {
-  font-family: var(--serif);
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-size: 1.7rem;
-  letter-spacing: -0.01em;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.8rem;
+  letter-spacing: -0.028em;
   margin: 0 0 8px;
 }
 
 .section-note {
   color: var(--muted);
-  font-size: 0.95rem;
-  max-width: 60ch;
+  font-size: 0.96rem;
+  max-width: var(--measure);
   margin-bottom: 26px;
 }
 
@@ -321,16 +367,16 @@ section h2 {
 
 .pub {
   display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 22px;
-  padding: 20px 0;
+  grid-template-columns: 210px 1fr;
+  gap: 30px;
+  padding: 24px 0;
   border-bottom: 1px solid var(--rule);
 }
 
 .pub:last-child { border-bottom: 0; }
 
 .pub-thumb {
-  width: 150px;
+  width: 210px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
@@ -341,7 +387,7 @@ section h2 {
 
 /* text tile used when a paper has no figure yet */
 .pub-thumb-tile {
-  width: 150px;
+  width: 210px;
   aspect-ratio: 4 / 3;
   border-radius: 8px;
   border: 1px solid var(--rule);
@@ -359,12 +405,13 @@ section h2 {
 }
 
 .pub-title {
-  font-family: var(--serif);
-  font-optical-sizing: auto;
-  font-size: 1.12rem;
-  font-weight: 600;
-  line-height: 1.35;
-  margin: 0 0 4px;
+  font-family: var(--text);
+  font-size: 1.18rem;
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+  margin: 0 0 5px;
+  max-width: 62ch;
 }
 
 .pub-title a { color: var(--ink); }
@@ -387,7 +434,7 @@ section h2 {
   align-items: center;
   gap: 6px 10px;
   font-family: var(--mono);
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   color: var(--muted);
   margin: 0 0 8px;
 }
@@ -401,7 +448,7 @@ section h2 {
   align-items: center;
   gap: 6px;
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   letter-spacing: 0.03em;
   padding: 2px 10px;
   border-radius: 999px;
@@ -435,9 +482,10 @@ section h2 {
 .chip-review::before { background: transparent; border: 1.5px solid currentColor; }
 
 .pub-desc {
-  font-size: 0.92rem;
+  font-size: 0.93rem;
   color: var(--muted);
   margin: 0 0 6px;
+  max-width: var(--measure);
 }
 
 .pub-links {
@@ -456,9 +504,9 @@ section h2 {
 .wip:last-child { border-bottom: 0; }
 
 .wip h3 {
-  font-family: var(--serif);
-  font-size: 1.02rem;
-  font-weight: 600;
+  font-family: var(--text);
+  font-size: 1.05rem;
+  font-weight: 500;
   margin: 0 0 3px;
   display: inline;
 }
@@ -482,7 +530,7 @@ section h2 {
 
 .xp-col h3 {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 500;
@@ -498,20 +546,20 @@ section h2 {
 
 .xp-item .when {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   color: var(--faint);
   display: block;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
 }
 
 .xp-item .what {
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 1.02rem;
 }
 
 .xp-item .where,
 .xp-item .detail {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--muted);
 }
 
@@ -585,14 +633,16 @@ section h2 {
 .teach-block:last-child { margin-bottom: 0; }
 
 .teach-block h3 {
-  font-size: 1rem;
+  font-family: var(--display);
+  font-size: 1.06rem;
   font-weight: 600;
-  margin: 0 0 2px;
+  letter-spacing: -0.012em;
+  margin: 0 0 3px;
 }
 
 .teach-block .when {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.86rem;
   color: var(--faint);
 }
 
@@ -605,11 +655,11 @@ section h2 {
 
 .tag {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.84rem;
   background: var(--card);
   border: 1px solid var(--rule);
-  color: var(--muted);
-  padding: 2px 9px;
+  color: var(--ink);
+  padding: 4px 11px;
   border-radius: 999px;
   white-space: nowrap;
 }
@@ -622,30 +672,30 @@ section h2 {
 
 .service-list li {
   display: grid;
-  grid-template-columns: 170px 1fr;
-  gap: 16px;
-  padding: 8px 0;
+  grid-template-columns: 210px 1fr;
+  gap: 20px;
+  padding: 10px 0;
   border-bottom: 1px dashed var(--rule);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .service-list li:last-child { border-bottom: 0; }
 
 .service-list .role {
   font-family: var(--mono);
-  font-size: 0.74rem;
+  font-size: 0.82rem;
   color: var(--accent-dark);
-  padding-top: 3px;
+  padding-top: 2px;
 }
 
 /* ==========================================================================
    Research supervision
    ========================================================================== */
 
-#supervision .pub { grid-template-columns: 240px 1fr; }
+#supervision .pub { grid-template-columns: 320px 1fr; }
 
 .sup-thumb {
-  width: 240px;
+  width: 320px;
   aspect-ratio: 16 / 10;
 }
 
@@ -778,18 +828,166 @@ section h2 {
   padding: 30px 0 40px;
   text-align: center;
   font-family: var(--mono);
-  font-size: 0.73rem;
+  font-size: 0.8rem;
   color: var(--faint);
 }
 
 .site-foot a { color: var(--muted); }
 
 /* ==========================================================================
+   Contact — cal.com booking card + FormSubmit message form
+   ========================================================================== */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* --- Booking card --- */
+
+.book-card {
+  background: var(--accent-tint);
+  border-radius: 10px;
+  padding: 26px 24px 22px;
+}
+
+.book-kicker {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 8px;
+}
+
+.book-card h3 {
+  font-family: var(--display);
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.book-card > p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.btn-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: background 0.15s ease;
+}
+
+.btn-book:hover {
+  background: var(--accent-dark);
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-book svg { width: 14px; height: 14px; }
+
+.book-alt {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 18px 0 0;
+}
+
+/* --- Message form --- */
+
+.contact-form .field { margin-bottom: 16px; }
+
+.contact-form label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  font-family: var(--text);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  padding: 10px 13px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-form textarea { resize: vertical; min-height: 110px; }
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: var(--faint); }
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(14, 107, 90, 0.12);
+}
+
+/* FormSubmit honeypot — must never be visible to a human */
+.contact-form input[name="_honey"] { display: none !important; }
+
+.btn-send {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 26px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-send:hover { background: var(--accent-dark); }
+.btn-send:disabled { opacity: 0.55; cursor: default; }
+
+.form-status {
+  font-size: 0.88rem;
+  margin: 12px 0 0;
+  min-height: 1.2em;
+  color: var(--muted);
+}
+
+.form-status.is-ok { color: var(--accent-dark); }
+.form-status.is-err { color: #a1341f; }
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 
+/* Between the mobile breakpoint and the full container width the nav sits on
+   one row only just — 6 links plus the brand. Tighten the gaps rather than
+   shrink the nav type, so the links stay legible. */
+@media (min-width: 761px) and (max-width: 900px) {
+  .brand { font-size: 1rem; }
+  .site-nav { gap: 6px 11px; }
+  .site-nav .nav-cv { padding: 5px 12px; }
+}
+
 @media (max-width: 760px) {
-  body { font-size: 16px; }
+  body { font-size: 16.5px; }
 
   .site-head { position: static; }
   .site-head .container { flex-direction: column; align-items: flex-start; gap: 6px; }
@@ -808,6 +1006,8 @@ section h2 {
   .xp-columns { grid-template-columns: 1fr; }
 
   .service-list li { grid-template-columns: 1fr; gap: 1px; }
+
+  .contact-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 
 @media (max-width: 560px) {
