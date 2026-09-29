@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(try { $r = Invoke-WebRequest -Uri 'https://www.nishankar.space/google5db51057cd777162.html' -UseBasicParsing -ErrorAction Stop; \"$\\($r.StatusCode\\): $\\($r.Content\\)\" } catch { \"ERR: $\\($_.Exception.Message\\)\" })",
+      "PowerShell($d = 'C:\\\\Users\\\\nisha\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-nisha-Desktop-portfolio\\\\43fedf84-22da-4706-b76d-7911c7db7edd\\\\scratchpad'; New-Item -ItemType Directory -Force $d | Out-Null; cmd /c \"git show HEAD:Nishankar_S_CV_Aug.pdf > `\"$d\\\\old_cv.pdf`\"\"; \\(Get-Item \"$d\\\\old_cv.pdf\"\\).Length; Get-Command pdftotext -ErrorAction SilentlyContinue | Select-Object Source; python -c \"import pypdf; print\\('pypdf', pypdf.__version__\\)\")",
+      "Bash(pdftotext -layout old_cv.pdf old.txt)",
+      "Bash(pdftotext -layout \"C:/Users/nisha/Desktop/portfolio/Nishankar_S_CV_Sept.pdf\" new.txt)",
+      "Bash(python -c ' *)",
+      "PowerShell(git add index.html Nishankar_S_CV_Sept.pdf Nishankar_S_CV_Aug.pdf)"
+    ]
+  }
+}
