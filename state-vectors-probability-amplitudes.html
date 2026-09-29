@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State Vectors & Probability Amplitudes — Quantum Learning Roadmap</title>
+<meta name="description" content="Visualize a quantum state as complex probability amplitudes and connect vector entries to measurement outcomes."><meta name="author" content="Nishankar Sathiyamohan">
+<link rel="canonical" href="https://www.nishankar.space/state-vectors-probability-amplitudes.html"><link rel="icon" href="icon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quantum-articles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"State Vectors & Probability Amplitudes","description":"Visualize a quantum state as complex probability amplitudes and connect vector entries to measurement outcomes.","author":{"@type":"Person","name":"Nishankar Sathiyamohan"},"isPartOf":{"@type":"Course","name":"The Quantum Learning Roadmap"}}</script>
+</head>
+<body>
+<nav class="qa-nav"><div class="qa-nav-in"><a class="qa-brand" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a><div class="qa-nav-links"><a href="quantum.html#roadmap">Roadmap</a><a href="quantum.html#lab">Interactive lab</a><a href="quantum.html#glossary">Glossary</a></div></div></nav>
+<main class="qa-shell"><div class="qa-crumbs"><a href="quantum.html">Quantum Circuit Lab</a> / math engine</div>
+<header class="qa-hero"><div class="qa-kicker">Lesson 06 · math engine</div><h1>State Vectors & Probability Amplitudes</h1><p class="qa-dek">Visualize a quantum state as complex probability amplitudes and connect vector entries to measurement outcomes.</p><div class="qa-meta"><span class="qa-pill green">Intermediate</span><span class="qa-pill">16–18 min read</span><span class="qa-pill">software engineering · quantum computing</span></div></header>
+<div class="qa-layout"><article class="qa-body"><h2>A state vector is an indexed lookup table</h2>
+<p>For <code>n</code> qubits, the vector has <code>2ⁿ</code> entries. Each index corresponds to a basis bitstring. For two qubits, the entries correspond to <code>|00⟩</code>, <code>|01⟩</code>, <code>|10⟩</code>, and <code>|11⟩</code> if your ordering is documented.</p>
+<pre class="qa-code"><code>state = np.array([0.5+0j, 0.5j, -0.5+0j, 0.5j])
+probabilities = np.abs(state) ** 2
+
+for bits, amplitude, probability in zip(
+    ['00', '01', '10', '11'], state, probabilities
+):
+    print(bits, amplitude, probability)</code></pre>
+<p>An amplitude can be negative or complex; a probability cannot. Use <code>pᵢ = |αᵢ|²</code>, and check that probabilities sum to one.</p>
+<h2>Phase is invisible—until it is not</h2>
+<p><code>(|0⟩ + |1⟩)/√2</code> and <code>(|0⟩ − |1⟩)/√2</code> both measure 50/50 in the computational basis. Apply H and the difference becomes visible: one returns zero with certainty, the other one.</p>
+<h2>Make the picture useful</h2>
+<p>A histogram is for measurement outcomes. Real and imaginary bar charts are for debugging. A phase-aware plot is for interference. Choose the visualization that answers your question.</p>
+<div class="qa-callout"><strong>Sanity checks:</strong> the vector length is <code>2ⁿ</code>, the norm is one, probabilities are non-negative, and basis ordering is explicit.</div>
+<p>The <a href="quantum.html#code">lab code panel</a> uses the same state-vector idea. Next, see <a href="quantum-simulator-subspace-multiplication.html">how to apply a gate without allocating a full matrix</a>.</p><div class="qa-next"><a href="quantum.html#roadmap"><span>Series index</span>All 13 lessons</a><a href="quantum-simulator-subspace-multiplication.html"><span>Next lesson →</span>The Matrix Trap: Subspace Multiplication in Simulators</a></div></article>
+<aside class="qa-aside"><div class="qa-aside-card"><h3>Key idea</h3><p>Square the magnitude of each complex amplitude to get a probability; keep the phase because later gates can use it.</p></div><div class="qa-aside-card"><h3>In this series</h3><ol class="qa-series"><li class=""><a href="quantum-bits-vs-qubits.html">01 · Bits vs. Qubits: A Software Engineer’s Guide</a></li>
+<li class=""><a href="quantum-superposition-entanglement-python.html">02 · Superposition & Entanglement Using Python Objects</a></li>
+<li class=""><a href="quantum-execution-lifecycle.html">03 · The Quantum Execution Lifecycle</a></li>
+<li class=""><a href="quantum-logic-gates.html">04 · Quantum Logic Gates: AND, OR, NOT to X, H & CNOT</a></li>
+<li class=""><a href="linear-algebra-of-a-qubit.html">05 · The Linear Algebra of a Qubit with NumPy</a></li>
+<li class="active"><a href="state-vectors-probability-amplitudes.html">06 · State Vectors & Probability Amplitudes</a></li>
+<li class=""><a href="quantum-simulator-subspace-multiplication.html">07 · The Matrix Trap: Subspace Multiplication in Simulators</a></li>
+<li class=""><a href="qiskit-hello-world-bell-state.html">08 · Hello World in Qiskit: Build a Bell State</a></li>
+<li class=""><a href="pennylane-basics-differentiable-nodes.html">09 · PennyLane Basics: Circuits as Differentiable Nodes</a></li>
+<li class=""><a href="qiskit-vs-pennylane.html">10 · Qiskit vs. PennyLane: Which Framework Should You Choose?</a></li>
+<li class=""><a href="parameterized-quantum-circuits.html">11 · Parameterized Quantum Circuits: The Weights of Quantum AI</a></li>
+<li class=""><a href="quantum-data-encoding.html">12 · Data Encoding: Pushing Images and Text into Qubits</a></li>
+<li class=""><a href="hybrid-quantum-classical-cnn.html">13 · Architecture of a Hybrid Quantum–Classical CNN</a></li></ol></div></aside></div></main>
+<footer class="qa-footer"><div class="qa-shell"><p>Part of <a href="quantum.html#roadmap">The Quantum Learning Roadmap</a> by <a href="index.html">Nishankar Sathiyamohan</a>.</p><p>Prefer to learn by doing? Open the <a href="quantum.html#lab">interactive state-vector lab</a>.</p></div></footer>
+</body></html>

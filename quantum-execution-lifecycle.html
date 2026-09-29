@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Quantum Execution Lifecycle — Quantum Learning Roadmap</title>
+<meta name="description" content="A software engineer’s tour of circuit construction, transpilation, execution, and measurement on a quantum backend."><meta name="author" content="Nishankar Sathiyamohan">
+<link rel="canonical" href="https://www.nishankar.space/quantum-execution-lifecycle.html"><link rel="icon" href="icon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quantum-articles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Quantum Execution Lifecycle","description":"A software engineer’s tour of circuit construction, transpilation, execution, and measurement on a quantum backend.","author":{"@type":"Person","name":"Nishankar Sathiyamohan"},"isPartOf":{"@type":"Course","name":"The Quantum Learning Roadmap"}}</script>
+</head>
+<body>
+<nav class="qa-nav"><div class="qa-nav-in"><a class="qa-brand" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a><div class="qa-nav-links"><a href="quantum.html#roadmap">Roadmap</a><a href="quantum.html#lab">Interactive lab</a><a href="quantum.html#glossary">Glossary</a></div></div></nav>
+<main class="qa-shell"><div class="qa-crumbs"><a href="quantum.html">Quantum Circuit Lab</a> / conceptual bridge</div>
+<header class="qa-hero"><div class="qa-kicker">Lesson 03 · conceptual bridge</div><h1>The Quantum Execution Lifecycle</h1><p class="qa-dek">A software engineer’s tour of circuit construction, transpilation, execution, and measurement on a quantum backend.</p><div class="qa-meta"><span class="qa-pill green">Beginner</span><span class="qa-pill">12–15 min read</span><span class="qa-pill">software engineering · quantum computing</span></div></header>
+<div class="qa-layout"><article class="qa-body"><h2>1. Build: describe intent</h2>
+<p>You begin with a circuit object: registers, gates, parameters, and measurements. Think of it as an abstract syntax tree. It is readable and portable, but does not yet reflect the topology or native gate set of a particular device.</p>
+<pre class="qa-code"><code>qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure([0, 1], [0, 1])</code></pre>
+<h2>2. Transpile: compile for a target</h2>
+<p>Real processors have connectivity constraints and a limited native gate set. A transpiler maps virtual qubits, decomposes gates, schedules operations, and optimises while preserving the intended behaviour. The circuit you draw and the circuit executed by hardware can have different depths and gate counts.</p>
+<h2>3. Execute: simulate or submit</h2>
+<p>A state-vector simulator applies ideal operations to a full vector. A shot-based simulator samples the circuit repeatedly. Hardware adds calibration, queueing, noise, and readout error. These are distinct execution modes even when the source circuit is identical.</p>
+<h2>4. Measure: cross the boundary</h2>
+<p>Measurement turns the state into classical records. With 1,024 shots, a 50% outcome should appear roughly half the time—not exactly half on every run.</p>
+<div class="qa-callout"><strong>Lifecycle checklist:</strong> print the source circuit, inspect the transpiled circuit, record the backend and shot count, then report the distribution.</div>
+<p>The gates doing the work are covered in <a href="quantum-logic-gates.html">the logic-gate translation guide</a>. For a runnable version, use the <a href="quantum.html#lab">state-vector lab</a>.</p><div class="qa-next"><a href="quantum.html#roadmap"><span>Series index</span>All 13 lessons</a><a href="quantum-logic-gates.html"><span>Next lesson →</span>Quantum Logic Gates: AND, OR, NOT to X, H & CNOT</a></div></article>
+<aside class="qa-aside"><div class="qa-aside-card"><h3>Key idea</h3><p>The source circuit is an intent; transpilation turns that intent into operations a backend can actually run.</p></div><div class="qa-aside-card"><h3>In this series</h3><ol class="qa-series"><li class=""><a href="quantum-bits-vs-qubits.html">01 · Bits vs. Qubits: A Software Engineer’s Guide</a></li>
+<li class=""><a href="quantum-superposition-entanglement-python.html">02 · Superposition & Entanglement Using Python Objects</a></li>
+<li class="active"><a href="quantum-execution-lifecycle.html">03 · The Quantum Execution Lifecycle</a></li>
+<li class=""><a href="quantum-logic-gates.html">04 · Quantum Logic Gates: AND, OR, NOT to X, H & CNOT</a></li>
+<li class=""><a href="linear-algebra-of-a-qubit.html">05 · The Linear Algebra of a Qubit with NumPy</a></li>
+<li class=""><a href="state-vectors-probability-amplitudes.html">06 · State Vectors & Probability Amplitudes</a></li>
+<li class=""><a href="quantum-simulator-subspace-multiplication.html">07 · The Matrix Trap: Subspace Multiplication in Simulators</a></li>
+<li class=""><a href="qiskit-hello-world-bell-state.html">08 · Hello World in Qiskit: Build a Bell State</a></li>
+<li class=""><a href="pennylane-basics-differentiable-nodes.html">09 · PennyLane Basics: Circuits as Differentiable Nodes</a></li>
+<li class=""><a href="qiskit-vs-pennylane.html">10 · Qiskit vs. PennyLane: Which Framework Should You Choose?</a></li>
+<li class=""><a href="parameterized-quantum-circuits.html">11 · Parameterized Quantum Circuits: The Weights of Quantum AI</a></li>
+<li class=""><a href="quantum-data-encoding.html">12 · Data Encoding: Pushing Images and Text into Qubits</a></li>
+<li class=""><a href="hybrid-quantum-classical-cnn.html">13 · Architecture of a Hybrid Quantum–Classical CNN</a></li></ol></div></aside></div></main>
+<footer class="qa-footer"><div class="qa-shell"><p>Part of <a href="quantum.html#roadmap">The Quantum Learning Roadmap</a> by <a href="index.html">Nishankar Sathiyamohan</a>.</p><p>Prefer to learn by doing? Open the <a href="quantum.html#lab">interactive state-vector lab</a>.</p></div></footer>
+</body></html>

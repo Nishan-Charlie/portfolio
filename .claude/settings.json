@@ -6,7 +6,9 @@
       "Bash(pdftotext -layout old_cv.pdf old.txt)",
       "Bash(pdftotext -layout \"C:/Users/nisha/Desktop/portfolio/Nishankar_S_CV_Sept.pdf\" new.txt)",
       "Bash(python -c ' *)",
-      "PowerShell(git add index.html Nishankar_S_CV_Sept.pdf Nishankar_S_CV_Aug.pdf)"
+      "PowerShell(git add index.html Nishankar_S_CV_Sept.pdf Nishankar_S_CV_Aug.pdf)",
+      "Bash(curl -s -m 20 -H \"Accept: application/json\" https://pub.orcid.org/v3.0/0009-0008-4321-1920/person)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); n=d.get\\('name'\\) or {}; print\\(\\(n.get\\('given-names'\\) or {}\\).get\\('value'\\), \\(n.get\\('family-name'\\) or {}\\).get\\('value'\\)\\)\")"
     ]
   }
 }

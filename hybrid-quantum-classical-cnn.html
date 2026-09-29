@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture of a Hybrid Quantum–Classical CNN — Quantum Learning Roadmap</title>
+<meta name="description" content="Design an honest hybrid image classifier that combines classical convolutional features with a small trainable quantum layer."><meta name="author" content="Nishankar Sathiyamohan">
+<link rel="canonical" href="https://www.nishankar.space/hybrid-quantum-classical-cnn.html"><link rel="icon" href="icon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quantum-articles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Architecture of a Hybrid Quantum–Classical CNN","description":"Design an honest hybrid image classifier that combines classical convolutional features with a small trainable quantum layer.","author":{"@type":"Person","name":"Nishankar Sathiyamohan"},"isPartOf":{"@type":"Course","name":"The Quantum Learning Roadmap"}}</script>
+</head>
+<body>
+<nav class="qa-nav"><div class="qa-nav-in"><a class="qa-brand" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a><div class="qa-nav-links"><a href="quantum.html#roadmap">Roadmap</a><a href="quantum.html#lab">Interactive lab</a><a href="quantum.html#glossary">Glossary</a></div></div></nav>
+<main class="qa-shell"><div class="qa-crumbs"><a href="quantum.html">Quantum Circuit Lab</a> / quantum machine learning</div>
+<header class="qa-hero"><div class="qa-kicker">Lesson 13 · quantum machine learning</div><h1>Architecture of a Hybrid Quantum–Classical CNN</h1><p class="qa-dek">Design an honest hybrid image classifier that combines classical convolutional features with a small trainable quantum layer.</p><div class="qa-meta"><span class="qa-pill green">Capstone</span><span class="qa-pill">24 min read</span><span class="qa-pill">software engineering · quantum computing</span></div></header>
+<div class="qa-layout"><article class="qa-body"><h2>A realistic architecture</h2>
+<pre class="qa-code"><code>image
+  ↓
+small classical CNN
+  ↓  (project to 4–8 features)
+angle-encoded quantum circuit
+  ↓  (measure Z expectations)
+classical linear head
+  ↓
+class probabilities</code></pre>
+<p>Keep the classical network responsible for high-dimensional visual work. Let the quantum layer consume a compact feature vector and return a few expectation values. The quantum circuit is a constrained feature transformation, not a replacement for every convolution.</p>
+<h2>Sketch the quantum layer</h2>
+<pre class="qa-code"><code>def quantum_layer(features, weights):
+    for wire, value in enumerate(features):
+        ry(value, wire)
+    for layer in weights:
+        for wire in range(n_qubits):
+            rz(layer[wire, 0], wire)
+            ry(layer[wire, 1], wire)
+        for wire in range(n_qubits - 1):
+            cnot(wire, wire + 1)
+    return [expectation(Z, wire) for wire in range(n_qubits)]</code></pre>
+<p>The classical network learns a projection into the quantum layer’s input range. The gradient estimator may make the quantum side much more expensive, so track execution count as well as loss.</p>
+<h2>Design the experiment first</h2>
+<ul><li>Compare against a classical CNN with the same feature bottleneck.</li><li>Keep qubits, depth, shots, optimiser, and training steps visible.</li><li>Run multiple seeds and report mean and spread.</li><li>Track circuit evaluations and wall-clock time.</li></ul>
+<div class="qa-callout"><strong>Capstone challenge:</strong> publish the circuit diagram, feature dimensions, training curves, classical ablation, and execution budget together.</div>
+<p>Use the <a href="quantum.html">quantum circuit lab</a> to inspect the gates, then revisit the <a href="quantum.html#roadmap">full roadmap</a> whenever a term needs a refresher.</p><div class="qa-next"><a href="quantum.html#roadmap"><span>Series index</span>All 13 lessons</a><a href="quantum.html#roadmap"><span>Series complete</span>Return to the roadmap</a></div></article>
+<aside class="qa-aside"><div class="qa-aside-card"><h3>Key idea</h3><p>The quantum layer should have a clear job, a fair classical baseline, and an evaluation that counts execution cost.</p></div><div class="qa-aside-card"><h3>In this series</h3><ol class="qa-series"><li class=""><a href="quantum-bits-vs-qubits.html">01 · Bits vs. Qubits: A Software Engineer’s Guide</a></li>
+<li class=""><a href="quantum-superposition-entanglement-python.html">02 · Superposition & Entanglement Using Python Objects</a></li>
+<li class=""><a href="quantum-execution-lifecycle.html">03 · The Quantum Execution Lifecycle</a></li>
+<li class=""><a href="quantum-logic-gates.html">04 · Quantum Logic Gates: AND, OR, NOT to X, H & CNOT</a></li>
+<li class=""><a href="linear-algebra-of-a-qubit.html">05 · The Linear Algebra of a Qubit with NumPy</a></li>
+<li class=""><a href="state-vectors-probability-amplitudes.html">06 · State Vectors & Probability Amplitudes</a></li>
+<li class=""><a href="quantum-simulator-subspace-multiplication.html">07 · The Matrix Trap: Subspace Multiplication in Simulators</a></li>
+<li class=""><a href="qiskit-hello-world-bell-state.html">08 · Hello World in Qiskit: Build a Bell State</a></li>
+<li class=""><a href="pennylane-basics-differentiable-nodes.html">09 · PennyLane Basics: Circuits as Differentiable Nodes</a></li>
+<li class=""><a href="qiskit-vs-pennylane.html">10 · Qiskit vs. PennyLane: Which Framework Should You Choose?</a></li>
+<li class=""><a href="parameterized-quantum-circuits.html">11 · Parameterized Quantum Circuits: The Weights of Quantum AI</a></li>
+<li class=""><a href="quantum-data-encoding.html">12 · Data Encoding: Pushing Images and Text into Qubits</a></li>
+<li class="active"><a href="hybrid-quantum-classical-cnn.html">13 · Architecture of a Hybrid Quantum–Classical CNN</a></li></ol></div></aside></div></main>
+<footer class="qa-footer"><div class="qa-shell"><p>Part of <a href="quantum.html#roadmap">The Quantum Learning Roadmap</a> by <a href="index.html">Nishankar Sathiyamohan</a>.</p><p>Prefer to learn by doing? Open the <a href="quantum.html#lab">interactive state-vector lab</a>.</p></div></footer>
+</body></html>

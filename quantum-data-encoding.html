@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Encoding: Pushing Images and Text into Qubits — Quantum Learning Roadmap</title>
+<meta name="description" content="Compare basis, angle, and amplitude encoding and understand why data loading is often the bottleneck in quantum machine learning."><meta name="author" content="Nishankar Sathiyamohan">
+<link rel="canonical" href="https://www.nishankar.space/quantum-data-encoding.html"><link rel="icon" href="icon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quantum-articles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Data Encoding: Pushing Images and Text into Qubits","description":"Compare basis, angle, and amplitude encoding and understand why data loading is often the bottleneck in quantum machine learning.","author":{"@type":"Person","name":"Nishankar Sathiyamohan"},"isPartOf":{"@type":"Course","name":"The Quantum Learning Roadmap"}}</script>
+</head>
+<body>
+<nav class="qa-nav"><div class="qa-nav-in"><a class="qa-brand" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a><div class="qa-nav-links"><a href="quantum.html#roadmap">Roadmap</a><a href="quantum.html#lab">Interactive lab</a><a href="quantum.html#glossary">Glossary</a></div></div></nav>
+<main class="qa-shell"><div class="qa-crumbs"><a href="quantum.html">Quantum Circuit Lab</a> / quantum machine learning</div>
+<header class="qa-hero"><div class="qa-kicker">Lesson 12 · quantum machine learning</div><h1>Data Encoding: Pushing Images and Text into Qubits</h1><p class="qa-dek">Compare basis, angle, and amplitude encoding and understand why data loading is often the bottleneck in quantum machine learning.</p><div class="qa-meta"><span class="qa-pill green">Advanced</span><span class="qa-pill">19 min read</span><span class="qa-pill">software engineering · quantum computing</span></div></header>
+<div class="qa-layout"><article class="qa-body"><h2>Three encoding families</h2>
+<table class="qa-table"><thead><tr><th>Encoding</th><th>Idea</th><th>Trade-off</th></tr></thead><tbody><tr><td>Basis</td><td>Map bits to |0⟩ and |1⟩.</td><td>Simple, but loses continuous information.</td></tr><tr><td>Angle</td><td>Use a feature as a rotation angle.</td><td>Few qubits, but repeated features add depth.</td></tr><tr><td>Amplitude</td><td>Normalise a vector into state amplitudes.</td><td>Compact, but state preparation can be expensive.</td></tr></tbody></table>
+<h2>Angle encoding is a practical first experiment</h2>
+<pre class="qa-code"><code>for wire, value in enumerate(features[:n_qubits]):
+    qml.RY(np.pi * value, wires=wire)
+
+# add entanglers and trainable rotations after encoding</code></pre>
+<p>This is not “putting a whole image into four qubits”. It is a chosen feature map. You still decide how to reduce, scale, and order the original data.</p>
+<h2>Use a classical front end</h2>
+<p>A raw image or token sequence is too large for a small circuit. Use PCA, a small CNN, an embedding model, or another task-appropriate encoder to produce a compact vector, and state the compression step explicitly.</p>
+<div class="qa-callout"><strong>Honest claim:</strong> “uses a quantum layer” is not the same as “processes the full dataset quantumly”. Report dimensionality reduction, encoding cost, and circuit depth.</div>
+<p>Put these choices together in <a href="hybrid-quantum-classical-cnn.html">the hybrid quantum–classical CNN architecture</a>.</p><div class="qa-next"><a href="quantum.html#roadmap"><span>Series index</span>All 13 lessons</a><a href="hybrid-quantum-classical-cnn.html"><span>Next lesson →</span>Architecture of a Hybrid Quantum–Classical CNN</a></div></article>
+<aside class="qa-aside"><div class="qa-aside-card"><h3>Key idea</h3><p>Encoding is not a footnote: how classical data enters the circuit can dominate qubit count, depth, and usefulness.</p></div><div class="qa-aside-card"><h3>In this series</h3><ol class="qa-series"><li class=""><a href="quantum-bits-vs-qubits.html">01 · Bits vs. Qubits: A Software Engineer’s Guide</a></li>
+<li class=""><a href="quantum-superposition-entanglement-python.html">02 · Superposition & Entanglement Using Python Objects</a></li>
+<li class=""><a href="quantum-execution-lifecycle.html">03 · The Quantum Execution Lifecycle</a></li>
+<li class=""><a href="quantum-logic-gates.html">04 · Quantum Logic Gates: AND, OR, NOT to X, H & CNOT</a></li>
+<li class=""><a href="linear-algebra-of-a-qubit.html">05 · The Linear Algebra of a Qubit with NumPy</a></li>
+<li class=""><a href="state-vectors-probability-amplitudes.html">06 · State Vectors & Probability Amplitudes</a></li>
+<li class=""><a href="quantum-simulator-subspace-multiplication.html">07 · The Matrix Trap: Subspace Multiplication in Simulators</a></li>
+<li class=""><a href="qiskit-hello-world-bell-state.html">08 · Hello World in Qiskit: Build a Bell State</a></li>
+<li class=""><a href="pennylane-basics-differentiable-nodes.html">09 · PennyLane Basics: Circuits as Differentiable Nodes</a></li>
+<li class=""><a href="qiskit-vs-pennylane.html">10 · Qiskit vs. PennyLane: Which Framework Should You Choose?</a></li>
+<li class=""><a href="parameterized-quantum-circuits.html">11 · Parameterized Quantum Circuits: The Weights of Quantum AI</a></li>
+<li class="active"><a href="quantum-data-encoding.html">12 · Data Encoding: Pushing Images and Text into Qubits</a></li>
+<li class=""><a href="hybrid-quantum-classical-cnn.html">13 · Architecture of a Hybrid Quantum–Classical CNN</a></li></ol></div></aside></div></main>
+<footer class="qa-footer"><div class="qa-shell"><p>Part of <a href="quantum.html#roadmap">The Quantum Learning Roadmap</a> by <a href="index.html">Nishankar Sathiyamohan</a>.</p><p>Prefer to learn by doing? Open the <a href="quantum.html#lab">interactive state-vector lab</a>.</p></div></footer>
+</body></html>

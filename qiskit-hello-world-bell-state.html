@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hello World in Qiskit: Build a Bell State — Quantum Learning Roadmap</title>
+<meta name="description" content="Build the canonical Bell state in Qiskit, inspect the circuit, and understand what the counts mean when you measure it."><meta name="author" content="Nishankar Sathiyamohan">
+<link rel="canonical" href="https://www.nishankar.space/qiskit-hello-world-bell-state.html"><link rel="icon" href="icon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quantum-articles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hello World in Qiskit: Build a Bell State","description":"Build the canonical Bell state in Qiskit, inspect the circuit, and understand what the counts mean when you measure it.","author":{"@type":"Person","name":"Nishankar Sathiyamohan"},"isPartOf":{"@type":"Course","name":"The Quantum Learning Roadmap"}}</script>
+</head>
+<body>
+<nav class="qa-nav"><div class="qa-nav-in"><a class="qa-brand" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a><div class="qa-nav-links"><a href="quantum.html#roadmap">Roadmap</a><a href="quantum.html#lab">Interactive lab</a><a href="quantum.html#glossary">Glossary</a></div></div></nav>
+<main class="qa-shell"><div class="qa-crumbs"><a href="quantum.html">Quantum Circuit Lab</a> / framework fundamentals</div>
+<header class="qa-hero"><div class="qa-kicker">Lesson 08 · framework fundamentals</div><h1>Hello World in Qiskit: Build a Bell State</h1><p class="qa-dek">Build the canonical Bell state in Qiskit, inspect the circuit, and understand what the counts mean when you measure it.</p><div class="qa-meta"><span class="qa-pill green">Intermediate</span><span class="qa-pill">12–15 min read</span><span class="qa-pill">software engineering · quantum computing</span></div></header>
+<div class="qa-layout"><article class="qa-body"><h2>Build the circuit</h2>
+<p>The circuit API is small enough to keep the quantum operations visible.</p>
+<pre class="qa-code"><code>from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure([0, 1], [0, 1])
+print(qc.draw())</code></pre>
+<p>H puts qubit 0 into a superposition. CNOT uses it as the control and qubit 1 as the target. Measurement copies the final basis result into classical memory.</p>
+<h2>Run with shots</h2>
+<pre class="qa-code"><code>from qiskit_aer import AerSimulator
+
+backend = AerSimulator()
+result = backend.run(qc, shots=1024).result()
+print(result.get_counts())
+# Typical: {'00': 506, '11': 518}</code></pre>
+<p>In the ideal case, 00 and 11 appear while 01 and 10 do not. The exact counts vary because shots sample a distribution. Learn Qiskit’s bit-order convention before interpreting larger registers.</p>
+<div class="qa-callout"><strong>Experiment discipline:</strong> save the circuit, backend, shots, and software versions with every result.</div>
+<p>Next see how <a href="pennylane-basics-differentiable-nodes.html">PennyLane treats a circuit as a differentiable node</a>, or compare this with the <a href="quantum.html#lab">browser lab</a>.</p><div class="qa-next"><a href="quantum.html#roadmap"><span>Series index</span>All 13 lessons</a><a href="pennylane-basics-differentiable-nodes.html"><span>Next lesson →</span>PennyLane Basics: Circuits as Differentiable Nodes</a></div></article>
+<aside class="qa-aside"><div class="qa-aside-card"><h3>Key idea</h3><p>A Bell circuit is H followed by CNOT, but it teaches circuit construction, measurement, and shot-based output in one example.</p></div><div class="qa-aside-card"><h3>In this series</h3><ol class="qa-series"><li class=""><a href="quantum-bits-vs-qubits.html">01 · Bits vs. Qubits: A Software Engineer’s Guide</a></li>
+<li class=""><a href="quantum-superposition-entanglement-python.html">02 · Superposition & Entanglement Using Python Objects</a></li>
+<li class=""><a href="quantum-execution-lifecycle.html">03 · The Quantum Execution Lifecycle</a></li>
+<li class=""><a href="quantum-logic-gates.html">04 · Quantum Logic Gates: AND, OR, NOT to X, H & CNOT</a></li>
+<li class=""><a href="linear-algebra-of-a-qubit.html">05 · The Linear Algebra of a Qubit with NumPy</a></li>
+<li class=""><a href="state-vectors-probability-amplitudes.html">06 · State Vectors & Probability Amplitudes</a></li>
+<li class=""><a href="quantum-simulator-subspace-multiplication.html">07 · The Matrix Trap: Subspace Multiplication in Simulators</a></li>
+<li class="active"><a href="qiskit-hello-world-bell-state.html">08 · Hello World in Qiskit: Build a Bell State</a></li>
+<li class=""><a href="pennylane-basics-differentiable-nodes.html">09 · PennyLane Basics: Circuits as Differentiable Nodes</a></li>
+<li class=""><a href="qiskit-vs-pennylane.html">10 · Qiskit vs. PennyLane: Which Framework Should You Choose?</a></li>
+<li class=""><a href="parameterized-quantum-circuits.html">11 · Parameterized Quantum Circuits: The Weights of Quantum AI</a></li>
+<li class=""><a href="quantum-data-encoding.html">12 · Data Encoding: Pushing Images and Text into Qubits</a></li>
+<li class=""><a href="hybrid-quantum-classical-cnn.html">13 · Architecture of a Hybrid Quantum–Classical CNN</a></li></ol></div></aside></div></main>
+<footer class="qa-footer"><div class="qa-shell"><p>Part of <a href="quantum.html#roadmap">The Quantum Learning Roadmap</a> by <a href="index.html">Nishankar Sathiyamohan</a>.</p><p>Prefer to learn by doing? Open the <a href="quantum.html#lab">interactive state-vector lab</a>.</p></div></footer>
+</body></html>

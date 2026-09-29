@@ -426,6 +426,48 @@ footer a{color:var(--ink-2)}
 .panel{transition:border-color .2s ease}
 .toast{transition:opacity .2s ease, transform .3s cubic-bezier(.3,1.3,.5,1)}
 .toast.on{transform:translateX(-50%) translateY(-4px)}
+/* ── learning roadmap ───────────────────────────────── */
+.roadmap-section{padding-top:54px}
+.roadmap-layout{display:grid; grid-template-columns:minmax(0,1fr) 285px; gap:28px; align-items:start}
+.roadmap-main{min-width:0}
+.roadmap-path{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:0 0 34px}
+.path-stop{position:relative; min-height:132px; padding:17px 16px 15px; border:1px solid var(--rule); border-radius:8px; background:var(--card); box-shadow:var(--shadow)}
+.path-stop::after{content:'→'; position:absolute; right:-18px; top:50%; transform:translateY(-50%); color:var(--copper); font:500 20px/1 "IBM Plex Mono",monospace; z-index:2}
+.path-stop:last-child::after{display:none}
+.path-stop:nth-child(1){border-top:3px solid var(--viridian)}
+.path-stop:nth-child(2){border-top:3px solid var(--indigo)}
+.path-stop:nth-child(3){border-top:3px solid var(--copper)}
+.path-stop:nth-child(4){border-top:3px solid var(--ink)}
+.path-stop .eyebrow{font-size:10px}
+.path-stop h3{font-size:20px; margin:8px 0 6px}
+.path-stop p{font-size:13px; color:var(--ink-2); margin:0}
+.silo{margin-top:34px}
+.silo-head{display:flex; gap:14px; align-items:baseline; padding-bottom:11px; border-bottom:1px solid var(--rule); margin-bottom:12px}
+.silo-head h3{font-size:25px}
+.silo-head p{font-size:14px; color:var(--ink-2); margin:0}
+.tutorial-list{display:grid; gap:0}
+.tutorial{display:grid; grid-template-columns:42px minmax(0,1fr) auto; gap:14px; align-items:start; padding:17px 0; border-bottom:1px solid var(--grid-fine)}
+.tutorial:last-child{border-bottom:0}
+.tutorial-num{font:600 12px/1 "IBM Plex Mono",monospace; color:var(--viridian); padding-top:5px}
+.tutorial h4{font-size:20px; margin:0 0 5px}
+.tutorial h4 a{text-decoration:none}
+.tutorial h4 a:hover{color:var(--viridian)}
+.tutorial p{font-size:14.5px; color:var(--ink-2); margin:0; max-width:68ch}
+.tutorial-meta{display:flex; flex-wrap:wrap; justify-content:flex-end; gap:5px; padding-top:3px}
+.meta-tag{font:500 10px/1.2 "IBM Plex Mono",monospace; letter-spacing:.04em; color:var(--ink-3); border:1px solid var(--rule); border-radius:999px; padding:4px 7px; white-space:nowrap}
+.meta-tag.accent{color:var(--viridian); border-color:color-mix(in srgb, var(--viridian) 45%, var(--rule))}
+.glossary{position:sticky; top:86px}
+.glossary .panel-bd{padding:16px}
+.glossary h3{font-size:22px; margin:0 0 4px}
+.glossary-intro{font-size:13.5px; color:var(--ink-2); margin:0 0 15px}
+.glossary dl{margin:0}
+.glossary dt{font:600 11px/1.3 "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--viridian); text-transform:uppercase; margin-top:13px}
+.glossary dt:first-child{margin-top:0}
+.glossary dd{font-size:13.5px; line-height:1.45; color:var(--ink-2); margin:3px 0 0}
+.hub-note{margin:28px 0 0; padding:14px 16px; background:var(--mark); border-left:3px solid var(--copper); border-radius:0 6px 6px 0; color:var(--ink-2); font-size:14px}
+.hub-note strong{color:var(--ink)}
+@media (max-width:1040px){ .roadmap-layout{grid-template-columns:1fr}.glossary{position:static}.glossary .panel-bd{columns:2; column-gap:28px}.glossary h3,.glossary-intro{column-span:all}.glossary dl{columns:2; column-gap:28px} }
+@media (max-width:700px){ .roadmap-path{grid-template-columns:1fr 1fr}.path-stop::after{display:none}.tutorial{grid-template-columns:32px minmax(0,1fr)}.tutorial-meta{grid-column:2; justify-content:flex-start}.tutorial h4{font-size:18px}.glossary .panel-bd,.glossary dl{columns:1} }
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -442,6 +484,8 @@ footer a{color:var(--ink-2)}
   <div class="wrap nav-in">
     <a class="home" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a>
     <div class="nav-links">
+      <a href="#roadmap">Roadmap</a>
+      <a href="#glossary">Glossary</a>
       <a href="#lab" class="keep">Lab</a>
       <a href="#code">Code</a>
       <a href="#circuits">Worked circuits</a>
@@ -504,6 +548,78 @@ footer a{color:var(--ink-2)}
     </figure>
   </div>
 </header>
+
+<!-- ── LEARNING ROADMAP ── -->
+<section id="roadmap" class="roadmap-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The quantum learning roadmap</span>
+      <h2>From classical code to quantum models</h2>
+      <p>A practical reading path for software engineers. Start with the mental model, make the linear algebra executable, then choose a framework and build a hybrid ML system.</p>
+    </div>
+    <div class="roadmap-layout">
+      <div class="roadmap-main">
+        <div class="roadmap-path" aria-label="Four-stage quantum learning path">
+          <a class="path-stop" href="#silo-1"><span class="eyebrow">01 · foundation</span><h3>Conceptual bridge</h3><p>Translate familiar software ideas into quantum intuition.</p></a>
+          <a class="path-stop" href="#silo-2"><span class="eyebrow">02 · math</span><h3>Math engine</h3><p>Use NumPy to make states, amplitudes, and operators tangible.</p></a>
+          <a class="path-stop" href="#silo-3"><span class="eyebrow">03 · tools</span><h3>Frameworks</h3><p>Build the same ideas in Qiskit and PennyLane.</p></a>
+          <a class="path-stop" href="#silo-4"><span class="eyebrow">04 · capstone</span><h3>Quantum ML</h3><p>Connect parametrized circuits to classical learning loops.</p></a>
+        </div>
+        <div class="silo" id="silo-1">
+          <div class="silo-head"><h3>01 · The Conceptual Bridge</h3><p>Beginner · no physics degree required</p></div>
+          <div class="tutorial-list">
+            <article class="tutorial"><span class="tutorial-num">01</span><div><h4><a href="quantum-bits-vs-qubits.html">Bits vs. Qubits: A Software Engineer’s Guide</a></h4><p>Start with the smallest useful mental model: what changes when a two-state variable becomes a measurable quantum state?</p></div><div class="tutorial-meta"><span class="meta-tag accent">Beginner</span><span class="meta-tag">10 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">02</span><div><h4><a href="quantum-superposition-entanglement-python.html">Superposition &amp; Entanglement Using Python Objects</a></h4><p>Model a qubit as data, not magic, and see why entanglement belongs to the pair rather than either object.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Beginner</span><span class="meta-tag">14 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">03</span><div><h4><a href="quantum-execution-lifecycle.html">The Quantum Execution Lifecycle</a></h4><p>Follow a circuit from build to transpile to measurement, including the parts that disappear before hardware sees it.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Beginner</span><span class="meta-tag">12 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">04</span><div><h4><a href="quantum-logic-gates.html">Quantum Logic Gates: AND, OR, NOT to X, H &amp; CNOT</a></h4><p>Compare classical boolean logic with reversible quantum operations and learn why there is no quantum “erase”.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Beginner</span><span class="meta-tag">15 min read</span></div></article>
+          </div>
+        </div>
+        <div class="silo" id="silo-2">
+          <div class="silo-head"><h3>02 · The Math Engine</h3><p>Intermediate · NumPy-first</p></div>
+          <div class="tutorial-list">
+            <article class="tutorial"><span class="tutorial-num">05</span><div><h4><a href="linear-algebra-of-a-qubit.html">The Linear Algebra of a Qubit with NumPy</a></h4><p>Build vectors, matrices, and inner products from scratch without hiding the computation behind physics vocabulary.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Intermediate</span><span class="meta-tag">18 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">06</span><div><h4><a href="state-vectors-probability-amplitudes.html">State Vectors &amp; Probability Amplitudes</a></h4><p>Plot complex amplitudes, square their magnitudes, and connect a state vector to the outcomes a measurement can return.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Intermediate</span><span class="meta-tag">16 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">07</span><div><h4><a href="quantum-simulator-subspace-multiplication.html">The Matrix Trap: Subspace Multiplication in Simulators</a></h4><p>Why multiplying a full 2ⁿ × 2ⁿ matrix is a useful teaching trick but a poor simulator architecture.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Math heavy</span><span class="meta-tag">20 min read</span></div></article>
+          </div>
+        </div>
+        <div class="silo" id="silo-3">
+          <div class="silo-head"><h3>03 · Framework Fundamentals</h3><p>Intermediate · industry tools</p></div>
+          <div class="tutorial-list">
+            <article class="tutorial"><span class="tutorial-num">08</span><div><h4><a href="qiskit-hello-world-bell-state.html">Hello World in Qiskit: Build a Bell State</a></h4><p>Write, inspect, and measure the canonical two-qubit circuit while keeping the simulator mathematics visible.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Qiskit</span><span class="meta-tag">15 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">09</span><div><h4><a href="pennylane-basics-differentiable-nodes.html">PennyLane Basics: Circuits as Differentiable Nodes</a></h4><p>See how a quantum node fits inside an autodiff workflow and why the parameter-shift rule matters.</p></div><div class="tutorial-meta"><span class="meta-tag accent">PennyLane</span><span class="meta-tag">18 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">10</span><div><h4><a href="qiskit-vs-pennylane.html">Qiskit vs. PennyLane: Which Framework Should You Choose?</a></h4><p>A practical comparison based on the task: hardware control, circuit research, gradients, or hybrid machine learning.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Decision guide</span><span class="meta-tag">12 min read</span></div></article>
+          </div>
+        </div>
+        <div class="silo" id="silo-4">
+          <div class="silo-head"><h3>04 · Quantum Machine Learning</h3><p>Advanced · capstone</p></div>
+          <div class="tutorial-list">
+            <article class="tutorial"><span class="tutorial-num">11</span><div><h4><a href="parameterized-quantum-circuits.html">Parameterized Quantum Circuits: The Weights of Quantum AI</a></h4><p>Understand trainable rotations, observables, loss functions, and the classical optimiser in a PQC loop.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Advanced</span><span class="meta-tag">20 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">12</span><div><h4><a href="quantum-data-encoding.html">Data Encoding: Pushing Images and Text into Qubits</a></h4><p>Compare basis, angle, and amplitude encoding, including the trade-off that makes loading data the real bottleneck.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Advanced</span><span class="meta-tag">19 min read</span></div></article>
+            <article class="tutorial"><span class="tutorial-num">13</span><div><h4><a href="hybrid-quantum-classical-cnn.html">Architecture of a Hybrid Quantum–Classical CNN</a></h4><p>Design a small image classifier with classical feature extraction, a quantum layer, and an honest evaluation plan.</p></div><div class="tutorial-meta"><span class="meta-tag accent">Capstone</span><span class="meta-tag">24 min read</span></div></article>
+          </div>
+        </div>
+        <div class="hub-note"><strong>How to use this series:</strong> read the articles in order if quantum computing is new to you, or jump to a silo when you have a specific project in mind. Every article links forward and back so the page works as a course, not a pile of isolated posts.</div>
+      </div>
+      <aside class="panel glossary" id="glossary">
+        <div class="panel-bd">
+          <span class="eyebrow">Keep this nearby</span>
+          <h3>Quantum glossary</h3>
+          <p class="glossary-intro">Plain-English definitions for the vocabulary that usually slows down the first week.</p>
+          <dl>
+            <dt>Ansatz</dt><dd>A circuit shape with adjustable parameters, chosen as a compact family of candidate solutions.</dd>
+            <dt>Amplitude</dt><dd>A complex number whose squared magnitude becomes an outcome probability.</dd>
+            <dt>Decoherence</dt><dd>The loss of useful quantum relationships when a system interacts with its environment.</dd>
+            <dt>Entanglement</dt><dd>A joint state where the pair contains information that neither qubit has on its own.</dd>
+            <dt>Measurement</dt><dd>The operation that converts a quantum state into a classical result sampled from probabilities.</dd>
+            <dt>Observable</dt><dd>A matrix describing the quantity you measure, such as a Pauli operator or an energy.</dd>
+            <dt>State vector</dt><dd>The complete list of amplitudes for every basis state in the simulator’s memory.</dd>
+            <dt>Unitary matrix</dt><dd>A reversible matrix whose conjugate transpose is also its inverse—the mathematical form of a noiseless gate.</dd>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
 
 <!-- ══ LAB ══ -->
 <section id="lab">

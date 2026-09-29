@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Superposition & Entanglement Using Python Objects — Quantum Learning Roadmap</title>
+<meta name="description" content="Use small Python classes and vectors to make superposition and entanglement concrete for developers who think in objects and state transitions."><meta name="author" content="Nishankar Sathiyamohan">
+<link rel="canonical" href="https://www.nishankar.space/quantum-superposition-entanglement-python.html"><link rel="icon" href="icon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quantum-articles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Superposition & Entanglement Using Python Objects","description":"Use small Python classes and vectors to make superposition and entanglement concrete for developers who think in objects and state transitions.","author":{"@type":"Person","name":"Nishankar Sathiyamohan"},"isPartOf":{"@type":"Course","name":"The Quantum Learning Roadmap"}}</script>
+</head>
+<body>
+<nav class="qa-nav"><div class="qa-nav-in"><a class="qa-brand" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a><div class="qa-nav-links"><a href="quantum.html#roadmap">Roadmap</a><a href="quantum.html#lab">Interactive lab</a><a href="quantum.html#glossary">Glossary</a></div></div></nav>
+<main class="qa-shell"><div class="qa-crumbs"><a href="quantum.html">Quantum Circuit Lab</a> / conceptual bridge</div>
+<header class="qa-hero"><div class="qa-kicker">Lesson 02 · conceptual bridge</div><h1>Superposition & Entanglement Using Python Objects</h1><p class="qa-dek">Use small Python classes and vectors to make superposition and entanglement concrete for developers who think in objects and state transitions.</p><div class="qa-meta"><span class="qa-pill green">Beginner</span><span class="qa-pill">10–14 min read</span><span class="qa-pill">software engineering · quantum computing</span></div></header>
+<div class="qa-layout"><article class="qa-body"><h2>Represent a qubit as data</h2>
+<p>Start with an object that owns a normalized state vector. The H gate transforms that vector; it does not assign a third boolean value.</p>
+<pre class="qa-code"><code>import numpy as np
+
+class Qubit:
+    def __init__(self, state=None):
+        self.state = np.array(state or [1, 0], dtype=complex)
+        self.state /= np.linalg.norm(self.state)
+
+    def probabilities(self):
+        return np.abs(self.state) ** 2
+
+q = Qubit()
+H = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
+q.state = H @ q.state
+print(q.probabilities())  # [0.5 0.5]</code></pre>
+<h2>Two objects are not automatically entangled</h2>
+<p>Two independent qubits form a product state: you can describe each object separately. Entanglement appears when the combined vector cannot be factored into one vector per object.</p>
+<pre class="qa-code"><code># basis order: |00>, |01>, |10>, |11>
+bell = np.array([1, 0, 0, 1], dtype=complex) / np.sqrt(2)
+print(np.abs(bell) ** 2)  # [0.5, 0, 0, 0.5]</code></pre>
+<p>Each qubit has a 50/50 local view, while the pair only returns 00 or 11. The pair is the unit of state a simulator must track.</p>
+<div class="qa-callout"><strong>Debugging tip:</strong> never infer a multi-qubit state by concatenating independent observations. Build the joint vector first.</div>
+<p>Now follow the state through <a href="quantum-execution-lifecycle.html">the quantum execution lifecycle</a>, or open the <a href="quantum.html#lab">lab</a> and build the Bell circuit.</p><div class="qa-next"><a href="quantum.html#roadmap"><span>Series index</span>All 13 lessons</a><a href="quantum-execution-lifecycle.html"><span>Next lesson →</span>The Quantum Execution Lifecycle</a></div></article>
+<aside class="qa-aside"><div class="qa-aside-card"><h3>Key idea</h3><p>Superposition belongs to one state vector; entanglement belongs to the relationship between multiple qubits.</p></div><div class="qa-aside-card"><h3>In this series</h3><ol class="qa-series"><li class=""><a href="quantum-bits-vs-qubits.html">01 · Bits vs. Qubits: A Software Engineer’s Guide</a></li>
+<li class="active"><a href="quantum-superposition-entanglement-python.html">02 · Superposition & Entanglement Using Python Objects</a></li>
+<li class=""><a href="quantum-execution-lifecycle.html">03 · The Quantum Execution Lifecycle</a></li>
+<li class=""><a href="quantum-logic-gates.html">04 · Quantum Logic Gates: AND, OR, NOT to X, H & CNOT</a></li>
+<li class=""><a href="linear-algebra-of-a-qubit.html">05 · The Linear Algebra of a Qubit with NumPy</a></li>
+<li class=""><a href="state-vectors-probability-amplitudes.html">06 · State Vectors & Probability Amplitudes</a></li>
+<li class=""><a href="quantum-simulator-subspace-multiplication.html">07 · The Matrix Trap: Subspace Multiplication in Simulators</a></li>
+<li class=""><a href="qiskit-hello-world-bell-state.html">08 · Hello World in Qiskit: Build a Bell State</a></li>
+<li class=""><a href="pennylane-basics-differentiable-nodes.html">09 · PennyLane Basics: Circuits as Differentiable Nodes</a></li>
+<li class=""><a href="qiskit-vs-pennylane.html">10 · Qiskit vs. PennyLane: Which Framework Should You Choose?</a></li>
+<li class=""><a href="parameterized-quantum-circuits.html">11 · Parameterized Quantum Circuits: The Weights of Quantum AI</a></li>
+<li class=""><a href="quantum-data-encoding.html">12 · Data Encoding: Pushing Images and Text into Qubits</a></li>
+<li class=""><a href="hybrid-quantum-classical-cnn.html">13 · Architecture of a Hybrid Quantum–Classical CNN</a></li></ol></div></aside></div></main>
+<footer class="qa-footer"><div class="qa-shell"><p>Part of <a href="quantum.html#roadmap">The Quantum Learning Roadmap</a> by <a href="index.html">Nishankar Sathiyamohan</a>.</p><p>Prefer to learn by doing? Open the <a href="quantum.html#lab">interactive state-vector lab</a>.</p></div></footer>
+</body></html>
