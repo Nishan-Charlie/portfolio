@@ -1094,3 +1094,19 @@ section h2{font-family:var(--text);font-weight:500;font-size:2rem;letter-spacing
   .research-strap{grid-template-columns:1fr;gap:4px}
   .portrait{box-shadow:none}
 }
+/* Accessible link affordances: body-copy links stay identifiable without colour alone. */
+main p a:not(.btn-book),
+.contact-row a,
+.pub-title a,
+.project-card-title a,
+.project-card-links a,
+.site-foot a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+/* Video posters use the same stable thumbnail box as publication images. */
+video.pub-thumb {
+  object-fit: cover;
+}

@@ -13,10 +13,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.nishankar.space/">
   <meta property="og:image" content="https://www.nishankar.space/My/profile.jpeg">
-  <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
+  <link rel="icon" href="optimized/icon.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="optimized/My/profile.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
@@ -94,14 +97,14 @@
       </div>
     </div>
     <figure class="hero-figure" style="margin:0">
-      <img class="portrait" alt="Portrait of Nishankar Sathiyamohan" src="My/profile.jpeg">
+      <img width="640" height="800" loading="eager" fetchpriority="high" decoding="async" class="portrait" alt="Portrait of Nishankar Sathiyamohan" src="optimized/My/profile.webp">
     </figure>
   </section>
 
 
    <!-- ========== PUBLICATIONS ==========
        HOW TO ADD A PAPER: copy one <article class="pub"> block and edit:
-         • thumbnail <img class="pub-thumb"> (or <div class="pub-thumb-tile">TEXT</div> if no figure)
+         • thumbnail <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb"> (or <div class="pub-thumb-tile">TEXT</div> if no figure)
          • title + link, author list (<strong> = me), venue line
          • status chip: chip-published | chip-revision | chip-review
        Groups: "Peer-reviewed & accepted" and "Preprints & under review". Newest first. -->
@@ -118,7 +121,7 @@
     <h3 class="pub-group">Peer-reviewed &amp; accepted</h3>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/medical_image.jpg" alt="Medical image analysis illustration">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/medical_image.webp" alt="Medical image analysis illustration">
       <div>
         <h3 class="pub-title">Deep Semi-supervised Learning for Medical Image Analysis: A Survey</h3>
         <p class="pub-authors">T. Shyamalee*, <strong>S. Nishankar*</strong>, S. Thuseethan, C. Wimalasooriya, Y. Sebastian <em>(*equal contribution)</em></p>
@@ -128,7 +131,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/citrusdiseasepipeline_page-0001.jpg" alt="Citrus disease recognition pipeline figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/citrusdiseasepipeline_page-0001.webp" alt="Citrus disease recognition pipeline figure">
       <div>
         <h3 class="pub-title"><a href="https://doi.org/10.1007/s10462-026-11629-z" target="_blank" rel="noopener">Trends, Challenges and Future Directions in Deep Learning for Citrus Leaf Disease Recognition: A Survey</a></h3>
         <p class="pub-authors">T. Godage, <strong>S. Nishankar</strong>, S. Thuseethan, S. Vasanthapriyan, Z. Liang</p>
@@ -139,7 +142,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/tom_ssl.png" alt="TOM-SSL framework figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/tom_ssl.webp" alt="TOM-SSL framework figure">
       <div>
         <h3 class="pub-title"><a href="https://doi.org/10.3390/agriengineering7080248" target="_blank" rel="noopener">TOM-SSL: Tomato Disease Recognition using Pseudo-labelling based Semi-supervised Learning</a></h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, T. Mithuran, S. Nimishan, V. Pavindran, S. Thuseethan</p>
@@ -150,7 +153,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/vit_rot.png" alt="ViT-RoT architecture figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/vit_rot.webp" alt="ViT-RoT architecture figure">
       <div>
         <h3 class="pub-title"><a href="https://doi.org/10.3390/agriengineering7060185" target="_blank" rel="noopener">ViT-RoT: Vision Transformer-Based Robust Framework for Tomato Leaf Disease Recognition</a></h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, V. Pavindran, T. Mithuran, S. Nimishan, S. Thuseethan, Y. Sebastian</p>
@@ -161,7 +164,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/Quantum_scaling.jpg" alt="Hybrid quantum-classical CNN qubit scaling figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/Quantum_scaling.webp" alt="Hybrid quantum-classical CNN qubit scaling figure">
       <div>
         <h3 class="pub-title">Encoding Strategy and Qubit Scaling in Hybrid Quantum-Classical CNNs for Skin Lesion Classification</h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, A. Sangeetha, S. Thuseethan</p>
@@ -171,7 +174,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/Inter-Tool Wiring Specification_page-0001.jpg" alt="Zero Trust Kubernetes framework wiring diagram">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/Inter-Tool Wiring Specification_page-0001.webp" alt="Zero Trust Kubernetes framework wiring diagram">
       <div>
         <h3 class="pub-title">A Unified Zero Trust Orchestration Framework for Kubernetes: Design, Integration, and Functional Verification</h3>
         <p class="pub-authors">M. Shakishnavi, K. P. N. Jayasena, <strong>S. Nishankar</strong></p>
@@ -181,7 +184,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/zerotrust_observability.png" alt="Zero Trust observability evaluation figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/zerotrust_observability.webp" alt="Zero Trust observability evaluation figure">
       <div>
         <h3 class="pub-title">Observability-Driven Security Evaluation of a Unified Zero Trust Framework for Kubernetes: Cross-Layer Event Correlation and Automated Response Validation</h3>
         <p class="pub-authors">M. Shakishnavi, K. P. N. Jayasena, <strong>S. Nishankar</strong></p>
@@ -237,7 +240,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/U-FedTomAtt (1)_page-0001.jpg" alt="U-FedTomAtt federated learning framework figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/U-FedTomAtt (1)_page-0001.webp" alt="U-FedTomAtt federated learning framework figure">
       <div>
         <h3 class="pub-title"><a href="https://arxiv.org/abs/2602.16749" target="_blank" rel="noopener">U-FedTomAtt: Ultra-lightweight Federated Learning with Attention for Tomato Disease Recognition</a></h3>
         <p class="pub-authors">R. George, <strong>S. Nishankar</strong>, S. Thuseethan, C. Wimalasooriya, Y. Sebastian, R. G. Ragel, Z. Liang</p>
@@ -259,7 +262,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/SLIF_Dataset.jpg" alt="SLIF-Brinjal in-field leaf dataset samples">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/SLIF_Dataset.webp" alt="SLIF-Brinjal in-field leaf dataset samples">
       <div>
         <h3 class="pub-title">SLIF-Brinjal: An In-Field Leaf Dataset for Disease Recognition in Precision Agriculture</h3>
         <p class="pub-authors">R. George, <strong>S. Nishankar</strong>, S. Thuseethan, K. Pakeerathan, R. G. Ragel</p>
@@ -269,7 +272,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/signal_processing.png" alt="Physiological signal analysis illustration">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/signal_processing.webp" alt="Physiological signal analysis illustration">
       <div>
         <h3 class="pub-title">From Unimodal to Multimodal Deep Physiological Signal Analysis in Healthcare: A Survey</h3>
         <p class="pub-authors">T. Bakmeedeniya, S. Thuseethan, R. G. Ragel, P. Vigneshwaran, <strong>S. Nishankar</strong></p>
@@ -289,7 +292,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/self_x_vit_page-0001.jpg" alt="Self-xViT framework figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/self_x_vit_page-0001.webp" alt="Self-xViT framework figure">
       <div>
         <h3 class="pub-title">Self-xViT: Self-supervised Vision Transformer for Explainable Tomato Leaf Disease Detection</h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, G. Rajalingam, S. Thuseethan, Y. Sebastian, et al.</p>
@@ -299,7 +302,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/mammography_fewshot.png" alt="Few-shot mammography classification figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/mammography_fewshot.webp" alt="Few-shot mammography classification figure">
       <div>
         <h3 class="pub-title">An Explainable Metric-Based Few-Shot Vision Transformer for Mammography-Based Breast Cancer Detection</h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, et al.</p>
@@ -309,7 +312,7 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb" src="Project Images/tiny_dlw_brinjal.png" alt="Tiny-DLW architecture figure">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/tiny_dlw_brinjal.webp" alt="Tiny-DLW architecture figure">
       <div>
         <h3 class="pub-title">Tiny-DLW: A Resource-Constrained Architecture using Hierarchical Dilated Convolutions for Real-Time Brinjal Disease Recognition</h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, et al.</p>
@@ -488,7 +491,7 @@
     <p class="section-note">Researchers I work with regularly.</p>
     <div class="collab-grid">
       <div class="collab">
-        <img class="collab-photo" src="Colab/Thuseethan.jpg" alt="Dr. Selvarajah Thuseethan">
+        <img width="160" height="160" loading="lazy" decoding="async" class="collab-photo" src="optimized/Colab/Thuseethan.webp" alt="Dr. Selvarajah Thuseethan">
         <div>
           <h3>Dr. Selvarajah Thuseethan</h3>
           <p class="affil">Charles Darwin University · Australia</p>
@@ -496,7 +499,7 @@
         </div>
       </div>
       <div class="collab">
-        <img class="collab-photo" src="Colab/Asanka Perera.jpg" alt="Dr. Asanka Perera">
+        <img width="160" height="160" loading="lazy" decoding="async" class="collab-photo" src="optimized/Colab/Asanka Perera.webp" alt="Dr. Asanka Perera">
         <div>
           <h3>Dr. Asanka Perera</h3>
           <p class="affil">University of Southern Queensland · Australia</p>
@@ -504,7 +507,7 @@
         </div>
       </div>
       <div class="collab">
-        <img class="collab-photo" src="Colab/pubudu-sanjeewani.webp" alt="Dr. Pubudu Sanjeewani">
+        <img width="160" height="160" loading="lazy" decoding="async" class="collab-photo" src="Colab/pubudu-sanjeewani.webp" alt="Dr. Pubudu Sanjeewani">
         <div>
           <h3>Dr. Pubudu Sanjeewani</h3>
           <p class="affil">RMIT University · Melbourne, Australia</p>
@@ -587,11 +590,11 @@
       Sabaragamuwa University of Sri Lanka.</p>
 
     <article class="pub">
-      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/NARajapaksha.jpeg" alt="Methodology diagram: multi-document event-level summarization pipeline for Sinhala news">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb sup-thumb" src="optimized/Supervision_Mentoring/NARajapaksha.webp" alt="Methodology diagram: multi-document event-level summarization pipeline for Sinhala news">
       <div>
         <h3 class="pub-title">Multi-Document Event-Level Summarization for Sinhala News</h3>
         <p class="student-line">
-          <!-- <img class="student-avatar" src="Supervision_Mentoring/N.A.Rajapaksha.jpeg" alt="Portrait of N. A. Rajapaksha"> -->
+          <!-- <img width="48" height="48" loading="lazy" decoding="async" class="student-avatar" src="optimized/Supervision_Mentoring/N.A.Rajapaksha.webp" alt="Portrait of N. A. Rajapaksha"> -->
           <span><strong>N. A. Rajapaksha</strong> · Final-year research project</span>
         </p>
         <p class="pub-desc">A framework that scrapes 10,000+ articles from Sinhala news websites, classifies events
@@ -606,11 +609,11 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/Weerakoon_methodology.jpeg" alt="Methodology diagram: Sinhala sarcasm detection with Mamba state space model">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb sup-thumb" src="optimized/Supervision_Mentoring/Weerakoon_methodology.webp" alt="Methodology diagram: Sinhala sarcasm detection with Mamba state space model">
       <div>
         <h3 class="pub-title">Sinhala Sarcasm Detection Using Mamba State Space Models: A Comparative Study with Transformer-Based Models</h3>
         <p class="student-line">
-          <!-- <img class="student-avatar" src="Supervision_Mentoring/LDWeerakoon.jpeg" alt="Portrait of L. D. Weerakoon"> -->
+          <!-- <img width="48" height="48" loading="lazy" decoding="async" class="student-avatar" src="optimized/Supervision_Mentoring/LDWeerakoon.webp" alt="Portrait of L. D. Weerakoon"> -->
           <span><strong>L. D. Weerakoon</strong> · Final-year research project</span>
         </p>
         <p class="pub-desc">Benchmarks a custom Mamba state-space classifier against SinhalaBERTo, IndicBERT, and
@@ -625,11 +628,11 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/T.P.H. Nethmin_methodology.jpeg" alt="Methodology diagram: cloud-native dynamic parking pricing pipeline">
+      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb sup-thumb" src="optimized/Supervision_Mentoring/T.P.H. Nethmin_methodology.webp" alt="Methodology diagram: cloud-native dynamic parking pricing pipeline">
       <div>
         <h3 class="pub-title">A Cloud-Native Dynamic Pricing Engine for Shared Public-Private Parking Ecosystems Using Demand Forecasting</h3>
         <p class="student-line">
-          <!-- <img class="student-avatar" src="Supervision_Mentoring/T.P.H. Nethmin.jpeg" alt="Portrait of T. P. H. Nethmin"> -->
+          <!-- <img width="48" height="48" loading="lazy" decoding="async" class="student-avatar" src="optimized/Supervision_Mentoring/T.P.H. Nethmin.webp" alt="Portrait of T. P. H. Nethmin"> -->
           <span><strong>T. P. H. Nethmin</strong> · Final-year research project</span>
         </p>
         <p class="pub-meta"><span class="venue">iPURSE 2026 · University of Peradeniya</span> <span class="chip chip-published">Poster accepted</span></p>
@@ -648,7 +651,10 @@
     </article>
 
     <article class="pub">
-      <video class="pub-thumb sup-thumb" src="Supervision_Mentoring/Tharindu.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Demo clip: audio-visual segmentation masks staying consistent across video frames"></video>
+      <video class="pub-thumb sup-thumb deferred-video" autoplay muted loop playsinline preload="none" poster="optimized/Supervision_Mentoring/Tharindu-poster.webp" width="640" height="360" aria-label="Demo clip: audio-visual segmentation masks staying consistent across video frames">
+        <source data-src="Supervision_Mentoring/Tharindu.mp4" type="video/mp4">
+        <track kind="captions" src="Supervision_Mentoring/tharindu-captions.vtt" srclang="en" label="English" default>
+      </video>
       <div>
         <h3 class="pub-title">Enhancing Temporal Consistency in Audio-Visual Segmentation</h3>
         <p class="student-line">
@@ -667,7 +673,10 @@
     </article>
 
     <article class="pub">
-      <img class="pub-thumb sup-thumb" src="Supervision_Mentoring/Jayasekara.gif" loading="lazy" alt="Animated demo: pedestrian detection under different anonymization techniques">
+      <video class="pub-thumb sup-thumb deferred-video" autoplay muted loop playsinline preload="none" poster="optimized/Supervision_Mentoring/Jayasekara-poster.webp" width="640" height="360" aria-label="Demo clip: pedestrian detection under different anonymization techniques">
+        <source data-src="optimized/Supervision_Mentoring/Jayasekara.mp4" type="video/mp4">
+        <track kind="captions" src="Supervision_Mentoring/jayasekara-captions.vtt" srclang="en" label="English" default>
+      </video>
       <div>
         <h3 class="pub-title">Balancing Privacy, Accuracy, and Fairness: Privacy-Preserving Techniques in Pedestrian Detection for Public Surveillance</h3>
         <p class="student-line">
@@ -699,7 +708,7 @@
     <div class="projects-grid">
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/vit_rot.png" alt="ViT-RoT"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/vit_rot.webp" alt="ViT-RoT"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/ViT-RoT" target="_blank" rel="noopener">ViT-RoT</a></h3>
           <div class="project-card-tags"><span class="tag">PyTorch</span><span class="tag">ViT</span></div>
@@ -709,7 +718,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/quantum_simulation.png" alt="Quantum Simulation Lab"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/quantum_simulation.webp" alt="Quantum Simulation Lab"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="quantum.html" target="_blank">Quantum Circuit Lab</a></h3>
           <div class="project-card-tags"><span class="tag">Teaching</span><span class="tag">Quantum</span></div>
@@ -719,7 +728,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/semi_supervised.png" alt="Semi-Supervised ML"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/semi_supervised.webp" alt="Semi-Supervised ML"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Semi-supervised-learning" target="_blank" rel="noopener">Semi-Supervised ML</a></h3>
           <div class="project-card-tags"><span class="tag">Python</span><span class="tag">PyTorch</span></div>
@@ -729,7 +738,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/her2_histopathology.png" alt="Her2 Histopathology"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/her2_histopathology.webp" alt="Her2 Histopathology"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Her2_Histopathology" target="_blank" rel="noopener">Her2 Histopathology</a></h3>
           <div class="project-card-tags"><span class="tag">Jupyter</span><span class="tag">XAI</span></div>
@@ -739,7 +748,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/mednet_fyp.png" alt="MedNET"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/mednet_fyp.webp" alt="MedNET"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/MedNET_FYP" target="_blank" rel="noopener">MedNET</a></h3>
           <div class="project-card-tags"><span class="tag">Deep Learning</span><span class="tag">Histopathology</span></div>
@@ -749,7 +758,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/tinyml_emotion.png" alt="TinyML Emotion AI"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/tinyml_emotion.webp" alt="TinyML Emotion AI"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/TinyML_Emotional_Detection" target="_blank" rel="noopener">TinyML Emotion AI</a></h3>
           <div class="project-card-tags"><span class="tag">Edge AI</span><span class="tag">C</span></div>
@@ -759,7 +768,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/wesad_stress.png" alt="WESAD Stress Analysis"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/wesad_stress.webp" alt="WESAD Stress Analysis"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/WESAD_Signal_Analysis" target="_blank" rel="noopener">WESAD Stress Analysis</a></h3>
           <div class="project-card-tags"><span class="tag">Python</span><span class="tag">Signals</span></div>
@@ -769,7 +778,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/signal_processing.png" alt="1D-MobileNetV2"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/signal_processing.webp" alt="1D-MobileNetV2"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/1D-MobileNetV2" target="_blank" rel="noopener">1D-MobileNetV2</a></h3>
           <div class="project-card-tags"><span class="tag">Python</span><span class="tag">Signals</span></div>
@@ -779,7 +788,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/Quantum_scaling.jpg" alt="SkinCancer Analysis"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/Quantum_scaling.webp" alt="SkinCancer Analysis"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/SkinCancer" target="_blank" rel="noopener">SkinCancer Analysis</a></h3>
           <div class="project-card-tags"><span class="tag">Jupyter</span><span class="tag">Vision</span></div>
@@ -793,7 +802,7 @@
     <div class="projects-grid more-projects" id="more-projects" hidden>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/luma_ai.png" alt="lumaAI Scan Portal"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/luma_ai.webp" alt="lumaAI Scan Portal"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/lumaAI" target="_blank" rel="noopener">lumaAI Scan Portal</a></h3>
           <div class="project-card-tags"><span class="tag">TypeScript</span><span class="tag">3D NeRF</span></div>
@@ -803,7 +812,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/sign_language.png" alt="Sign Language Translator"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/sign_language.webp" alt="Sign Language Translator"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Sign-Language-Generation" target="_blank" rel="noopener">Sign Language Translator</a></h3>
           <div class="project-card-tags"><span class="tag">OpenCV</span><span class="tag">Vision</span></div>
@@ -813,7 +822,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/social_media.png" alt="Fake News Detector"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/social_media.webp" alt="Fake News Detector"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Fake-News-Detection" target="_blank" rel="noopener">Fake News Detector</a></h3>
           <div class="project-card-tags"><span class="tag">TypeScript</span><span class="tag">NLP</span></div>
@@ -823,7 +832,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/lecture_vis.png" alt="Lecture Visualisation"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/lecture_vis.webp" alt="Lecture Visualisation"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/AI-Lecture-Visualization" target="_blank" rel="noopener">Lecture Visualisation</a></h3>
           <div class="project-card-tags"><span class="tag">AI Education</span><span class="tag">Web</span></div>
@@ -833,7 +842,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/quantum_simulation.png" alt="Ecom3Dvis"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/quantum_simulation.webp" alt="Ecom3Dvis"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Ecom3Dvis" target="_blank" rel="noopener">Ecom3Dvis</a></h3>
           <div class="project-card-tags"><span class="tag">Three.js</span><span class="tag">3D</span></div>
@@ -843,7 +852,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/d3js_datavis.png" alt="D3.js Data Visualisation"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/d3js_datavis.webp" alt="D3.js Data Visualisation"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Data-Visualisation-Using-D3js" target="_blank" rel="noopener">D3.js Data Visualisation</a></h3>
           <div class="project-card-tags"><span class="tag">D3.js</span><span class="tag">Node.js</span></div>
@@ -853,7 +862,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/pdf_version_check.png" alt="PDF Version Verification"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/pdf_version_check.webp" alt="PDF Version Verification"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/AI-Pdf-Version-Check" target="_blank" rel="noopener">PDF Version Verification</a></h3>
           <div class="project-card-tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
@@ -863,7 +872,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/word_count.png" alt="Youtube Video Creation"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/word_count.webp" alt="Youtube Video Creation"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Youtube-Video-Creation" target="_blank" rel="noopener">Youtube Video Creation</a></h3>
           <div class="project-card-tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
@@ -873,7 +882,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/pdf_splitter.png" alt="PDF Splitter"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/pdf_splitter.webp" alt="PDF Splitter"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Pdf-Spliter" target="_blank" rel="noopener">PDF Splitter</a></h3>
           <div class="project-card-tags"><span class="tag">JavaScript</span><span class="tag">PDF Utility</span></div>
@@ -883,7 +892,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/pdf_editor.png" alt="PDF Editor"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/pdf_editor.webp" alt="PDF Editor"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/pdf_editor" target="_blank" rel="noopener">PDF Editor</a></h3>
           <div class="project-card-tags"><span class="tag">JavaScript</span><span class="tag">PDF Utility</span></div>
@@ -893,7 +902,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/aa_notebooks.png" alt="AA-NoteBooks"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/aa_notebooks.webp" alt="AA-NoteBooks"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/AA-NoteBooks" target="_blank" rel="noopener">AA-NoteBooks</a></h3>
           <div class="project-card-tags"><span class="tag">Jupyter</span><span class="tag">Colab</span></div>
@@ -903,7 +912,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/feedback_classification.png" alt="Feedback Classification"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/feedback_classification.webp" alt="Feedback Classification"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Online_FeedBack_Classification" target="_blank" rel="noopener">Feedback Classification</a></h3>
           <div class="project-card-tags"><span class="tag">NLP</span><span class="tag">Web</span></div>
@@ -913,7 +922,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/ai_feedback.png" alt="Feedback Categoriser"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/ai_feedback.webp" alt="Feedback Categoriser"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/AI-feedback-categoriser" target="_blank" rel="noopener">Feedback Categoriser</a></h3>
           <div class="project-card-tags"><span class="tag">NLP</span><span class="tag">Web</span></div>
@@ -923,7 +932,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/webgraphics_benchmark.png" alt="webGraphics-Benchmark"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/webgraphics_benchmark.webp" alt="webGraphics-Benchmark"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/webGraphics-Benchmark" target="_blank" rel="noopener">webGraphics-Benchmark</a></h3>
           <div class="project-card-tags"><span class="tag">WebGL</span><span class="tag">Three.js</span></div>
@@ -933,7 +942,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/susl_profiles.png" alt="SUSL Student Profiles"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/susl_profiles.webp" alt="SUSL Student Profiles"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/SUSL_2022_student_profiles" target="_blank" rel="noopener">SUSL Student Profiles</a></h3>
           <div class="project-card-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
@@ -943,7 +952,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/social_media.png" alt="University Social Media"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/social_media.webp" alt="University Social Media"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/University-Social-Media" target="_blank" rel="noopener">University Social Media</a></h3>
           <div class="project-card-tags"><span class="tag">React</span><span class="tag">MongoDB</span></div>
@@ -953,7 +962,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/tripadvisor_scraper.png" alt="TripAdvisor Scraper"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/tripadvisor_scraper.webp" alt="TripAdvisor Scraper"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/TripAdvisorReview-Scrapper" target="_blank" rel="noopener">TripAdvisor Scraper</a></h3>
           <div class="project-card-tags"><span class="tag">Python</span><span class="tag">Scraping</span></div>
@@ -963,7 +972,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/chess_game.png" alt="Chess Game Simulator"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/chess_game.webp" alt="Chess Game Simulator"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/ChessGame-Simulator" target="_blank" rel="noopener">Chess Game Simulator</a></h3>
           <div class="project-card-tags"><span class="tag">Java</span><span class="tag">Game Logic</span></div>
@@ -973,7 +982,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/memory_manager.png" alt="Memory Manager"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/memory_manager.webp" alt="Memory Manager"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/MemoryManagement-BestFit-WorstFit" target="_blank" rel="noopener">Memory Manager</a></h3>
           <div class="project-card-tags"><span class="tag">Java</span><span class="tag">Systems</span></div>
@@ -983,7 +992,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/line_follower.png" alt="Line Follower Simulator"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/line_follower.webp" alt="Line Follower Simulator"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/LineFollower-Robot-on-Image" target="_blank" rel="noopener">Line Follower Simulator</a></h3>
           <div class="project-card-tags"><span class="tag">Python</span><span class="tag">Simulation</span></div>
@@ -993,7 +1002,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/word_count.png" alt="Words Count and Plot"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/word_count.webp" alt="Words Count and Plot"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/Words-count-and-plot" target="_blank" rel="noopener">Words Count &amp; Plot</a></h3>
           <div class="project-card-tags"><span class="tag">C</span><span class="tag">CLI</span></div>
@@ -1003,7 +1012,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-card-image-wrapper"><img class="project-card-image" src="Project Images/qr_generator.png" alt="QR Code Generator"></div>
+        <div class="project-card-image-wrapper"><img width="800" height="450" loading="lazy" decoding="async" class="project-card-image" src="optimized/Project Images/qr_generator.webp" alt="QR Code Generator"></div>
         <div class="project-card-content">
           <h3 class="project-card-title"><a href="https://github.com/Nishan-Charlie/QR-code-generator" target="_blank" rel="noopener">C QR Generator</a></h3>
           <div class="project-card-tags"><span class="tag">C</span><span class="tag">CLI</span></div>
@@ -1100,6 +1109,40 @@
     });
   })();
 
+  /* Give repeated action links distinct accessible names without changing the visible copy. */
+  document.querySelectorAll('.pub-links a, .project-card-links a').forEach(function (link) {
+    var item = link.closest('.pub, .project-card');
+    var heading = item && item.querySelector('.pub-title, .project-card-title');
+    if (heading && !link.hasAttribute('aria-label')) {
+      link.setAttribute('aria-label', link.textContent.trim() + ' — ' + heading.textContent.trim());
+    }
+  });
+
+  /* Keep below-the-fold demo videos out of the critical loading path. */
+  (function () {
+    var videos = document.querySelectorAll('.deferred-video');
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function loadVideo(video) {
+      var source = video.querySelector('source[data-src]');
+      if (!source) return;
+      source.src = source.dataset.src;
+      source.removeAttribute('data-src');
+      video.load();
+      if (!reducedMotion) video.play().catch(function () {});
+    }
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          loadVideo(entry.target);
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '300px 0px' });
+      videos.forEach(function (video) { observer.observe(video); });
+    } else {
+      videos.forEach(loadVideo);
+    }
+  })();
   /* Contact form: submits over AJAX so the visitor stays on the page.
      Without JS the plain POST still works and FormSubmit shows its own
      confirmation page, so the form degrades gracefully. */
