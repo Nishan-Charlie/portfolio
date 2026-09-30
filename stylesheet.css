@@ -1049,8 +1049,9 @@ section h2 {
 
 /* ============================================================================
    Academic refinement
-   A quieter editorial layer: fewer rounded UI elements, more reading space,
-   and clearer emphasis on research rather than project-card chrome.
+   A quieter editorial layer: fewer rounded UI elements (images keep their
+   rounded corners), more reading space, and clearer emphasis on research
+   rather than project-card chrome.
    ============================================================================ */
 .hero{grid-template-columns:minmax(0,1fr) 320px;gap:72px;padding:82px 0 70px}
 .hero h1{font-family:var(--text);font-weight:500;font-size:clamp(2.65rem,5vw,4.15rem);letter-spacing:-.045em;line-height:1.01}
@@ -1058,7 +1059,7 @@ section h2 {
 .hero .roles{font-size:1.02rem;line-height:1.55}
 .hero .bio{font-size:1.04rem;line-height:1.7}
 .hero-figure{margin:0}
-.portrait{border-radius:4px;box-shadow:0 14px 30px rgba(32,38,43,.08);aspect-ratio:4 / 5}
+.portrait{border-radius:14px;box-shadow:0 14px 30px rgba(32,38,43,.08);aspect-ratio:4 / 5}
 .research-strap{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;margin-top:23px;padding:13px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .research-strap-label{font-family:var(--mono);font-size:.69rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent-dark);padding-top:3px}
 .research-strap p{font-size:.93rem;color:var(--muted);margin:0;max-width:58ch}
@@ -1073,14 +1074,15 @@ section h2{font-family:var(--text);font-weight:500;font-size:2rem;letter-spacing
 .interest h3,.teach-block h3,.xp-item .what{font-family:var(--text)}
 .pub-group{margin-top:42px;padding-bottom:10px}
 .pub{grid-template-columns:192px 1fr;gap:28px;padding:28px 0}
-.pub-thumb,.pub-thumb-tile{width:192px;border-radius:3px}
+.pub-thumb,.pub-thumb-tile{width:192px;border-radius:8px}
 .pub-thumb{box-shadow:none}
+.sup-thumb{width:320px}
 .pub-title{font-size:1.22rem;line-height:1.34}
 .pub-desc{line-height:1.62}
 .chip{border-radius:3px;padding:3px 8px}
 .project-card{border:0;border-top:1px solid var(--rule);border-radius:0;background:transparent;box-shadow:none}
 .project-card:hover{transform:none;border-color:var(--accent);box-shadow:none}
-.project-card-image-wrapper{height:118px;border-bottom:0;background:var(--card)}
+.project-card-image-wrapper{height:118px;border-bottom:0;border-radius:8px;background:var(--card)}
 .project-card-content{padding:14px 0 15px}
 .project-card-title{font-family:var(--text);font-size:1.08rem;font-weight:500}
 .project-card-description{line-height:1.58}
@@ -1101,6 +1103,7 @@ section h2{font-family:var(--text);font-weight:500;font-size:2rem;letter-spacing
 @media (max-width:560px){
   .pub{grid-template-columns:1fr;gap:12px}
   .pub-thumb,.pub-thumb-tile{width:100%;max-width:300px}
+  .sup-thumb{max-width:100%}
 }
 /* Accessible link affordances: body-copy links stay identifiable without colour alone. */
 main p a:not(.btn-book),
