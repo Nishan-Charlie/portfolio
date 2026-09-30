@@ -38,4 +38,6 @@ The canonical entry point is the Quantum Circuit Lab. The learning path progress
 
 - [ORCID](https://orcid.org/0009-0008-4321-1920): Persistent researcher identifier.
 - [Google Scholar](https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en): Publication record.
+- [DBLP](https://dblp.org/pid/431/2483.html): Computer science bibliography record.
+- [alphaXiv](https://www.alphaxiv.org/@nishankar-sathiyamohan): Preprint and paper discussion profile.
 - [GitHub](https://github.com/Nishan-Charlie): Software repositories.

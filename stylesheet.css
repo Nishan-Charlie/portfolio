@@ -250,6 +250,7 @@ p:last-child { margin-bottom: 0; }
 
 .portrait {
   width: 100%;
+  height: auto; /* override the height="" attribute so aspect-ratio applies */
   aspect-ratio: 4 / 4.6;
   object-fit: cover;
   border-radius: 14px;
@@ -377,6 +378,7 @@ section h2 {
 
 .pub-thumb {
   width: 210px;
+  height: auto; /* override the height="" attribute so aspect-ratio applies */
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
@@ -1088,11 +1090,17 @@ section h2{font-family:var(--text);font-weight:500;font-size:2rem;letter-spacing
 .site-foot{text-align:left;padding:34px 0 46px}
 .visit-count{margin:0 0 17px}
 .book-card{border-radius:4px;border:1px solid #dbe7e2}
+/* Re-assert the stacked mobile layout: the desktop rules above sit later in the
+   cascade than the earlier breakpoints and would otherwise override them. */
 @media (max-width:760px){
-  .hero{gap:30px;padding-top:44px}
+  .hero{grid-template-columns:1fr;gap:30px;padding-top:44px}
   .hero h1{font-size:clamp(2.5rem,11vw,3.4rem)}
   .research-strap{grid-template-columns:1fr;gap:4px}
-  .portrait{box-shadow:none}
+  .portrait{width:168px;aspect-ratio:1 / 1;border-radius:50%;box-shadow:none}
+}
+@media (max-width:560px){
+  .pub{grid-template-columns:1fr;gap:12px}
+  .pub-thumb,.pub-thumb-tile{width:100%;max-width:300px}
 }
 /* Accessible link affordances: body-copy links stay identifiable without colour alone. */
 main p a:not(.btn-book),
