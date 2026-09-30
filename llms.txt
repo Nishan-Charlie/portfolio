@@ -1,0 +1,41 @@
+# Nishankar Sathiyamohan — Quantum Learning Roadmap
+
+> A free, software-engineer-friendly quantum computing curriculum with thirteen tutorials, a browser-based state-vector simulator, worked circuits, code export, and a plain-English glossary.
+
+The canonical entry point is the Quantum Circuit Lab. The learning path progresses from conceptual foundations through linear algebra and framework fundamentals to quantum machine learning. All resources are in English and are freely accessible without registration.
+
+## Main resources
+
+- [Quantum Learning Roadmap and Interactive Circuit Lab](https://www.nishankar.space/quantum.html): Canonical hub containing the four-stage roadmap, glossary, nine-step interactive simulator, worked circuits, code export, VQE demonstration, and recommended reading.
+- [Academic profile](https://www.nishankar.space/): Author profile, publications, research interests, teaching, supervision, and projects.
+
+## Conceptual bridge
+
+- [Bits vs. Qubits: A Software Engineer's Guide](https://www.nishankar.space/quantum-bits-vs-qubits.html): Introduces qubits, amplitudes, and measurement using programming-oriented mental models.
+- [Superposition and Entanglement Using Python Objects](https://www.nishankar.space/quantum-superposition-entanglement-python.html): Explains joint quantum states through small Python and NumPy examples.
+- [The Quantum Execution Lifecycle](https://www.nishankar.space/quantum-execution-lifecycle.html): Covers circuit construction, transpilation, execution, and measurement.
+- [Quantum Logic Gates](https://www.nishankar.space/quantum-logic-gates.html): Relates reversible quantum operations to familiar classical logic concepts.
+
+## Math engine
+
+- [The Linear Algebra of a Qubit with NumPy](https://www.nishankar.space/linear-algebra-of-a-qubit.html): Builds state vectors, gates, and expectation values with NumPy.
+- [State Vectors and Probability Amplitudes](https://www.nishankar.space/state-vectors-probability-amplitudes.html): Connects complex amplitudes, phase, and measurement probabilities.
+- [The Matrix Trap: Subspace Multiplication in Simulators](https://www.nishankar.space/quantum-simulator-subspace-multiplication.html): Explains efficient local amplitude updates for state-vector simulation.
+
+## Framework fundamentals
+
+- [Hello World in Qiskit: Build a Bell State](https://www.nishankar.space/qiskit-hello-world-bell-state.html): Constructs and measures a Bell-state circuit in Qiskit.
+- [PennyLane Basics: Circuits as Differentiable Nodes](https://www.nishankar.space/pennylane-basics-differentiable-nodes.html): Introduces QNodes, expectation values, and differentiation.
+- [Qiskit vs. PennyLane](https://www.nishankar.space/qiskit-vs-pennylane.html): Compares framework choices for hardware, compilation, gradients, and hybrid ML.
+
+## Quantum machine learning
+
+- [Parameterized Quantum Circuits](https://www.nishankar.space/parameterized-quantum-circuits.html): Explains trainable rotations, ansatz design, gradients, and evaluation.
+- [Quantum Data Encoding](https://www.nishankar.space/quantum-data-encoding.html): Compares basis, angle, and amplitude encoding for images and text.
+- [Hybrid Quantum-Classical CNN](https://www.nishankar.space/hybrid-quantum-classical-cnn.html): Designs and evaluates a classical CNN with a small trainable quantum layer.
+
+## Author identifiers
+
+- [ORCID](https://orcid.org/0009-0008-4321-1920): Persistent researcher identifier.
+- [Google Scholar](https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en): Publication record.
+- [GitHub](https://github.com/Nishan-Charlie): Software repositories.

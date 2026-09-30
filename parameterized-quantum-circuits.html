@@ -2,13 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parameterized Quantum Circuits: The Weights of Quantum AI — Quantum Learning Roadmap</title>
+<title>Parameterized Quantum Circuits (PQCs) | Quantum Guide</title>
 <meta name="description" content="Understand trainable rotations, observables, loss functions, and the classical optimiser inside a parameterized quantum circuit."><meta name="author" content="Nishankar Sathiyamohan">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#0E6B5A">
+<link rel="author" href="https://www.nishankar.space/">
+<link rel="sitemap" type="application/xml" href="https://www.nishankar.space/sitemap.xml">
+<link rel="describedby" href="https://www.nishankar.space/llms.txt" type="text/plain">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Nishankar Sathiyamohan">
+<meta property="og:title" content="Parameterized Quantum Circuits: The Weights of Quantum AI">
+<meta property="og:description" content="Understand trainable rotations, observables, loss functions, and the classical optimiser inside a parameterized quantum circuit.">
+<meta property="og:url" content="https://www.nishankar.space/parameterized-quantum-circuits.html">
+<meta property="og:image" content="https://www.nishankar.space/Project%20Images/quantum_simulation.png">
+<meta property="og:image:alt" content="Quantum Circuit Lab interactive simulator and learning roadmap">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Parameterized Quantum Circuits: The Weights of Quantum AI">
+<meta name="twitter:description" content="Understand trainable rotations, observables, loss functions, and the classical optimiser inside a parameterized quantum circuit.">
+<meta name="twitter:image" content="https://www.nishankar.space/Project%20Images/quantum_simulation.png">
+
 <link rel="canonical" href="https://www.nishankar.space/parameterized-quantum-circuits.html"><link rel="icon" href="icon.jpg" type="image/jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="quantum-articles.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Parameterized Quantum Circuits: The Weights of Quantum AI","description":"Understand trainable rotations, observables, loss functions, and the classical optimiser inside a parameterized quantum circuit.","author":{"@type":"Person","name":"Nishankar Sathiyamohan"},"isPartOf":{"@type":"Course","name":"The Quantum Learning Roadmap"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://www.nishankar.space/parameterized-quantum-circuits.html#article","url":"https://www.nishankar.space/parameterized-quantum-circuits.html","headline":"Parameterized Quantum Circuits: The Weights of Quantum AI","description":"Understand trainable rotations, observables, loss functions, and the classical optimiser inside a parameterized quantum circuit.","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.nishankar.space/parameterized-quantum-circuits.html"},"image":"https://www.nishankar.space/Project%20Images/quantum_simulation.png","author":{"@type":"Person","@id":"https://www.nishankar.space/#person","name":"Nishankar Sathiyamohan","url":"https://www.nishankar.space/","sameAs":["https://orcid.org/0009-0008-4321-1920","https://scholar.google.com/citations?user=kqrLPFsAAAAJ\u0026hl=en","https://github.com/Nishan-Charlie"]},"publisher":{"@id":"https://www.nishankar.space/#person"},"isPartOf":{"@type":"Course","@id":"https://www.nishankar.space/quantum.html#course","name":"The Quantum Learning Roadmap","url":"https://www.nishankar.space/quantum.html#roadmap"},"position":11,"articleSection":"Quantum Learning Roadmap","learningResourceType":"Tutorial","educationalLevel":"Advanced","proficiencyLevel":"Advanced","isAccessibleForFree":true,"inLanguage":"en","audience":{"@type":"EducationalAudience","audienceType":"Software engineers and developers learning quantum computing"},"about":[{"@type":"Thing","name":"Quantum computing"},{"@type":"Thing","name":"Software engineering"}]},{"@type":"BreadcrumbList","@id":"https://www.nishankar.space/parameterized-quantum-circuits.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.nishankar.space/"},{"@type":"ListItem","position":2,"name":"Quantum Learning Roadmap","item":"https://www.nishankar.space/quantum.html"},{"@type":"ListItem","position":3,"name":"Parameterized Quantum Circuits: The Weights of Quantum AI","item":"https://www.nishankar.space/parameterized-quantum-circuits.html"}]}]}</script>
 </head>
 <body>
 <nav class="qa-nav"><div class="qa-nav-in"><a class="qa-brand" href="index.html"><img src="icon.jpg" alt=""><span>Nishankar Sathiyamohan</span></a><div class="qa-nav-links"><a href="quantum.html#roadmap">Roadmap</a><a href="quantum.html#lab">Interactive lab</a><a href="quantum.html#glossary">Glossary</a></div></div></nav>
