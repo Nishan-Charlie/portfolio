@@ -7,7 +7,8 @@ The canonical entry point is the Quantum Circuit Lab. The learning path progress
 ## Main resources
 
 - [Quantum Learning Roadmap and Interactive Circuit Lab](https://www.nishankar.space/quantum.html): Canonical hub containing the four-stage roadmap, glossary, nine-step interactive simulator, worked circuits, code export, VQE demonstration, and recommended reading.
-- [Academic profile](https://www.nishankar.space/): Author profile, publications, research interests, teaching, supervision, and projects.
+- [Academic profile](https://www.nishankar.space/): Author profile, publications, research interests, teaching, and supervision.
+- [Projects](https://www.nishankar.space/projects.html): Research code and side projects.
 
 ## Conceptual bridge
 
