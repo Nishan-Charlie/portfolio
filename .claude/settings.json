@@ -24,7 +24,24 @@
       "Bash(python \"C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/check_parity.py\")",
       "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless=new --disable-gpu --hide-scrollbars --user-data-dir=C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/chrome-prof --window-size=1280,900 --virtual-time-budget=4000 --screenshot=C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/new-index.png file:///C:/Users/nisha/Desktop/portfolio/index.html)",
       "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless=new --disable-gpu --hide-scrollbars --user-data-dir=C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/chrome-prof --window-size=1280,900 --virtual-time-budget=4000 --screenshot=C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/new-projects.png file:///C:/Users/nisha/Desktop/portfolio/projects.html)",
-      "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless=new --disable-gpu --hide-scrollbars --allow-file-access-from-files '--host-resolver-rules=MAP abacus.jasoncameron.dev 0.0.0.0' --user-data-dir=C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/chrome-prof --virtual-time-budget=5000 --dump-dom file:///C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/mobile-wrap.html)"
+      "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless=new --disable-gpu --hide-scrollbars --allow-file-access-from-files '--host-resolver-rules=MAP abacus.jasoncameron.dev 0.0.0.0' --user-data-dir=C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/chrome-prof --virtual-time-budget=5000 --dump-dom file:///C:/Users/nisha/AppData/Local/Temp/claude/c--Users-nisha-Desktop-portfolio/8bd1fbda-cb85-4e2d-87e2-7ed6c4c46ad2/scratchpad/mobile-wrap.html)",
+      "Bash(curl -sIL \"https://uom.lk/staff/Meedeniya.DA\" -m 30)",
+      "mcp__claude_ai_Firecrawl__firecrawl_scrape",
+      "Bash(curl -sL -D - -o /dev/null \"https://uom.lk/staff/Meedeniya.DA\" -m 30 -A \"Mozilla/5.0\")",
+      "Bash(python -I -c ' *)",
+      "Bash(python -I -c \"import PIL; from PIL import features; print\\('PIL', PIL.__version__, 'webp', features.check\\('webp'\\)\\)\")",
+      "Read(//d/wildfire_datasets/WildForest3D/**)",
+      "Bash(python -I -c \"import laspy; print\\('laspy', laspy.__version__\\)\")",
+      "Read(//d/wildfire_datasets/WildForest3D/data_point_clouds/**)",
+      "Bash(python -I -c \"import lazrs\")",
+      "Bash(python -I -c \"import matplotlib; print\\(matplotlib.__version__\\)\")",
+      "Bash(ls -la /d/wildfire_datasets/WildForest3D/data_point_clouds/Placette_1 | head; grep -n \"def \\\\|laspy\\\\|read\\\\|\\\\.ply\\\\|\\\\.las\\\\|\\\\.npy\\\\|columns\" /d/wildfire_datasets/analysis/forestloader.py | head -30)",
+      "Read(//d/wildfire_datasets/WildForest3D/data_point_clouds/Placette_1/**)",
+      "Bash(head -c 600 /d/wildfire_datasets/WildForest3D/data_point_clouds/Placette_1/Pl_1_final_data_xyzinr.ply | strings | head -20)",
+      "Read(//d/wildfire_datasets/WildForest3D//**)",
+      "Bash(awk -F: '{print $1\": \"$2}')",
+      "Bash(python -m http.server 8765 --bind 127.0.0.1)",
+      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__close_page"
     ]
   }
 }

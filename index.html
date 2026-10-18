@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nishankar Sathiyamohan — Computer Vision · Explainable AI · Spatial Intelligence</title>
+  <title>Nishankar Sathiyamohan — Computer Vision · Trustworthy AI · Spatial Intelligence</title>
   <meta name="author" content="Nishankar Sathiyamohan">
-  <meta name="description" content="Nishankar Sathiyamohan — computer vision researcher working on explainable and trustworthy AI, evaluation of generative medical image models, and reliable 3D and multimodal perception.">
+  <meta name="description" content="Nishankar Sathiyamohan — M.Sc. by Research student at the University of Moratuwa working on computer vision and trustworthy AI: 3D perception for wildfire fuel mapping, explainable AI, and evaluation of generative medical image models.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://www.nishankar.space/">
   <link rel="me" href="https://orcid.org/0009-0008-4321-1920">
@@ -32,6 +32,7 @@
     <nav class="side-nav" aria-label="Site">
       <ul>
         <li><a href="#about">About</a></li>
+        <li><a href="#masters">M.Sc. Research</a></li>
         <li><a href="#publications">Publications</a></li>
         <!-- <li><a href="#news">News</a></li> -->
         <li><a href="#research">Research</a></li>
@@ -42,7 +43,7 @@
         <li><a href="projects.html">Projects</a></li>
         <li><a href="quantum.html">Quantum Lab</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="Nishankar_S_CV_Sept.pdf" download>CV (pdf)</a></li>
+        <li><a href="Nishankar_S_CV_Oct.pdf" download>CV (pdf)</a></li>
       </ul>
     </nav>
   </aside>
@@ -55,23 +56,23 @@
     <h1>Nishankar Sathiyamohan</h1>
     <p class="roles">
       <strong>Researcher in Computer Vision &amp; Trustworthy AI</strong><br>
-      Lecturer, Department of Software Engineering,
-      <a href="https://www.sab.ac.lk/" target="_blank" rel="noopener">Sabaragamuwa University of Sri Lanka</a>,
-      and Research Intern,
-      <a href="https://www.unisq.edu.au/" target="_blank" rel="noopener">University of Southern Queensland</a>
+      M.Sc. by Research student and Research Assistant,
+      <a href="https://uom.lk/" target="_blank" rel="noopener">University of Moratuwa</a>, Sri Lanka
     </p>
     <p>
-      I work at the intersection of <strong>computer vision</strong>, <strong>trustworthy AI</strong>,
-      and <strong>efficient visual learning</strong>. My current work spans explainability for modern
-      vision models, evaluation of generative medical imaging, and reliable 3D and multimodal
-      perception. I am preparing for doctoral research on spatial understanding under incomplete
-      or uncertain observations.
+      I work on <strong>computer vision</strong> and <strong>trustworthy AI</strong>: teaching computers
+      to understand images and 3D scenes, and checking that we can trust what they see. At the
+      University of Moratuwa, I use 3D laser scans of forests to map wildfire fuel, supervised by
+      <a href="https://uom.lk/staff/Meedeniya.DA" target="_blank" rel="noopener">Prof. Dulani Meedeniya</a>. Before this, I was a lecturer at Sabaragamuwa
+      University of Sri Lanka and a part-time research intern at the University of Southern Queensland,
+      where I worked on explainable AI and on judging AI-generated medical images. I am preparing for
+      doctoral research on spatial understanding under incomplete or uncertain observations.
     </p>
     <p><strong>Research agenda.</strong> Building visual systems that are useful in practice, understandable to their users, and honest about uncertainty.</p>
     <p class="open-note">Open for research collaboration.</p>
     <p class="profile-links">
       <a href="mailto:nishannishankar@gmail.com">Email</a> |
-      <a href="Nishankar_S_CV_Sept.pdf" download>CV (pdf)</a> |
+      <a href="Nishankar_S_CV_Oct.pdf" download>CV (pdf)</a> |
       <a href="https://scholar.google.com/citations?user=kqrLPFsAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> |
       <a href="https://orcid.org/0009-0008-4321-1920" target="_blank" rel="noopener me">ORCID</a> |
       <a href="https://dblp.org/pid/431/2483.html" target="_blank" rel="noopener me">DBLP</a> |
@@ -82,12 +83,41 @@
     </p>
   </section>
 
+  <!-- ========== M.SC. RESEARCH ==========
+       Current degree, topic, and supervisor (name links to her uom.lk staff page). -->
+  <section id="masters">
+    <h2>M.Sc. Research</h2>
+    <div class="msc">
+      <figure class="msc-figure">
+        <img width="800" height="600" loading="lazy" decoding="async" src="optimized/papers/forest-pointcloud.webp" alt="3D laser scan of a forest plot, coloured by height from the ground (purple) to the treetops (yellow)">
+        <figcaption>A forest plot captured by a 3D laser scanner (LiDAR), coloured by height: ground and shrubs in purple, treetops in yellow. Rendered from the WildForest3D dataset.</figcaption>
+      </figure>
+      <div>
+        <p class="msc-degree">
+          <strong>M.Sc. by Research in Computer Science and Engineering</strong><br>
+          <a href="https://uom.lk/" target="_blank" rel="noopener">University of Moratuwa</a>, Sri Lanka · Sep 2026 – present<br>
+          Supervisor: <a href="https://uom.lk/staff/Meedeniya.DA" target="_blank" rel="noopener">Prof. Dulani Meedeniya</a>
+        </p>
+        <p><strong>Seeing wildfire fuel in 3D.</strong> A wildfire climbs from dry grass to shrubs, then to low
+          branches, and finally into the treetops. Fire teams need to know where this "fuel" sits, but much of
+          it is hidden under the canopy. I use 3D laser scans of forests, combined with other sensors, to map
+          fuel layer by layer, even where leaves and branches block the view.</p>
+        <p>An AI agent reasons over the scan: when it is unsure about an area, it looks again in more detail.
+          The aim is a fuel-hazard map, with a short plain-language summary, that forest officers can trust
+          and act on.</p>
+      </div>
+    </div>
+  </section>
+
    <!-- ========== PUBLICATIONS ==========
        HOW TO ADD A PAPER: copy one <article class="pub"> block and edit:
-         • thumbnail <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb"> (or <div class="pub-thumb-tile">TEXT</div> if no figure)
+         • picture: <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb">
+           One simple photo of the subject (a leaf, an X-ray, a phone), not a method diagram.
+           Pictures live in optimized/papers/; credit outside photos in the footer "Photo credits".
          • title + link, author list (<strong> = me), venue line
          • status: status-published | status-revision | status-review
-       Groups: "Peer-reviewed & accepted" and "Preprints & under review". Newest first. -->
+         • description: one or two plain sentences: the problem, then what the paper does.
+       Groups: Published → Accepted → Under review → In progress. Newest first. -->
   <section id="publications">
     <h2>Publications</h2>
     <p class="section-note">
@@ -99,198 +129,240 @@
       and <a href="https://www.researchgate.net/profile/Nishankar-Sathiyamohan-2" target="_blank" rel="noopener">ResearchGate</a>.
     </p>
 
-    <h3 class="pub-group">Peer-reviewed &amp; accepted</h3>
+    <h3 class="pub-group">Published</h3>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/medical_image.webp" alt="Medical image analysis illustration">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/medical-mri.webp" alt="MRI scan of a human head, side view">
       <div>
-        <h3 class="pub-title">Deep Semi-supervised Learning for Medical Image Analysis: A Survey</h3>
+        <h3 class="pub-title"><a href="https://doi.org/10.1016/j.neucom.2026.135371" target="_blank" rel="noopener">Deep Semi-supervised Learning for Medical Image Analysis: A Survey</a></h3>
         <p class="pub-authors">T. Shyamalee*, <strong>S. Nishankar*</strong>, S. Thuseethan, C. Wimalasooriya, Y. Sebastian <em>(*equal contribution)</em></p>
-        <p class="pub-meta"><span class="venue">Neurocomputing, Elsevier</span> <span class="status status-published">(Accepted · minor edits)</span></p>
-        <p class="pub-desc">Comprehensive survey categorising semi-supervised methods that reduce dependence on large expert-annotated medical datasets.</p>
+        <p class="pub-meta"><span class="venue">Neurocomputing, Elsevier · 2026</span> <span class="status status-published">(Published · Q1)</span></p>
+        <p class="pub-desc">Labelling medical scans takes expert doctors, so labelled data is always scarce. This survey
+          reviews methods that let AI learn from a few labelled scans plus many unlabelled ones, and compares how
+          well they work.</p>
+        <p class="pub-links">[<a href="https://doi.org/10.1016/j.neucom.2026.135371" target="_blank" rel="noopener">paper</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/citrusdiseasepipeline_page-0001.webp" alt="Citrus disease recognition pipeline figure">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/citrus-canker.webp" alt="Citrus leaf with canker spots, still on the tree">
       <div>
         <h3 class="pub-title"><a href="https://doi.org/10.1007/s10462-026-11629-z" target="_blank" rel="noopener">Trends, Challenges and Future Directions in Deep Learning for Citrus Leaf Disease Recognition: A Survey</a></h3>
         <p class="pub-authors">T. Godage, <strong>S. Nishankar</strong>, S. Thuseethan, S. Vasanthapriyan, Z. Liang</p>
         <p class="pub-meta"><span class="venue">Artificial Intelligence Review, Springer · 2026</span> <span class="status status-published">(Published · Q1)</span></p>
-        <p class="pub-desc">Synthesises state-of-the-art deep learning techniques, benchmarking trends, and open challenges for citrus leaf disease recognition in real-world deployment.</p>
+        <p class="pub-desc">Diseases such as citrus canker and greening can ruin whole orchards. This survey reviews how
+          AI spots these diseases from photos of leaves, what works today, and what still stops it from being
+          used on real farms.</p>
         <p class="pub-links">[<a href="https://doi.org/10.1007/s10462-026-11629-z" target="_blank" rel="noopener">paper</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/tom_ssl.webp" alt="TOM-SSL framework figure">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/tomato-leaf-lesion.webp" alt="Tomato leaf with a brown disease spot">
       <div>
         <h3 class="pub-title"><a href="https://doi.org/10.3390/agriengineering7080248" target="_blank" rel="noopener">TOM-SSL: Tomato Disease Recognition using Pseudo-labelling based Semi-supervised Learning</a></h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, T. Mithuran, S. Nimishan, V. Pavindran, S. Thuseethan</p>
-        <p class="pub-meta"><span class="venue">AgriEngineering, Vol. 7, No. 8 · 2025</span> <span class="status status-published">(Published · Q1)</span></p>
-        <p class="pub-desc">Semi-supervised framework using pseudo-labelling to classify tomato leaf diseases under label scarcity, sharply reducing dependence on annotated data.</p>
+        <p class="pub-meta"><span class="venue">AgriEngineering, MDPI, Vol. 7, No. 8 · 2025</span> <span class="status status-published">(Published · Q1)</span></p>
+        <p class="pub-desc">Training AI to recognise tomato diseases usually needs thousands of hand-labelled leaf photos.
+          TOM-SSL learns from a small labelled set, then labels the remaining photos itself and keeps only the
+          confident guesses, so far fewer photos need labelling by hand.</p>
         <p class="pub-links">[<a href="https://doi.org/10.3390/agriengineering7080248" target="_blank" rel="noopener">paper</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/vit_rot.webp" alt="ViT-RoT architecture figure">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/tomato-early-blight.webp" alt="Tomato leaves with early blight spots">
       <div>
         <h3 class="pub-title"><a href="https://doi.org/10.3390/agriengineering7060185" target="_blank" rel="noopener">ViT-RoT: Vision Transformer-Based Robust Framework for Tomato Leaf Disease Recognition</a></h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, V. Pavindran, T. Mithuran, S. Nimishan, S. Thuseethan, Y. Sebastian</p>
-        <p class="pub-meta"><span class="venue">AgriEngineering, Vol. 7, No. 6 · 2025</span> <span class="status status-published">(Published · Q1)</span></p>
-        <p class="pub-desc">Robust Vision Transformer framework for early tomato leaf disease detection using attention-based feature extraction.</p>
+        <p class="pub-meta"><span class="venue">AgriEngineering, MDPI, Vol. 7, No. 6 · 2025</span> <span class="status status-published">(Published · Q1)</span></p>
+        <p class="pub-desc">Spotting leaf disease early lets farmers act before it spreads. ViT-RoT tests a family of
+          Vision Transformer models (a modern type of image AI) on tomato leaf photos and builds a reliable
+          pipeline for recognising the disease from a single photo.</p>
         <p class="pub-links">[<a href="https://doi.org/10.3390/agriengineering7060185" target="_blank" rel="noopener">paper</a>] [<a href="https://github.com/Nishan-Charlie/ViT-RoT" target="_blank" rel="noopener">code</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/Quantum_scaling.webp" alt="Hybrid quantum-classical CNN qubit scaling figure">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/datacenter.webp" alt="Rows of server racks in a data centre">
       <div>
-        <h3 class="pub-title">Encoding Strategy and Qubit Scaling in Hybrid Quantum-Classical CNNs for Skin Lesion Classification</h3>
-        <p class="pub-authors"><strong>S. Nishankar</strong>, A. Sangeetha, S. Thuseethan</p>
-        <p class="pub-meta"><span class="venue">InCiT 2026 (conference)</span> <span class="status status-published">(Accepted)</span></p>
-        <p class="pub-desc">Systematic study of amplitude vs. angle encoding and qubit scaling in hybrid quantum-classical CNNs for dermatological skin lesion classification.</p>
-      </div>
-    </article>
-
-    <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/Inter-Tool Wiring Specification_page-0001.webp" alt="Zero Trust Kubernetes framework wiring diagram">
-      <div>
-        <h3 class="pub-title">A Unified Zero Trust Orchestration Framework for Kubernetes: Design, Integration, and Functional Verification</h3>
+        <h3 class="pub-title"><a href="https://ieeexplore.ieee.org/document/11709624" target="_blank" rel="noopener">A Unified Zero Trust Orchestration Framework for Kubernetes: Design, Integration, and Functional Verification</a></h3>
         <p class="pub-authors">M. Shakishnavi, K. P. N. Jayasena, <strong>S. Nishankar</strong></p>
-        <p class="pub-meta"><span class="venue">APAN Conference · 2026</span> <span class="status status-published">(Accepted)</span></p>
-        <p class="pub-desc">Unified Zero Trust security framework for Kubernetes integrating SPIRE, Cilium, Falco, Kyverno, and Vault.</p>
+        <p class="pub-meta"><span class="venue">APAN Conference, IEEE Xplore · 2026</span> <span class="status status-published">(Published)</span></p>
+        <p class="pub-desc">"Zero Trust" means no user or program is trusted by default: every request must prove who it
+          is. This paper joins five open-source security tools (SPIRE, Cilium, Falco, Kyverno, Vault) into one
+          Zero Trust setup for Kubernetes, the system that runs many cloud apps, and checks that it works end to end.</p>
+        <p class="pub-links">[<a href="https://ieeexplore.ieee.org/document/11709624" target="_blank" rel="noopener">paper</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/zerotrust_observability.webp" alt="Zero Trust observability evaluation figure">
-      <div>
-        <h3 class="pub-title">Observability-Driven Security Evaluation of a Unified Zero Trust Framework for Kubernetes: Cross-Layer Event Correlation and Automated Response Validation</h3>
-        <p class="pub-authors">M. Shakishnavi, K. P. N. Jayasena, <strong>S. Nishankar</strong></p>
-        <p class="pub-meta"><span class="venue">InCiT Conference · 2026</span> <span class="status status-published">(Accepted)</span></p>
-        <p class="pub-desc">Cross-layer event correlation and automated response validation for Zero Trust Kubernetes deployments.</p>
-      </div>
-    </article>
-
-    <article class="pub">
-      <div class="pub-thumb-tile">Zero Trust · Kubernetes</div>
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/network-cabling.webp" alt="Network cables connected to server racks">
       <div>
         <h3 class="pub-title"><a href="https://doi.org/10.1109/MERCon71835.2026.11691543" target="_blank" rel="noopener">A Multi-Layer Zero Trust Security Framework for Kubernetes</a></h3>
         <p class="pub-authors">M. Shakishnavi, K. P. N. Jayasena, <strong>S. Nishankar</strong></p>
         <p class="pub-meta"><span class="venue">MERCon, IEEE · 2026</span> <span class="status status-published">(Published)</span></p>
-        <p class="pub-desc">Layered Zero Trust security architecture for Kubernetes clusters, spanning identity, network, workload, and policy enforcement.</p>
+        <p class="pub-desc">Protects Kubernetes clusters with security checks at several layers: who is calling, what
+          network traffic is allowed, what is running, and which rules apply. If one layer fails, the others
+          still protect the system.</p>
         <p class="pub-links">[<a href="https://doi.org/10.1109/MERCon71835.2026.11691543" target="_blank" rel="noopener">paper</a>]</p>
       </div>
     </article>
 
-    <h3 class="pub-group">Preprints &amp; under review</h3>
+    <h3 class="pub-group">Accepted (to appear)</h3>
 
     <article class="pub">
-      <div class="pub-thumb-tile">M3-Score · Generative Eval</div>
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/skin-lesion.webp" alt="Close-up of a dark skin lesion next to a ruler">
       <div>
-        <h3 class="pub-title"><a href="https://arxiv.org/abs/2609.33769" target="_blank" rel="noopener">M3-Score: Fidelity, Memorization and Coverage as Separate Axes for Evaluating Generative Radiology Image Models</a></h3>
-        <p class="pub-authors"><strong>S. Nishankar</strong>, P. Sanjeewani, A. G. Perera</p>
-        <p class="pub-meta"><span class="venue">arXiv:2609.33769 · Biomedical Signal Processing and Control, Elsevier</span> <span class="status status-review">(Submitted)</span></p>
-        <p class="pub-desc">Evaluation metric for generative radiology image models that scores fidelity, memorization, and coverage as separate axes, built on features from a frozen radiology-pretrained vision transformer.</p>
-        <p class="pub-links">[<a href="https://arxiv.org/abs/2609.33769" target="_blank" rel="noopener">arXiv</a>]</p>
+        <h3 class="pub-title">Encoding Strategy and Qubit Scaling in Hybrid Quantum-Classical CNNs for Skin Lesion Classification</h3>
+        <p class="pub-authors"><strong>S. Nishankar</strong>, A. Sangeetha, S. Thuseethan</p>
+        <p class="pub-meta"><span class="venue">InCiT 2026 (conference)</span> <span class="status status-published">(Accepted)</span></p>
+        <p class="pub-desc">Can small quantum circuits help tell harmless moles from skin cancer? This study compares two
+          ways of loading image data into qubits (amplitude and angle encoding) and how the number of qubits
+          changes accuracy.</p>
       </div>
     </article>
 
     <article class="pub">
-      <div class="pub-thumb-tile">HiLRP · Attention Primitives</div>
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/monitoring-screens.webp" alt="Monitoring screens showing live signal graphs in a dark control room">
       <div>
-        <h3 class="pub-title"><a href="https://arxiv.org/abs/2609.01282" target="_blank" rel="noopener">HiLRP: Toward One Trustworthy Explanation for Vision Transformer — Conservation-Valid Attribution via Attention Primitives</a></h3>
+        <h3 class="pub-title">Observability-Driven Security Evaluation of a Unified Zero Trust Framework for Kubernetes: Cross-Layer Event Correlation and Automated Response Validation</h3>
+        <p class="pub-authors">M. Shakishnavi, K. P. N. Jayasena, <strong>S. Nishankar</strong></p>
+        <p class="pub-meta"><span class="venue">InCiT Conference · 2026</span> <span class="status status-published">(Accepted)</span></p>
+        <p class="pub-desc">Puts the Zero Trust Kubernetes setup under simulated attack. Alerts from each security layer
+          are joined into one timeline, and the study checks that the automatic responses actually trigger.</p>
+      </div>
+    </article>
+
+    <h3 class="pub-group">Under review</h3>
+
+    <article class="pub">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/hilrp-cheetah.webp" alt="Photo of a cheetah cub beside a heatmap that highlights its eyes and nose as the parts the AI relied on">
+      <div>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2609.01282" target="_blank" rel="noopener">HiLRP: Conservation-Valid Attribution via Attention Primitives</a></h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, P. Sanjeewani, A. G. Perera, S. Thuseethan</p>
-        <p class="pub-meta"><span class="venue">arXiv:2609.01282 · Pattern Recognition, Elsevier</span> <span class="status status-review">(Submitted)</span></p>
-        <p class="pub-desc">A unified explainability framework with conservation-valid relevance propagation for arbitrary Vision Transformers, decomposed into four attention primitives.</p>
+        <p class="pub-meta"><span class="venue">Pattern Recognition, Elsevier · arXiv:2609.01282</span> <span class="status status-review">(Under review)</span></p>
+        <p class="pub-desc">When an AI labels a photo, which pixels made it decide? HiLRP draws a heatmap of those pixels
+          for any Vision Transformer. The heatmap's scores add up exactly to the model's decision, so the
+          explanation is faithful rather than a rough guess.</p>
         <p class="pub-links">[<a href="https://arxiv.org/abs/2609.01282" target="_blank" rel="noopener">arXiv</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <div class="pub-thumb-tile">XAI Transfer Benchmark</div>
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/xai-benchmark.webp" alt="Photo of an ambulance and three heatmaps from different AI models, each highlighting different parts of it">
       <div>
         <h3 class="pub-title"><a href="https://arxiv.org/abs/2608.02396" target="_blank" rel="noopener">Does Explainability Transfer? A Controlled Benchmark of Attribution Methods on Vision Transformers and CNNs</a></h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, N. Pathirana, P. Sanjeewani, A. G. Perera, S. Thuseethan</p>
-        <p class="pub-meta"><span class="venue">arXiv:2608.02396 · Neurocomputing, Elsevier</span> <span class="status status-review">(Under review)</span></p>
-        <p class="pub-desc">One of the largest controlled XAI benchmarks for modern vision architectures — 13 attribution methods across CNNs and five ViT families, evaluated on faithfulness, localization, robustness, complexity, and efficiency.</p>
+        <p class="pub-meta"><span class="venue">Neurocomputing, Elsevier · arXiv:2608.02396</span> <span class="status status-review">(Under review)</span></p>
+        <p class="pub-desc">Most explanation methods were designed for older image models (CNNs). We test whether they still
+          work on newer Vision Transformers: 13 methods across CNNs and five Transformer families on the same
+          images, scored on faithfulness, localisation, robustness, and cost.</p>
         <p class="pub-links">[<a href="https://arxiv.org/abs/2608.02396" target="_blank" rel="noopener">arXiv</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/U-FedTomAtt (1)_page-0001.webp" alt="U-FedTomAtt federated learning framework figure">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/chest-xray.webp" alt="Chest X-ray">
+      <div>
+        <h3 class="pub-title"><a href="https://arxiv.org/abs/2609.33769" target="_blank" rel="noopener">M3-Score: Fidelity, Memorization and Coverage as Separate Axes for Evaluating Generative Radiology Image Models</a></h3>
+        <p class="pub-authors"><strong>S. Nishankar</strong>, P. Sanjeewani, A. G. Perera</p>
+        <p class="pub-meta"><span class="venue">Biomedical Signal Processing and Control, Elsevier · arXiv:2609.33769</span> <span class="status status-review">(Submitted)</span></p>
+        <p class="pub-desc">AI can now generate realistic X-rays, but how do we judge them? M3-Score gives three separate
+          scores: how realistic the images look, whether the model simply copied its training images, and how
+          much variety it produces.</p>
+        <p class="pub-links">[<a href="https://arxiv.org/abs/2609.33769" target="_blank" rel="noopener">arXiv</a>]</p>
+      </div>
+    </article>
+
+    <article class="pub">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/tomato-greenhouse.webp" alt="Tomato plants with green fruit in a greenhouse">
       <div>
         <h3 class="pub-title"><a href="https://arxiv.org/abs/2602.16749" target="_blank" rel="noopener">U-FedTomAtt: Ultra-lightweight Federated Learning with Attention for Tomato Disease Recognition</a></h3>
         <p class="pub-authors">R. George, <strong>S. Nishankar</strong>, S. Thuseethan, C. Wimalasooriya, Y. Sebastian, R. G. Ragel, Z. Liang</p>
-        <p class="pub-meta"><span class="venue">arXiv:2602.16749 · Information Sciences</span> <span class="status status-review">(Under review)</span></p>
-        <p class="pub-desc">Ultra-lightweight federated learning with attention for privacy-preserving disease recognition on edge devices.</p>
+        <p class="pub-meta"><span class="venue">Information Sciences · arXiv:2602.16749</span> <span class="status status-review">(Under review)</span></p>
+        <p class="pub-desc">Lets many farms train one shared tomato-disease model without sending their photos anywhere
+          (federated learning). The model is small enough to run on low-cost phones and field devices.</p>
         <p class="pub-links">[<a href="https://arxiv.org/abs/2602.16749" target="_blank" rel="noopener">arXiv</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <div class="pub-thumb-tile">UtVAA · Affix Attention</div>
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/smartphone-camera.webp" alt="Hand holding a smartphone while taking a photo">
       <div>
         <h3 class="pub-title"><a href="https://arxiv.org/abs/2606.14735" target="_blank" rel="noopener">UtVAA: Ultra-tiny Vision Transformer with Affix Attention for Mobile Image Classification</a></h3>
         <p class="pub-authors">R. George, <strong>S. Nishankar</strong>, S. Thuseethan, R. G. Ragel</p>
-        <p class="pub-meta"><span class="venue">arXiv:2606.14735 · 2026</span> <span class="status status-review">(Under review)</span></p>
-        <p class="pub-desc">Ultra-tiny Vision Transformer with an affix attention mechanism for accurate image classification on mobile and resource-constrained devices.</p>
+        <p class="pub-meta"><span class="venue">IEEE Transactions on Pattern Analysis and Machine Intelligence · arXiv:2606.14735</span> <span class="status status-review">(Under review)</span></p>
+        <p class="pub-desc">A very small Vision Transformer that recognises what is in a photo directly on a mobile
+          phone. A new "affix attention" design keeps it accurate with very few parameters.</p>
         <p class="pub-links">[<a href="https://arxiv.org/abs/2606.14735" target="_blank" rel="noopener">arXiv</a>]</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/SLIF_Dataset.webp" alt="SLIF-Brinjal in-field leaf dataset samples">
-      <div>
-        <h3 class="pub-title">SLIF-Brinjal: An In-Field Leaf Dataset for Disease Recognition in Precision Agriculture</h3>
-        <p class="pub-authors">R. George, <strong>S. Nishankar</strong>, S. Thuseethan, K. Pakeerathan, R. G. Ragel</p>
-        <p class="pub-meta"><span class="venue">Scientific Data, Nature Portfolio</span> <span class="status status-revision">(Minor revision)</span></p>
-        <p class="pub-desc">Large-scale, high-resolution brinjal leaf disease dataset captured in real field conditions for robust model benchmarking.</p>
-      </div>
-    </article>
-
-    <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/signal_processing.webp" alt="Physiological signal analysis illustration">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/ecg-watch.webp" alt="Smartwatch with a built-in ECG sensor worn on a wrist">
       <div>
         <h3 class="pub-title">From Unimodal to Multimodal Deep Physiological Signal Analysis in Healthcare: A Survey</h3>
         <p class="pub-authors">T. Bakmeedeniya, S. Thuseethan, R. G. Ragel, P. Vigneshwaran, <strong>S. Nishankar</strong></p>
         <p class="pub-meta"><span class="venue">Computer Science Review</span> <span class="status status-revision">(Minor revision)</span></p>
-        <p class="pub-desc">Survey of deep learning for physiological signals, focusing on multimodal fusion strategies and explainability in healthcare AI.</p>
+        <p class="pub-desc">Reviews how AI reads body signals, such as heart rhythm (ECG) and brain activity (EEG), from
+          wearables and hospital monitors, and how combining several signals gives a fuller picture of a
+          patient's health.</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/self_x_vit_page-0001.webp" alt="Self-xViT framework figure">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/brinjal-field.webp" alt="Brinjal (eggplant) plant growing in a field">
+      <div>
+        <h3 class="pub-title">SLIF-Brinjal: An In-Field Leaf Dataset for Disease Recognition in Precision Agriculture</h3>
+        <p class="pub-authors">R. George, <strong>S. Nishankar</strong>, S. Thuseethan, K. Pakeerathan, R. G. Ragel</p>
+        <p class="pub-meta"><span class="venue">Scientific Data, Nature Portfolio</span> <span class="status status-revision">(Minor revision)</span></p>
+        <p class="pub-desc">A large set of high-resolution brinjal (eggplant) leaf photos taken in real fields and labelled
+          by disease, so AI models can be tested on messy real-world photos instead of clean lab images.</p>
+      </div>
+    </article>
+
+    <article class="pub">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/tomato-late-blight.webp" alt="Tomato plants with late blight damage on the leaves">
       <div>
         <h3 class="pub-title">Self-xViT: Self-supervised Vision Transformer for Explainable Tomato Leaf Disease Detection</h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, G. Rajalingam, S. Thuseethan, Y. Sebastian, et al.</p>
         <p class="pub-meta"><span class="venue">Applied Intelligence</span> <span class="status status-review">(Under review)</span></p>
-        <p class="pub-desc">Self-supervised ViT with built-in explainability for disease detection without labelled training data.</p>
+        <p class="pub-desc">Learns to spot tomato leaf disease without hand-labelled photos, and shows which part of the
+          leaf led to each decision so growers can check the result.</p>
       </div>
     </article>
 
     <article class="pub">
-      <img width="800" height="600" loading="lazy" decoding="async" class="pub-thumb" src="optimized/Project Images/tiny_dlw_brinjal.webp" alt="Tiny-DLW architecture figure">
+      <img width="640" height="480" loading="lazy" decoding="async" class="pub-thumb" src="optimized/papers/brinjal-leaves.webp" alt="Brinjal leaves with holes and spots">
       <div>
         <h3 class="pub-title">Tiny-DLW: A Resource-Constrained Architecture using Hierarchical Dilated Convolutions for Real-Time Brinjal Disease Recognition</h3>
         <p class="pub-authors"><strong>S. Nishankar</strong>, et al.</p>
         <p class="pub-meta"><span class="venue">Journal submission · 2026</span> <span class="status status-review">(Under review)</span></p>
-        <p class="pub-desc">Ultra-lightweight hierarchical dilated convolution network for real-time disease recognition on edge devices.</p>
+        <p class="pub-desc">A very small neural network that recognises brinjal leaf diseases in real time on cheap
+          devices. It looks at each leaf at several zoom levels at once, which keeps it accurate without making
+          it bigger.</p>
       </div>
     </article>
 
     <h3 class="pub-group">In progress</h3>
 
     <div class="wip">
-      <h3>PMQ-Net: Physiologically-Grounded Multi-Register Quantum Network</h3>
-      <p>Hybrid quantum-classical architecture mirroring autonomic nervous-system subsystems for physiological signal recognition.</p>
+      <h3>Keeping Minority Opinions in Review Summaries: Do Keyword Prompts Help Small Language Models?</h3>
+      <p>When a small AI model summarises hundreds of product or drug reviews, the minority view often disappears.
+        Across five models and 27,000+ summaries, keyword hints grouped by opinion raised minority-opinion coverage
+        by 11–38 percentage points, but pushed summaries towards a false even balance.</p>
     </div>
     <div class="wip">
       <h3>SSA-HQNN: Spatial Superpixel Attention-Guided Hybrid Quantum Neural Network for Image Classification</h3>
-      <p>Learned spatial superpixel attention conditioning a trainable quantum encoding — up to 93.9% accuracy across seven benchmarks (incl. PathMNIST, PneumoniaMNIST) with as few as 60K trainable parameters, a ~100× reduction versus ResNet-18.</p>
+      <p>A hybrid quantum-classical image classifier that first picks out the important regions of an image and
+        feeds them to a small quantum circuit. Up to 93.9% accuracy on PathMNIST and 90.3% on PneumoniaMNIST,
+        with as few as 60K trainable parameters, far fewer than ResNet-18.</p>
+    </div>
+    <div class="wip">
+      <h3>PMQ-Net: Physiologically-Grounded Multi-Register Quantum Network</h3>
+      <p>A hybrid quantum-classical network whose structure mirrors the body's autonomic nervous system, for
+        recognising states such as stress from body signals.</p>
     </div>
   </section>
 
@@ -359,7 +431,7 @@
     <div class="interests-grid">
       <div class="interest">
         <h3>Spatial Intelligence &amp; 3D Vision</h3>
-        <p>Reliable 3D and multimodal perception — spatial understanding under incomplete or uncertain observations, 3D reconstruction, visual SLAM, and dynamic scene understanding.</p>
+        <p>Reliable 3D and multimodal perception — spatial understanding under incomplete or uncertain observations, LiDAR point clouds, occlusion-aware perception, 3D reconstruction, and dynamic scene understanding.</p>
       </div>
       <div class="interest">
         <h3>Explainable AI</h3>
@@ -379,7 +451,7 @@
       </div>
       <div class="interest">
         <h3>Applications</h3>
-        <p>Medical imaging (radiology, histopathology, dermatology, mammography) and precision agriculture (crop disease recognition).</p>
+        <p>Medical imaging (radiology, histopathology, dermatology, mammography), precision agriculture (crop disease recognition), and wildfire risk (forest fuel mapping).</p>
       </div>
     </div>
   </section>
@@ -394,10 +466,16 @@
       <div class="xp-col">
         <h3>Positions</h3>
         <div class="xp-item">
+          <span class="when">Sep 2026 — present</span>
+          <div class="what">Research Assistant</div>
+          <div class="where">University of Moratuwa, Sri Lanka</div>
+          <div class="detail">Occlusion-aware multimodal 3D perception and agentic reasoning for wildfire fuel mapping from 3D point clouds · Supervisor: Prof. D. A. Meedeniya</div>
+        </div>
+        <div class="xp-item">
           <span class="when">Mar 2026 — Aug 2026</span>
           <div class="what">Research Intern (part-time)</div>
           <div class="where">University of Southern Queensland, Australia</div>
-          <div class="detail">Evaluation metrics for generative medical imaging (M3-Score) · 3D computer vision and reconstruction · XAI benchmarking and HiLRP</div>
+          <div class="detail">M3-Score for evaluating generative medical images · controlled XAI benchmark across ViTs and CNNs · HiLRP attribution for ViTs · Supervisor: Dr. Asanka Perera</div>
         </div>
         <div class="xp-item">
           <span class="when">Apr 2025 — Aug 2026</span>
@@ -418,6 +496,12 @@
       </div>
       <div class="xp-col">
         <h3>Education</h3>
+        <div class="xp-item">
+          <span class="when">Sep 2026 — present</span>
+          <div class="what">M.Sc. by Research in Computer Science and Engineering</div>
+          <div class="where">University of Moratuwa, Sri Lanka</div>
+          <div class="detail">Supervisor: Prof. Dulani Meedeniya · <a href="#masters">research topic</a></div>
+        </div>
         <div class="xp-item">
           <span class="when">2018 — 2023</span>
           <div class="what">B.Sc.Eng. (Hons) in Computer Engineering</div>
@@ -714,6 +798,28 @@
       <p>Last updated: October 2026</p>
       <p>&copy; 2026 Nishankar Sathiyamohan. Layout originally adapted from
         <a href="https://github.com/jonbarron/jonbarron.github.io" target="_blank" rel="noopener">Jon Barron</a>.</p>
+      <!-- Publication photos come from Wikimedia Commons. Keep one line per outside photo:
+           CC BY / CC BY-SA licences require the credit to stay visible. -->
+      <details class="credits">
+        <summary>Photo credits</summary>
+        <p>Publication photos from Wikimedia Commons:
+          <a href="https://commons.wikimedia.org/wiki/File:MRI_brain_sagittal_section.jpg" target="_blank" rel="noopener">MRI scan</a>, everyone's idle, CC BY-SA 2.0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:Citrus_Canker_(20151109-APHIS-DB-0052).jpg" target="_blank" rel="noopener">citrus canker</a>, USDA APHIS, public domain ·
+          <a href="https://commons.wikimedia.org/wiki/File:Alternaria_solani_-_leaf_lesions.jpg" target="_blank" rel="noopener">tomato leaf lesion</a>, Clemson University – USDA Cooperative Extension Slide Series, Bugwood.org, CC BY 3.0 US ·
+          <a href="https://commons.wikimedia.org/wiki/File:Early_blight_on_tomato_leaves_(7871930010).jpg" target="_blank" rel="noopener">tomato early blight</a>, Dwight Sipler, CC BY 2.0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:Datacenter.jpg" target="_blank" rel="noopener">data centre</a>, Wilweterings, public domain ·
+          <a href="https://commons.wikimedia.org/wiki/File:Wikimedia_Tampa_fall_2007_cabling.jpg" target="_blank" rel="noopener">server cabling</a>, Midom, CC BY 2.0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:Melanoma_Asymmetry.jpg" target="_blank" rel="noopener">skin lesion</a>, National Cancer Institute, public domain ·
+          <a href="https://commons.wikimedia.org/wiki/File:The_acquisition_of_the_radio_frequency_signal_from_the_Artemis_II_crewed_mission_to_the_Moon_by_NASA%E2%80%99s_Deep_Space_Network_(DSN)_is_indicated_by_the_peak_in_the_data_signal_shown_on_(the-deep-space-network-acquires-artemis-ii-signal).jpg" target="_blank" rel="noopener">monitoring screens</a>, NASA/JPL-Caltech, public domain ·
+          <a href="https://commons.wikimedia.org/wiki/File:Normal_posteroanterior_(PA)_chest_radiograph_(X-ray).jpg" target="_blank" rel="noopener">chest X-ray</a>, Mikael Häggström, CC0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:U.S._Department_of_Agriculture_(USDA)_Rural_Development_(RD)_Ohio_business_program_staff_visited_Mucci_Farms,_a_75-acre_greenhouse_production_farm_in_Huron,_Ohio_on_September_25,_2024_-_3.jpg" target="_blank" rel="noopener">tomato greenhouse</a>, USDA Rural Development, public domain ·
+          <a href="https://commons.wikimedia.org/wiki/File:Smartphone_photographer_(Unsplash).jpg" target="_blank" rel="noopener">smartphone</a>, James Sutton, CC0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:Withings_Move_ECG_watch_worn_on_wrist.jpg" target="_blank" rel="noopener">ECG watch</a>, Peter H. Charlton, CC BY 4.0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:Solanum_melongena-2025_01.jpg" target="_blank" rel="noopener">brinjal plant</a>, Cheikh cherif, CC BY-SA 4.0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:Tomato_late_blight_foliar_lesions_2_(5816172539).jpg" target="_blank" rel="noopener">tomato late blight</a>, Scot Nelson, CC0 ·
+          <a href="https://commons.wikimedia.org/wiki/File:Starr_081031-0411_Solanum_melongena.jpg" target="_blank" rel="noopener">brinjal leaves</a>, Forest &amp; Kim Starr, CC BY 3.0.
+          Photos were cropped and resized. Heatmap figures are from my own papers; the forest point cloud is rendered from the WildForest3D dataset.</p>
+      </details>
     </footer>
   </div>
 
