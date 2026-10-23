@@ -1,0 +1,1144 @@
+{
+  "reviewed": "2026-10-23",
+  "countries": [
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "region": "Asia",
+      "intro": "Research master's and PhD funding is usually linked to admission. Check the school as well as the university: funding availability can differ by department.",
+      "prepare": "Match your research interests to a lab, prepare evidence of your thesis or projects, and check department-specific English and GRE requirements.",
+      "universities": [
+        {
+          "name": "National University of Singapore (NUS)",
+          "requirements": "Research Scholarship: at least second-class upper honours or equivalent; CV, statement and references. Check additional faculty requirements.",
+          "url": "https://nusgs.nus.edu.sg/scholarships/nus-research-scholarship/"
+        },
+        {
+          "name": "Nanyang Technological University (NTU)",
+          "requirements": "Research Scholarship: Honours (Distinction) or equivalent. Submit a full-time research admission application; confirm that your school funds master's students.",
+          "url": "https://www.ntu.edu.sg/admissions/graduate/financialmatters/scholarships/rss"
+        }
+      ],
+      "awards": [
+        {
+          "id": "singa",
+          "name": "Singapore International Graduate Award (SINGA)",
+          "degrees": [
+            "phd"
+          ],
+          "study": "PhD · science and engineering research",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Tuition, stipend, and one-time airfare and settling-in support, subject to award terms.",
+          "eligibility": "International applicants with strong academic results, English communication skills and academic references. Intended for international students studying in Singapore for the first time.",
+          "apply": "Browse participating research projects, choose suitable supervisors and submit the SINGA online application.",
+          "documents": "Passport, transcripts and degree certificates in English, research interests, and referee reports; follow the portal checklist.",
+          "timing": "Check the intake-specific deadline on the official SINGA portal.",
+          "sources": [
+            [
+              "SINGA programme",
+              "https://www.a-star.edu.sg/Scholarships/for-graduate-studies/singapore-international-graduate-award-singa"
+            ],
+            [
+              "A*STAR application guide (PDF)",
+              "https://www.a-star.edu.sg/docs/librariesprovider1/default-document-library/scholarships/flyers/240711_ia_brochure.pdf?sfvrsn=9d134969_1"
+            ]
+          ]
+        },
+        {
+          "id": "nus-research",
+          "name": "NUS Research Scholarship",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's by research · PhD",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Tuition waiver and stipend; international scholars have Graduate Assistantship Programme duties. Renewal depends on progress.",
+          "eligibility": "Open to international students, including Sri Lankans. Minimum academic prerequisite: second-class upper honours / honours distinction or equivalent.",
+          "apply": "Indicate scholarship interest within your NUS GradApp admission application; fulfil faculty requirements.",
+          "documents": "CV, statement of purpose, academic records and recommendation letters; tests and research evidence as required by the faculty.",
+          "timing": "Admission and scholarship deadlines depend on faculty and intake.",
+          "sources": [
+            [
+              "NUS award and application rules",
+              "https://nusgs.nus.edu.sg/scholarships/nus-research-scholarship/"
+            ]
+          ]
+        },
+        {
+          "id": "ntu-research",
+          "name": "NTU Research Scholarship",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's by research · PhD",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Tuition support and stipend; normally up to two years for master's and four for PhD, subject to school funding and progress.",
+          "eligibility": "Local and international full-time research applicants with Honours (Distinction) or equivalent. Availability is school-specific.",
+          "apply": "Select scholarship interest in the admission application. Confirm your department's research and test requirements.",
+          "documents": "Academic certificates, transcripts, CV, references and required research / language materials.",
+          "timing": "Check the chosen school's intake deadline; admission does not guarantee funding.",
+          "sources": [
+            [
+              "NTU Research Scholarship",
+              "https://www.ntu.edu.sg/admissions/graduate/financialmatters/scholarships/rss"
+            ],
+            [
+              "Research admission guide",
+              "https://www.ntu.edu.sg/admissions/graduate/radmissionguide"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "japan",
+      "name": "Japan",
+      "region": "Asia",
+      "intro": "MEXT can support research leading to a master's or doctorate. A non-degree research placement does not itself guarantee admission to a degree or an extension of funding.",
+      "prepare": "Develop a focused research plan. For MEXT provisional acceptance, follow each university's stated contact procedure: some require an administrative office rather than a direct email to a professor.",
+      "universities": [
+        {
+          "name": "The University of Tokyo",
+          "requirements": "Graduate-school admission and MEXT procedures are separate. Follow the designated office for provisional acceptance; general university-recommendation recruitment is not expected, but special categories may remain.",
+          "url": "https://www.u-tokyo.ac.jp/en/prospective-students/mext_scholarship.html"
+        },
+        {
+          "name": "Kyoto University",
+          "requirements": "Degree applicants must pass the graduate school's entrance process. Check English-taught options and the Admissions Assistance Office process for provisional acceptance.",
+          "url": "https://www.kyoto-u.ac.jp/en/education-campus/procedures/scholarships/mext"
+        }
+      ],
+      "awards": [
+        {
+          "id": "mext-sri-lanka",
+          "name": "MEXT Research Students · Sri Lanka route",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Research placement / master's / PhD",
+          "route": "sri-lanka",
+          "funding": "fees-stipend",
+          "coverage": "Tuition / admission fee exemption, stipend and eligible travel under MEXT rules.",
+          "eligibility": "Sri Lankan applicants must meet the current local notice and MEXT academic, age and field-of-study conditions.",
+          "apply": "Follow the Sri Lankan ministry's online call and local selection process. After first screening, request provisional acceptance using the host university's instructions.",
+          "documents": "Application, degree records, research plan, placement preferences, recommendations and medical form; use the annual checklist.",
+          "timing": "The Sri Lankan call for 2027 arrival closed on 18 May 2026. Check the ministry for the next call.",
+          "sources": [
+            [
+              "Sri Lankan 2027 notice (PDF)",
+              "https://www.lk.emb-japan.go.jp/files/100837660.pdf"
+            ],
+            [
+              "MEXT research application guidelines",
+              "https://www.studyinjapan.go.jp/en/smap-stopj-applications-research.html"
+            ],
+            [
+              "Sri Lankan Ministry of Higher Education",
+              "https://mohe.gov.lk/"
+            ]
+          ]
+        },
+        {
+          "id": "mext-special",
+          "name": "MEXT University Recommendation · Special Selection",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Designated graduate programmes only",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "MEXT benefits for selected candidates; the programme and award conditions determine duration.",
+          "eligibility": "Applicants to an approved special programme who satisfy its admission and MEXT criteria. A general university-recommendation route should not be assumed available.",
+          "apply": "Find a currently eligible special programme, apply under its instructions and obtain the university's nomination.",
+          "documents": "Programme admission materials, academic records, language evidence and scholarship documents requested by that programme.",
+          "timing": "Programme-specific. Kyoto reports no general-programme recruitment for 2027; special selection has separate calls.",
+          "sources": [
+            [
+              "Kyoto's current MEXT routes",
+              "https://www.kyoto-u.ac.jp/en/education-campus/procedures/scholarships/mext"
+            ],
+            [
+              "UTokyo MEXT guidance",
+              "https://www.u-tokyo.ac.jp/en/prospective-students/mext_scholarship.html"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "china",
+      "name": "China",
+      "region": "Asia",
+      "intro": "Chinese Government Scholarships use different application routes. Type A normally goes through a home-country dispatching authority; Type B uses the university route. Full and partial awards both exist.",
+      "prepare": "Choose an English- or Chinese-taught programme first, check its language evidence, and keep the university application number and CSC application details consistent.",
+      "universities": [
+        {
+          "name": "Zhejiang University (ZJU)",
+          "requirements": "Meet the current master's or doctoral admission guide. Type B applicants must follow both ZJU and CSC procedures; check programme-specific supervisor and language requirements.",
+          "url": "https://iczu.zju.edu.cn/admissionsen/2022/0530/c68996a2590724/page.htm"
+        },
+        {
+          "name": "Tsinghua University",
+          "requirements": "Meet your graduate department's entry criteria and scholarship process. Full CGS and tuition-only awards have different coverage; use the graduate financial-aid instructions.",
+          "url": "https://www.tsinghua.edu.cn/en/Admissions/International_Students1/Financial_Aid.htm"
+        }
+      ],
+      "awards": [
+        {
+          "id": "csc-a",
+          "name": "Chinese Government Scholarship · Type A",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's · PhD · bilateral route",
+          "route": "sri-lanka",
+          "funding": "variable",
+          "coverage": "Full or partial scholarship, depending on the bilateral award. Read the actual nomination notice.",
+          "eligibility": "Sri Lankan candidates satisfying the ministry / dispatching authority's current call and the chosen university's graduate requirements.",
+          "apply": "Apply through the dispatching authority specified in Sri Lanka's notice. Complete CSC and host-university steps when required; do not guess the agency number.",
+          "documents": "Degrees, transcripts, study or research plan, references, language evidence and any required medical / clearance documents.",
+          "timing": "Country nomination and university pre-admission deadlines can differ. Check the current Sri Lankan ministry call.",
+          "sources": [
+            [
+              "Type A route explained by ZJU",
+              "https://iczu.zju.edu.cn/admissionsen/2022/0530/c68995a2590719/page.htm"
+            ],
+            [
+              "Sri Lankan postgraduate call, 2025/26 reference (PDF)",
+              "https://www.mohe.gov.lk/images/pdf/ChineseWeb.pdf"
+            ],
+            [
+              "Current ministry notices",
+              "https://mohe.gov.lk/"
+            ]
+          ]
+        },
+        {
+          "id": "csc-b",
+          "name": "Chinese Government Scholarship · Type B",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's · PhD · university route",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "For ZJU's full Chinese University Program: tuition waiver, accommodation support, stipend and medical insurance.",
+          "eligibility": "International applicants meeting the chosen university's graduate admission and scholarship conditions; programme exclusions may apply.",
+          "apply": "Follow the university's current Type B call and submit its application plus the CSC application as instructed.",
+          "documents": "Graduate admission file, research plan, recommendations, language proof and scholarship-specific forms.",
+          "timing": "University-specific; scholarship deadlines may be earlier than normal admission. The linked ZJU call describes the 2026 cycle.",
+          "sources": [
+            [
+              "ZJU Type B guide",
+              "https://iczu.zju.edu.cn/admissionsen/2022/0530/c68996a2590724/page.htm"
+            ],
+            [
+              "Tsinghua financial aid",
+              "https://www.tsinghua.edu.cn/en/Admissions/International_Students1/Financial_Aid.htm"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "south-korea",
+      "name": "South Korea",
+      "region": "Asia",
+      "intro": "Compare the Global Korea Scholarship (GKS) with university funding. Embassy and university tracks have different submission rules, and GKS has an annual designated-university list.",
+      "prepare": "Allow time for certified academic and nationality documents. Check Korean / English language rules for the degree itself, even when a scholarship includes language training.",
+      "universities": [
+        {
+          "name": "KAIST",
+          "requirements": "Bachelor's or equivalent for master's / integrated entry; master's or equivalent for PhD. Meet the current international-citizenship and English-test or waiver rules.",
+          "url": "https://admission.kaist.ac.kr/intl-graduate/Admission/Eligibility"
+        },
+        {
+          "name": "Seoul National University (SNU)",
+          "requirements": "Use the current international graduate admission guide and check GSFS eligibility and participating colleges. Scholarship selection is separate from admission.",
+          "url": "https://en.snu.ac.kr/admission/graduate/scholarships/before_application"
+        }
+      ],
+      "awards": [
+        {
+          "id": "gks",
+          "name": "Global Korea Scholarship · Graduate (GKS-G)",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's · PhD",
+          "route": "sri-lanka",
+          "funding": "fees-stipend",
+          "coverage": "Government support under the annual GKS benefit schedule, including study and living support; check the current guidelines.",
+          "eligibility": "Sri Lankan candidates meeting the year's nationality, academic, age, health and degree requirements at a designated programme.",
+          "apply": "Choose Embassy Track or University Track under the annual rules. Sri Lanka's 2026 embassy call required BOTH online submission and one original certified hard-copy set.",
+          "documents": "GKS forms, personal statement / study plan, recommendations, nationality / family proof, degree records and required certifications.",
+          "timing": "Sri Lanka's 2026 embassy deadline was 25 February 2026, 2:30 pm Sri Lanka time; closed. Check the next notice.",
+          "sources": [
+            [
+              "Sri Lanka embassy instructions",
+              "https://lk.mofa.go.kr/lk-en/brd/m_2309/view.do?page=1&seq=760161"
+            ],
+            [
+              "Official GKS graduate guidelines",
+              "https://www.studyinkorea.go.kr/en/plan/gksNoticeRead.do?bbsId=BBSMSTR_000000000461&nttId=4420"
+            ]
+          ]
+        },
+        {
+          "id": "kaist",
+          "name": "KAIST Scholarship",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's · integrated master's–PhD · PhD",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Tuition coverage, health insurance and stipend; stipend arrangements depend on the college, award and research involvement.",
+          "eligibility": "International graduate applicants meeting KAIST's degree and language conditions. Some programme exclusions apply.",
+          "apply": "Choose KAIST Scholarship as the funding source in the graduate admission application. Eligible candidates are considered for relevant awards.",
+          "documents": "Academic records, statement, recommendations, nationality documentation and required English evidence.",
+          "timing": "Spring and fall admissions have separate rounds. Use the intake-specific admission schedule.",
+          "sources": [
+            [
+              "KAIST funding options",
+              "https://admission.kaist.ac.kr/intl-graduate/FinancialSupport/Scholarship/KAISTScholarship"
+            ],
+            [
+              "Current eligibility rules",
+              "https://admission.kaist.ac.kr/intl-graduate/Admission/Eligibility"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "australia",
+      "name": "Australia",
+      "region": "Oceania",
+      "intro": "Australia Awards is a Sri Lanka country programme. Research Training Program (RTP) and university research scholarships are a separate route for research master's and PhD applicants.",
+      "prepare": "For research degrees, document your thesis content and research contribution. For Australia Awards, connect your study plan to the current Sri Lanka priority fields and return-home development goals.",
+      "universities": [
+        {
+          "name": "University of Melbourne",
+          "requirements": "Apply for an eligible graduate research degree and meet its entry criteria. Stipend awards rank prior academic results and research potential; a course offer alone does not guarantee a stipend.",
+          "url": "https://scholarships.unimelb.edu.au/awards/graduate-research-scholarships"
+        },
+        {
+          "name": "Monash University",
+          "requirements": "PhD standard entry includes a relevant four-year research degree at honours IIA equivalent, or an eligible research master's. Research master's standard entry includes honours IIB equivalent, 65+; other assessed pathways exist.",
+          "url": "https://www.monash.edu/graduate-research/study/apply/admission-criteria"
+        }
+      ],
+      "awards": [
+        {
+          "id": "australia-awards",
+          "name": "Australia Awards · Sri Lanka",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Master's · country priority fields",
+          "route": "sri-lanka",
+          "funding": "fees-stipend",
+          "coverage": "Award benefits can include tuition, living support, eligible travel and health cover under the country profile and policy handbook.",
+          "eligibility": "For the 2027 Sri Lanka call: an Australian bachelor's-equivalent qualification, relevant background and current employment with at least three years' post-qualification experience (sector-specific conditions apply). Meet English and other profile rules; return to Sri Lanka for two years.",
+          "apply": "Read the Sri Lanka country profile, check priority fields and apply online through OASIS using the official award process.",
+          "documents": "Certified academic / identity records, CV, Development Impact and Linkages Plan, English test, employment letter and prescribed referees. Research master's applicants also need a proposal and supervisor details.",
+          "timing": "The general 2027 intake round closed on 30 April 2026. Read the next Sri Lanka profile before applying.",
+          "sources": [
+            [
+              "Sri Lanka intake information",
+              "https://www.dfat.gov.au/people-to-people/australia-awards/participating-countries/sri-lanka-information-for-intake"
+            ],
+            [
+              "Australia Awards application FAQs",
+              "https://www.dfat.gov.au/people-to-people/australia-awards/frequently-asked-questions"
+            ],
+            [
+              "Sri Lanka 2027 country profile (PDF)",
+              "https://www.dfat.gov.au/sites/default/files/australia-awards-sri-lanka-information-for-intake.pdf"
+            ]
+          ]
+        },
+        {
+          "id": "rtp",
+          "name": "Research Training Program (RTP) / university research awards",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's by research · PhD",
+          "route": "international",
+          "funding": "variable",
+          "coverage": "An award may provide a fee offset, stipend and/or allowances. Confirm tuition AND living support in the actual offer.",
+          "eligibility": "Domestic or international research-degree students at an eligible Australian university, meeting its admission and scholarship ranking criteria.",
+          "apply": "Apply to your chosen university, not the Australian education department. Follow its supervisor, admission and scholarship-round process.",
+          "documents": "CV, academic records, research proposal, evidence of thesis / publications, referees and English proof as required.",
+          "timing": "University scholarship rounds differ. Monash's international R1 2027 deadline is 28 February 2027; verify the faculty's instructions.",
+          "sources": [
+            [
+              "Australian Government RTP rules",
+              "https://www.education.gov.au/research-block-grants/research-training-program"
+            ],
+            [
+              "Monash application rounds",
+              "https://www.monash.edu/graduate-research/study/apply"
+            ]
+          ]
+        },
+        {
+          "id": "melbourne",
+          "name": "Melbourne Graduate Research Scholarships",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's by research · PhD",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "For stipend-and-fee awards: tuition remission, living allowance, eligible relocation and single overseas-student health cover. Fee-only awards also exist.",
+          "eligibility": "High-achieving applicants who meet graduate research admission requirements. Stipend selection is competitive and depends on research potential.",
+          "apply": "New applicants applying for an eligible research course by its closing date are automatically considered.",
+          "documents": "The course application file, including required academic, research, referee and English evidence.",
+          "timing": "Use your course's scholarship consideration deadline. Admission and stipend decisions can arrive separately.",
+          "sources": [
+            [
+              "Melbourne benefits and application",
+              "https://scholarships.unimelb.edu.au/awards/graduate-research-scholarships"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "usa",
+      "name": "United States (USA)",
+      "region": "North America",
+      "intro": "Compare a Sri Lanka-specific Fulbright master's award, university PhD funding and competitive graduate fellowships. A taught master's offer in the USA often needs a separate funding plan.",
+      "prepare": "Shortlist departments for academic fit, check degree equivalence and English / GRE rules, and request references early. Ask what the written funding offer covers and for how many years.",
+      "universities": [
+        {
+          "name": "Princeton University",
+          "requirements": "A recognised bachelor's degree by enrolment; programme-specific application and English requirements. PhD funding is guaranteed during regular enrolment, subject to academic conditions; master's funding varies.",
+          "url": "https://gradschool.princeton.edu/admission-onboarding/prepare"
+        },
+        {
+          "name": "Stanford University",
+          "requirements": "Meet the selected graduate programme's entry rules. Knight-Hennessy needs a separate concurrent application and a qualifying first bachelor's graduation date.",
+          "url": "https://knight-hennessy.stanford.edu/admission/before-you-apply/eligibility"
+        }
+      ],
+      "awards": [
+        {
+          "id": "fulbright",
+          "name": "Fulbright Master's Awards · Sri Lanka",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Master's · up to two academic years",
+          "route": "sri-lanka",
+          "funding": "fees-stipend",
+          "coverage": "Tuition / fees, living stipend, airfare and health insurance under the award; university cost-sharing may apply. Dependants are not funded.",
+          "eligibility": "Sri Lankan citizen; two years' continuous prior residence; qualifying four-year degree (or accepted equivalent / additional postgraduate qualification); at least one year of relevant full-time paid work. Further exclusions apply.",
+          "apply": "Use the US–Sri Lanka Fulbright Commission's official award page and linked IIE application.",
+          "documents": "Academic records, essays, references, work / residence evidence and required test materials; use the official instructions.",
+          "timing": "The page states 31 May annually; confirm the current competition. The listed 2027 cycle deadline has passed.",
+          "sources": [
+            [
+              "Sri Lankan Fulbright eligibility and benefits",
+              "https://fulbrightsrilanka.org/award/masters-scholarship/"
+            ]
+          ]
+        },
+        {
+          "id": "princeton-phd",
+          "name": "University-funded PhD · Princeton example",
+          "degrees": [
+            "phd"
+          ],
+          "study": "PhD · programme funding package",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Princeton guarantees full PhD funding during regular programme enrolment. The mix of fellowship and assistantship support varies.",
+          "eligibility": "Applicants admitted to a degree-seeking PhD programme who meet academic and ongoing progress conditions.",
+          "apply": "Apply to the graduate programme by its deadline. Review the resulting financial support offer and any teaching or research duties.",
+          "documents": "Programme application, transcripts, statements, references and required test / work samples.",
+          "timing": "Department-specific annual admission deadlines. Do not assume master's programmes carry the same funding guarantee.",
+          "sources": [
+            [
+              "Princeton PhD funding",
+              "https://gradschool.princeton.edu/financial-support"
+            ],
+            [
+              "Princeton master's funding differs",
+              "https://gradschool.princeton.edu/financial-support/financial-support-model/master%E2%80%99s-degree-funding"
+            ]
+          ]
+        },
+        {
+          "id": "knight-hennessy",
+          "name": "Knight-Hennessy Scholars · Stanford",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Eligible full-time graduate degrees",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Graduate fellowship support under KHS terms. Confirm the funded duration and the degree programme's support for any additional years.",
+          "eligibility": "All nationalities may apply. For the 2027 cohort, the first bachelor's degree must normally be from January 2020 or later; exceptions and concurrent Stanford admission rules apply.",
+          "apply": "Submit separate KHS and Stanford graduate-degree applications aligned to the same entry year.",
+          "documents": "KHS essays / responses, CV, references and academic records, plus the separate department's admission file.",
+          "timing": "KHS and department deadlines are separate. Check the cohort's dates before preparing an application.",
+          "sources": [
+            [
+              "KHS eligibility and concurrent admission",
+              "https://knight-hennessy.stanford.edu/admission/before-you-apply/eligibility"
+            ],
+            [
+              "KHS application guidance",
+              "https://knight-hennessy.stanford.edu/admission/before-you-apply"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canada",
+      "name": "Canada",
+      "region": "North America",
+      "intro": "Research master's and PhD funding often combines university awards, supervisor grants and assistantships. Check international eligibility for each award; Canadian citizenship restrictions differ across schemes.",
+      "prepare": "For thesis programmes, check whether you need a supervisor before applying. Compare the amount remaining after international tuition and fees, and the length of guaranteed support.",
+      "universities": [
+        {
+          "name": "University of British Columbia (UBC)",
+          "requirements": "Check credential-country equivalence and your programme's extra requirements. UBC Vancouver's PhD minimum funding policy is separate from admission and does not mean tuition is always additional.",
+          "url": "https://www.grad.ubc.ca/prospective-students/application-admission/check-your-eligibility"
+        },
+        {
+          "name": "University of Waterloo",
+          "requirements": "Apply to a full-time research programme and meet departmental entry and supervisor requirements. International master's award nominations depend on faculty selection.",
+          "url": "https://uwaterloo.ca/future-graduate-students/funding/funding-research-based-graduate-programs"
+        }
+      ],
+      "awards": [
+        {
+          "id": "ubc-phd",
+          "name": "UBC Vancouver PhD funding / Four Year Fellowship",
+          "degrees": [
+            "phd"
+          ],
+          "study": "PhD · university funding package",
+          "route": "international",
+          "funding": "variable",
+          "coverage": "From September 2026, the minimum PhD package is CAD 40,000 annually for the first four years, subject to policy. It can combine awards and assistantships; check tuition treatment.",
+          "eligibility": "Eligible full-time UBC Vancouver PhD students. Four Year Fellowships are competitive and can include international recipients.",
+          "apply": "Apply to a PhD programme and check its funding offer. Ask the programme about fellowship nomination and departmental conditions.",
+          "documents": "Admission file, references, research statement and any supervisor / award materials requested.",
+          "timing": "Admission and internal award deadlines vary by programme. Check the current minimum-funding policy.",
+          "sources": [
+            [
+              "UBC minimum funding policy",
+              "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-graduate-and-postdoctoral-studies/awards-and-scholarships/minimum-funding-phd-students"
+            ],
+            [
+              "Four Year Fellowship rules",
+              "https://www.grad.ubc.ca/awards/four-year-doctoral-fellowship-guidelines"
+            ]
+          ]
+        },
+        {
+          "id": "waterloo-imae",
+          "name": "Waterloo International Master's Award of Excellence",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Research master's · additional award",
+          "route": "international",
+          "funding": "partial",
+          "coverage": "Competitive additional funding for eligible international research master's students; not a stand-alone full-cost scholarship.",
+          "eligibility": "International students normally entering a research-based master's programme; faculty and academic conditions apply.",
+          "apply": "Apply for the research master's and ask your department about faculty nomination and your complete funding package.",
+          "documents": "Graduate application, transcripts, research interests and references; follow any faculty nomination instructions.",
+          "timing": "Programme-specific admission and award selection. Confirm the award's current value and duration.",
+          "sources": [
+            [
+              "Waterloo international funding rules",
+              "https://uwaterloo.ca/current-graduate-students/awards-and-funding/international-student-funding"
+            ],
+            [
+              "Research-degree funding",
+              "https://uwaterloo.ca/future-graduate-students/funding/funding-research-based-graduate-programs"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "europe",
+      "name": "Europe · multi-country programmes",
+      "region": "Europe",
+      "intro": "These routes span institutions and countries. Country-specific options follow below for the UK, Germany, France, the Netherlands, Sweden and Switzerland.",
+      "prepare": "For Erasmus Mundus, check the consortium's subject prerequisites and mobility plan. For a funded PhD vacancy, match your skills to the advertised project and read its mobility conditions.",
+      "universities": [
+        {
+          "name": "Erasmus Mundus participating universities",
+          "requirements": "A bachelor's degree, final-year status with graduation before entry, or an officially recognised equivalent; each consortium sets subject and language requirements.",
+          "url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters"
+        },
+        {
+          "name": "MSCA Doctoral Network host universities",
+          "requirements": "Apply to an advertised project, satisfy host doctoral admission and the network's mobility rule; candidates must not already hold a doctorate at recruitment.",
+          "url": "https://marie-sklodowska-curie-actions.ec.europa.eu/actions/doctoral-networks"
+        }
+      ],
+      "awards": [
+        {
+          "id": "erasmus",
+          "name": "Erasmus Mundus Joint Masters",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Joint master's · multiple study locations",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Selected full scholarships cover participation costs and contribute to travel, visa and living costs.",
+          "eligibility": "Students worldwide, including Sri Lankans. Hold an eligible first degree or graduate before the course begins, and meet the consortium's prerequisites.",
+          "apply": "Choose a course from the official catalogue and apply directly to its consortium, following the scholarship instructions.",
+          "documents": "Academic records, motivation statement, references, language evidence and programme-specific materials.",
+          "timing": "Many applications fall between October and January for the next academic year; the individual course deadline controls.",
+          "sources": [
+            [
+              "European Commission student guide and catalogue",
+              "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters"
+            ]
+          ]
+        },
+        {
+          "id": "msca",
+          "name": "Marie Skłodowska-Curie Doctoral Networks",
+          "degrees": [
+            "phd"
+          ],
+          "study": "Funded doctoral research positions",
+          "route": "international",
+          "funding": "salary",
+          "coverage": "Funded doctoral positions with remuneration / allowances under the project and host-country rules; read the specific vacancy.",
+          "eligibility": "Any nationality; no doctoral degree at recruitment. Normally, no more than 12 months of residence / main activity in the recruiting country during the preceding 36 months; read exceptions.",
+          "apply": "Apply to a funded network's advertised doctoral vacancy, including vacancies on EURAXESS. Individuals do not submit a network funding proposal.",
+          "documents": "Vacancy-specific CV, motivation letter, degrees / transcripts, references and research evidence.",
+          "timing": "Vacancy-specific throughout the year. Recruitment deadlines differ from the EU's institutional network call deadline.",
+          "sources": [
+            [
+              "Official Doctoral Networks candidate guidance",
+              "https://marie-sklodowska-curie-actions.ec.europa.eu/actions/doctoral-networks"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uk",
+      "name": "United Kingdom (UK)",
+      "region": "Europe",
+      "intro": "Chevening and Commonwealth offer country-eligible routes; university awards such as Clarendon use separate selection rules. Check course and funding deadlines independently.",
+      "prepare": "For development-focused awards, explain the specific benefit to Sri Lanka. For PhD applications, build a research question and supervisor fit; for master's, explain course fit and career direction.",
+      "universities": [
+        {
+          "name": "University of Oxford",
+          "requirements": "Meet the chosen master's / DPhil entry criteria. Apply by the relevant December or January deadline for automatic Clarendon consideration; academic merit and potential drive selection.",
+          "url": "https://www.ox.ac.uk/clarendon"
+        },
+        {
+          "name": "University of Cambridge",
+          "requirements": "Each course has its own academic, language and application requirements. Check its funding deadline early; master's and doctoral funding availability differ.",
+          "url": "https://www.postgraduate.study.cam.ac.uk/funding"
+        }
+      ],
+      "awards": [
+        {
+          "id": "chevening",
+          "name": "Chevening · Sri Lanka",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Eligible one-year taught master's",
+          "route": "sri-lanka",
+          "funding": "fees-stipend",
+          "coverage": "Scholarship support under Chevening terms; check tuition conditions and any course-specific limits.",
+          "eligibility": "Eligible citizenship and residence, qualifying undergraduate degree, at least 2,800 hours of post-graduation work, and commitment to return home for two years.",
+          "apply": "Apply to Chevening and three eligible UK courses. Obtain an unconditional offer from at least one by the stated offer deadline.",
+          "documents": "Degree records, employment history, leadership / career responses, references and university admission materials.",
+          "timing": "The Sri Lanka page reports 2027/28 applications closed. Check the next cycle and its revised rules.",
+          "sources": [
+            [
+              "Chevening in Sri Lanka",
+              "https://www.chevening.org/scholarship/sri-lanka/"
+            ],
+            [
+              "Current eligibility",
+              "https://www.chevening.org/resource-hub/guidance/eligibility/"
+            ]
+          ]
+        },
+        {
+          "id": "commonwealth",
+          "name": "Commonwealth Master's and PhD Scholarships",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's · PhD · distinct competitions",
+          "route": "sri-lanka",
+          "funding": "fees-stipend",
+          "coverage": "Tuition and living / travel support under the relevant CSC scholarship terms.",
+          "eligibility": "Sri Lanka is an eligible country for the linked competitions. Academic, permanent-residence, financial-need and development-impact conditions apply; the master's and PhD rules differ.",
+          "apply": "Follow both CSC's online application and an approved nominating body's process. For Sri Lanka, check the current ministry nomination call and its separate deadline.",
+          "documents": "Identity and academic records, references, development-impact statements; PhD applicants also need the research and supervisor support specified in the call.",
+          "timing": "Annual competitions; check CSC and nominator deadlines separately. Old ministry notices are not current application calls.",
+          "sources": [
+            [
+              "Commonwealth Master's",
+              "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/"
+            ],
+            [
+              "Commonwealth PhD and eligible countries",
+              "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-phd-scholarship/"
+            ],
+            [
+              "Sri Lankan nomination notices",
+              "https://mohe.gov.lk/"
+            ]
+          ]
+        },
+        {
+          "id": "clarendon",
+          "name": "Clarendon Fund · Oxford",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's · DPhil",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Course fees and a living-expenses grant for the fee-liability period of the course.",
+          "eligibility": "All nationalities and fields; candidates for eligible new master's or DPhil courses selected for academic merit and potential.",
+          "apply": "Submit your Oxford graduate course application by its relevant December / January deadline. No separate Clarendon application.",
+          "documents": "Your complete course application and its required transcripts, references, statement / proposal, language evidence and work samples.",
+          "timing": "Use the course's funding deadline, not a later admission-only deadline.",
+          "sources": [
+            [
+              "Oxford Clarendon rules",
+              "https://www.ox.ac.uk/clarendon"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "region": "Europe",
+      "intro": "DAAD EPOS supports selected development-related postgraduate courses. Doctoral research can also be funded through a university or institute position; low tuition alone is not living-cost funding.",
+      "prepare": "For EPOS, assemble evidence of relevant work after your first degree and explain development impact. For PhDs, identify a supervisor or structured programme and verify how the position is funded.",
+      "universities": [
+        {
+          "name": "University of Stuttgart · WAREM example",
+          "requirements": "Check the Water Resources Engineering and Management course's relevant-degree, language and application requirements. Admission and a scholarship are separate decisions.",
+          "url": "https://www.uni-stuttgart.de/en/study/master-programs/water-resources-engineering-and-management-warem-m.sc./application/"
+        },
+        {
+          "name": "German doctoral universities / research institutes",
+          "requirements": "Check the doctoral programme's degree equivalence, supervisor agreement and language rules. Use a current funded vacancy or a defined scholarship route.",
+          "url": "https://www.research-in-germany.org/en/your-goal/phd.html"
+        }
+      ],
+      "awards": [
+        {
+          "id": "daad-epos",
+          "name": "DAAD Development-Related Postgraduate Courses (EPOS)",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Selected postgraduate / master's courses",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Scholarship benefits under the course and DAAD call; check any course fees and additional costs.",
+          "eligibility": "Eligible developing-country applicants, normally a relevant four-year bachelor's, upper-third results and at least two years' related post-degree work. Degrees should normally be no more than six years old.",
+          "apply": "Apply directly to an eligible EPOS course. Up to three course choices are allowed, with consistent priority order; do not send the initial application to DAAD.",
+          "documents": "DAAD forms, motivation, academic records, employer certificates, references and English / German proof.",
+          "timing": "Course-specific scholarship deadlines may be much earlier than self-funded admission. Exceptional doctoral EPOS routes require their own call.",
+          "sources": [
+            [
+              "DAAD EPOS eligibility and application",
+              "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database?detail=50076777"
+            ]
+          ]
+        },
+        {
+          "id": "germany-phd",
+          "name": "Funded German doctoral programmes and positions",
+          "degrees": [
+            "phd"
+          ],
+          "study": "PhD · employment or scholarship route",
+          "route": "international",
+          "funding": "variable",
+          "coverage": "Depends on the actual position: an employment contract or scholarship. Check salary / stipend, hours, duration and remaining costs.",
+          "eligibility": "International candidates meeting the host university's doctoral entry requirements and the project's research criteria.",
+          "apply": "Find an advertised position or structured programme, or agree a project with an eligible supervisor and secure a defined funding source.",
+          "documents": "Academic CV, degree records, research proposal or project motivation, references and requested language / research evidence.",
+          "timing": "Each funded position or programme has its own application window.",
+          "sources": [
+            [
+              "Official Research in Germany PhD guide",
+              "https://www.research-in-germany.org/en/your-goal/phd.html"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "france",
+      "name": "France",
+      "region": "Europe",
+      "intro": "Some major scholarships require nomination or invitation from a French university. Start with the degree application and the institution's internal scholarship deadline.",
+      "prepare": "Contact the programme's international office early. Confirm the language of teaching and whether tuition exemption applies; an allowance does not automatically cover all programme fees.",
+      "universities": [
+        {
+          "name": "Université Paris-Saclay",
+          "requirements": "For the international master's award: admission to an eligible master's, first-time French higher-education enrolment subject to exceptions, and under 30 in the application year. Programme coordinators invite candidates.",
+          "url": "https://www.universite-paris-saclay.fr/en/admission/bourses-et-aides-financieres/international-masters-scholarships-program"
+        },
+        {
+          "name": "French universities nominating for Eiffel",
+          "requirements": "Meet the host programme's admission and Eiffel's current age / field rules. The French institution must support and submit the scholarship application.",
+          "url": "https://www.campusfrance.org/en/the-france-excellence-eiffel-scholarship-program"
+        }
+      ],
+      "awards": [
+        {
+          "id": "eiffel",
+          "name": "France Excellence Eiffel",
+          "degrees": [
+            "masters",
+            "phd"
+          ],
+          "study": "Master's / engineering · eligible joint doctoral study",
+          "route": "international",
+          "funding": "partial",
+          "coverage": "Living allowance and specified services. Eiffel itself does not pay tuition; some qualifying public national-diploma programmes have fee exemptions. Confirm with the institution.",
+          "eligibility": "Foreign candidates in designated fields meeting the current age and academic rules; the host institution must nominate them.",
+          "apply": "Ask a French institution to support your candidature before its internal deadline. Only that institution submits to Campus France.",
+          "documents": "Academic records, CV, study / career plan and host-requested nomination file; doctoral applications need the required joint-supervision arrangements.",
+          "timing": "The university's internal deadline is earlier than Campus France's final submission date.",
+          "sources": [
+            [
+              "Eiffel programme and nomination",
+              "https://www.campusfrance.org/en/the-france-excellence-eiffel-scholarship-program"
+            ],
+            [
+              "Fee-exemption details",
+              "https://www.campusfrance.org/en/france-excellence-eiffel-scholarship-implementation"
+            ]
+          ]
+        },
+        {
+          "id": "paris-saclay",
+          "name": "Paris-Saclay International Master's Scholarships",
+          "degrees": [
+            "masters"
+          ],
+          "study": "M1 / M2 master's · eligible programmes",
+          "route": "international",
+          "funding": "partial",
+          "coverage": "EUR 10,000 per academic year plus travel / visa support up to the published limit. Payment starts after arrival and registration; budget for initial costs.",
+          "eligibility": "Outstanding admitted international students meeting first-enrolment, age and other-funding restrictions. Not all admitted students receive an invitation.",
+          "apply": "Apply for the master's first. Selected candidates receive an invitation to complete the scholarship form and arrange references.",
+          "documents": "Master's admission file and, if invited, scholarship responses and requested referee details.",
+          "timing": "Meet the programme and scholarship selection deadlines; late admission can miss scholarship consideration.",
+          "sources": [
+            [
+              "Paris-Saclay award and invitation process",
+              "https://www.universite-paris-saclay.fr/en/admission/bourses-et-aides-financieres/international-masters-scholarships-program"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "netherlands",
+      "name": "Netherlands",
+      "region": "Europe",
+      "intro": "Master's scholarships range from small contributions to substantial funding. Many PhD vacancies are paid university employment and are applied for as jobs.",
+      "prepare": "Compare tuition and living coverage separately. For PhD jobs, tailor the research evidence in your CV and cover letter to the advertised methods and project.",
+      "universities": [
+        {
+          "name": "Delft University of Technology · MSc",
+          "requirements": "Van Effen applicants need an eligible two-year regular MSc application and exceptional prior results; top 10% is an indication of competitiveness, not a required ranking certificate.",
+          "url": "https://www.tudelft.nl/en/education/study-programme-orientation/practical-matters/scholarships"
+        },
+        {
+          "name": "Delft University of Technology · PhD",
+          "requirements": "Normally a relevant master's degree and suitability for an advertised research vacancy. Accepted vacancy candidates receive a salary under university employment terms.",
+          "url": "https://www.tudelft.nl/en/about-tu-delft/working-at-tu-delft/phd"
+        }
+      ],
+      "awards": [
+        {
+          "id": "van-effen",
+          "name": "Justus & Louise van Effen Excellence Scholarship",
+          "degrees": [
+            "masters"
+          ],
+          "study": "TU Delft · eligible two-year regular MSc",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Full tuition plus a living-expenses contribution. Second-year continuation requires sufficient academic progress.",
+          "eligibility": "Excellent international applicants to eligible regular MSc programmes with relevant prior study; international joint education programmes are excluded.",
+          "apply": "Submit the complete MSc application, scholarship form, reference letter and English certificate or accepted exemption by the scholarship deadline.",
+          "documents": "Degree application file, scholarship form, reference and English evidence; use Delft's current checklist.",
+          "timing": "Published deadline: 1 December 2026, 23:59 CET (2 December, 04:29 Sri Lanka time). Verify the official call before submitting.",
+          "sources": [
+            [
+              "TU Delft scholarship requirements and dates",
+              "https://www.tudelft.nl/en/education/study-programme-orientation/practical-matters/scholarships"
+            ]
+          ]
+        },
+        {
+          "id": "nl-scholarship",
+          "name": "NL Scholarship",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Master's · participating institutions",
+          "route": "international",
+          "funding": "partial",
+          "coverage": "EUR 5,000 in the first year. This is not a full-tuition or full-living-cost scholarship.",
+          "eligibility": "Non-EEA nationality, eligible full-time programme, institution-specific admission requirements, and no degree from a Dutch education institution.",
+          "apply": "Find participating universities and apply under the chosen institution's scholarship process.",
+          "documents": "University admission and scholarship file, with academic, language and motivation evidence as specified.",
+          "timing": "University-specific application dates. Check that the chosen programme participates in the current cycle.",
+          "sources": [
+            [
+              "Official NL Scholarship guide",
+              "https://www.studyinnl.org/finances/nl-scholarship"
+            ]
+          ]
+        },
+        {
+          "id": "delft-phd",
+          "name": "Paid PhD vacancies · TU Delft example",
+          "degrees": [
+            "phd"
+          ],
+          "study": "Doctoral employment",
+          "route": "international",
+          "funding": "salary",
+          "coverage": "Salary under the relevant Dutch universities' employment agreement for accepted PhD vacancy candidates.",
+          "eligibility": "Relevant master's degree and project-specific research qualifications, plus host doctoral admission conditions.",
+          "apply": "Use the university's advertised PhD vacancy and application instructions. A vacancy appointment and doctoral admission requirements both matter.",
+          "documents": "Targeted CV / cover letter, academic records, referees and research evidence requested in the vacancy.",
+          "timing": "Vacancy-specific; a general PhD information page is not an open job offer.",
+          "sources": [
+            [
+              "TU Delft doctoral work and vacancies",
+              "https://www.tudelft.nl/en/about-tu-delft/working-at-tu-delft/phd"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sweden",
+      "name": "Sweden",
+      "region": "Europe",
+      "intro": "University master's scholarships can cover tuition without living costs. Doctoral funding follows a separate recruitment process; also explore European MSCA vacancies at Swedish hosts.",
+      "prepare": "Complete the national master's admission process on time and check first-choice ranking rules. Build a separate living-cost plan when an award covers tuition only.",
+      "universities": [
+        {
+          "name": "Lund University",
+          "requirements": "Global Scholarship applicants must be non-EU/EEA fee-paying applicants with Lund as first choice; complete the degree application and pay the application fee before scholarship submission.",
+          "url": "https://www.lunduniversity.lu.se/study/admission-degree-studies/scholarships-and-awards/lund-university-global-scholarship"
+        },
+        {
+          "name": "KTH Royal Institute of Technology",
+          "requirements": "KTH Scholarship applicants must be fee-paying master's applicants who rank KTH first and pay the application fee. Academic excellence and sustainability motivation are assessed.",
+          "url": "https://www.kth.se/en/studies/2.25746/kth-scholarship-1.72827"
+        }
+      ],
+      "awards": [
+        {
+          "id": "lund",
+          "name": "Lund University Global Scholarship",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Eligible master's programmes",
+          "route": "international",
+          "funding": "tuition",
+          "coverage": "Part or all of tuition. Living costs are not included.",
+          "eligibility": "High-achieving fee-paying students from outside the EU/EEA and Switzerland, with the eligible Lund programme ranked first.",
+          "apply": "Apply through universityadmissions.se and pay the fee, then complete Lund's separate scholarship application.",
+          "documents": "Admission documents and a separate scholarship motivation letter, maximum 600 words under current rules.",
+          "timing": "Usually a February scholarship round. The linked page's 2026 deadline has passed; verify the next dates.",
+          "sources": [
+            [
+              "Lund scholarship rules",
+              "https://www.lunduniversity.lu.se/study/admission-degree-studies/scholarships-and-awards/lund-university-global-scholarship"
+            ]
+          ]
+        },
+        {
+          "id": "kth",
+          "name": "KTH Scholarship",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Eligible one- or two-year master's",
+          "route": "international",
+          "funding": "tuition",
+          "coverage": "Full tuition for the eligible period, subject to progress. No living-cost support.",
+          "eligibility": "Fee-paying applicants with an eligible KTH programme as first priority and the application fee paid.",
+          "apply": "First apply to the master's via universityadmissions.se, then use KTH's scholarship form. Selection uses the submitted admission documents.",
+          "documents": "Complete national admission documents; the scholarship form does not require additional documents under the published rules.",
+          "timing": "Published scholarship window: 1 December 2026 to 15 January 2027. Check document deadlines and exact closing time on the official page.",
+          "sources": [
+            [
+              "KTH scholarship and 2027 dates",
+              "https://www.kth.se/en/studies/2.25746/kth-scholarship-1.72827"
+            ]
+          ]
+        },
+        {
+          "id": "kth-phd",
+          "name": "Paid doctoral positions at KTH",
+          "degrees": [
+            "phd"
+          ],
+          "study": "PhD · doctoral employment",
+          "route": "international",
+          "funding": "salary",
+          "coverage": "Most KTH doctoral students are employed with a monthly salary. Follow the advertised position and appointment terms.",
+          "eligibility": "A relevant second-cycle degree, or qualifying credit-based / equivalent knowledge route, plus English and project-specific requirements. Admission to doctoral education is required for doctoral employment.",
+          "apply": "Apply to an advertised doctoral position through KTH's vacancy process, addressing the specific research topic and selection criteria.",
+          "documents": "Vacancy-specific academic CV, motivation, degrees and transcripts, references and relevant research evidence.",
+          "timing": "Each doctoral vacancy has its own closing date; the general doctoral guide is not a current job offer.",
+          "sources": [
+            [
+              "KTH doctoral study and vacancies",
+              "https://www.kth.se/en/studies/phd/introduction-to-doctoral-studies-at-kth-1.527044"
+            ],
+            [
+              "KTH admission and employment requirements",
+              "https://www.kth.se/en/om/jobba-pa-kth/arbeta-och-utvecklas/befattningar-vid-kth/jobba-som-doktorand-vid-kth-1.456667"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "switzerland",
+      "name": "Switzerland",
+      "region": "Europe",
+      "intro": "ETH's ESOP supports selected master's entrants. Swiss Government Excellence research funding and doctoral university appointments use separate eligibility and application processes.",
+      "prepare": "For research funding, find a suitable supervisor and write a specific project plan. For ESOP, prepare an original master's thesis pre-proposal and check whether an existing master's makes you ineligible.",
+      "universities": [
+        {
+          "name": "ETH Zurich",
+          "requirements": "ESOP needs a strong bachelor's record, master's admission application, thesis pre-proposal and references. Existing master's holders and students already enrolled in an ETH master's are ineligible for ESOP.",
+          "url": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html"
+        },
+        {
+          "name": "EPFL",
+          "requirements": "Doctoral applicants normally have a relevant master's; some four-/five-year bachelor's holders may apply. Submit the programme file and three references; final enrolment needs a supervisor, topic and secure funding.",
+          "url": "https://www.epfl.ch/education/admission/admission-2/phd-admission-criteria-and-application/"
+        }
+      ],
+      "awards": [
+        {
+          "id": "eth-esop",
+          "name": "ETH Excellence Scholarship & Opportunity Programme (ESOP)",
+          "degrees": [
+            "masters"
+          ],
+          "study": "Master's · ETH Zurich",
+          "route": "international",
+          "funding": "fees-stipend",
+          "coverage": "Tuition waiver plus study / living-expense support for the regular master's duration, under ESOP terms.",
+          "eligibility": "Outstanding eligible bachelor's graduates applying for an ETH master's. Those already holding a master's or enrolled in an ETH master's cannot apply.",
+          "apply": "Apply in the first master's application window and include the ESOP materials, especially an independently developed thesis pre-proposal.",
+          "documents": "Master's admission documents, thesis pre-proposal and two academic reference persons if the course does not already request references.",
+          "timing": "Published first window: 1–30 November. Verify the relevant entry-year call and exact deadline.",
+          "sources": [
+            [
+              "ETH ESOP rules and application",
+              "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html"
+            ]
+          ]
+        },
+        {
+          "id": "swiss-government",
+          "name": "Swiss Government Excellence · research / PhD",
+          "degrees": [
+            "phd"
+          ],
+          "study": "Research fellowship / PhD · country-specific availability",
+          "route": "international",
+          "funding": "partial",
+          "coverage": "Research living support under the 2027/28 terms. It is not an employment salary; confirm additional host funding and fees.",
+          "eligibility": "Normally a completed master's and a Swiss academic supervisor's support, plus age and country-specific conditions. Check Sri Lanka's country entry for available scholarship types.",
+          "apply": "Read the current country listing, secure supervisor backing and use the current GO ESKAS online instructions. Do not rely on older paper-submission guidance.",
+          "documents": "Research plan and timeline, supervisor support, academic records, motivation, references and the official checklist.",
+          "timing": "2027/28 online access began 20 August 2026; the Sri Lanka country listing sets the closing date. No open-status claim is made here.",
+          "sources": [
+            [
+              "Current country listings and online process",
+              "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships-at-a-glance"
+            ],
+            [
+              "Programme overview",
+              "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships"
+            ]
+          ]
+        },
+        {
+          "id": "epfl-phd",
+          "name": "EPFL funded doctoral appointment",
+          "degrees": [
+            "phd"
+          ],
+          "study": "PhD · laboratory appointment",
+          "route": "international",
+          "funding": "salary",
+          "coverage": "Funding through a laboratory appointment where offered; confirm the employment contract and doctoral programme conditions.",
+          "eligibility": "Applicants meeting the doctoral programme's academic requirements and selected for a compatible topic, supervisor and funded place.",
+          "apply": "Apply to the doctoral programme and pursue a suitable laboratory appointment. Programme acceptance alone is not final enrolment or a funding offer.",
+          "documents": "Degree records, statement of objectives, identity document and three electronically submitted references.",
+          "timing": "Doctoral programme deadlines and laboratory recruitment dates vary.",
+          "sources": [
+            [
+              "EPFL doctoral admission and funding conditions",
+              "https://www.epfl.ch/education/admission/admission-2/phd-admission-criteria-and-application/"
+            ],
+            [
+              "Degree and language FAQs",
+              "https://www.epfl.ch/education/admission/admission-2/phd-admission-criteria-and-application/applications-faqs/"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
